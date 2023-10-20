@@ -9,18 +9,32 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>display users</title>
+    <link rel="stylesheet" href="./home.css">
+
 </head>
 
 <body>
     <style>
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
+    <?php
+    include 'nav.php'
+    ?>
     <div class="container">
+
         <h1 class='title'>Display</h1>
-        <button class='btn btn-primary my-5'><a class='text-light text-decoration-none' href="user.php">Add User</a></button>
+        <div>
+            <button class='btn btn-primary my-5'>
+                <a class='text-light text-decoration-none' href="user.php">
+                    Add
+                    User
+                </a>
+            </button>
+        </div>
+
 
         <table class="w3-table-all">
             <thead>
@@ -39,52 +53,39 @@
             $data = $conn->query("select id, name, post, password, email from `crud`");
             $d = $data->fetchAll();
 
-
-            // if ($result) {
-            //     $row = mysqli_fetch_assoc($result);
-            //     while ($row = mysqli_fetch_assoc($result)) {
-            //         $id = $row['id'];
-            //         $name = $row['name'];
-            //         $password = $row['password'];
-            //         $email = $row['email'];
-            //         $mobile = $row['mobile'];
-            //         echo "
-            //     <tr class='w3-hover-green'>
-            //     <td>$id</td>
-            //     <td>$name</td>
-            //     <td>$password</td>
-            //     <td>$email</td>
-            //     <td>$mobile</td>
-            //     <td>
-            //             <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateid=" . $id . "'>Edit</a></button>
-            //             <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteid=" . $id . "'>Delete</a></button>
-            //     </td>
-            // </tr> ";
-            //     }
-            // }
-
             if ($d) {
                 foreach ($d as $row) {
                     $id = $row['id'];
                     $name = $row['name'];
                     $password = $row['password'];
                     $email = $row['email'];
-                    $mobile = $row['mobile'];
-                    echo "
-                <tr class='w3-hover-green'>
-                <td>$id</td>
-                <td>$name</td>
-                <td>$email</td>
-                <td>$password</td>
-                <td>
-                        <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateid=" . $id . "'>Edit</a></button>
-                        <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteid=" . $id . "'>Delete</a></button>
-                </td>
-            </tr> ";
+                    echo
+                    "
+                    <tr class='w3-hover-green'>
+                        <td>$id</td>
+                        <td>$name</td>
+                        <td>$email</td>
+                        <td>$password</td>
+                        <td>
+                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateid=" . $id . "'>Edit</a></button>
+                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteid=" . $id . "'>Delete</a></button>
+                        </td>
+                    </tr> ";
                 }
             }
             ?>
         </table>
+        <p><?php
+            if ($d) {
+                foreach ($d as $row) {
+                    $id = $row['id'];
+                    $name = $row['name'];
+                    $password = $row['password'];
+                    $email = $row['email'];
+                    echo $name;
+                }
+            }
+            ?></p>
     </div>
 </body>
 

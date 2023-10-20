@@ -2,18 +2,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="./home.css">
-
+<link rel="stylesheet" type="text/css" href="./home.css" />
 </head>
 
 <body>
+    <?php
+        include "nav.php";
+        ?>
     <div class="container">
-        <div class="nav">nav</div>
+
         <div class="body">
             <div class="category">
-                <div class="category-item">home</div>
-                <div class="category-item">frequent ask questions</div>
-                <div class="category-item">add a question</div>
+                <div class="category-item"><a href='askPage.php'>Post a question to community</a></div>
+                <div class="category-item">View your account's information</div>
+                <div class="category-item">Contact Administrator</div>
             </div>
             <div class="content">
                 <div class="question">
