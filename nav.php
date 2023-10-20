@@ -18,7 +18,7 @@
                     Users</a></button>
         </div>
         <div class="nav-child">
-            <button class="btn-nav"><a class='text-decoration-none' href='display.php'>View List
+            <button class="btn-nav"><a class='text-decoration-none' href='posts.php'>View List
                     Posts</a></button>
         </div>
     </div>

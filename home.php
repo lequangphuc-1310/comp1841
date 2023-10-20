@@ -1,3 +1,7 @@
+<?php
+include 'connect.php'
+?>
+
 <html lang="en">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +11,8 @@
 
 <body>
     <?php
-        include "nav.php";
-        ?>
+    include "nav.php";
+    ?>
     <div class="container">
 
         <div class="body">
@@ -20,9 +24,23 @@
             <div class="content">
                 <div class="question">
                     <div class="question-title">
-                        <div class='question-title-content'>Why "result" value is always equal to zero?</div>
+                        <div class='question-title-content'>
+                            <?php
+                            $data = $conn->query("select title from `post`");
+                            $d = $data->fetch();
+                            $name = $d['title'];
+                            echo "$name"
+                            ?>
+                        </div>
                         <div class="question-title-extra">
-                            <div class="asked">Asked 3 years, 2 months ago</div>
+                            <div class="asked">
+                                <?php
+                                $data = $conn->query("select published_at from `post`");
+                                $d = $data->fetch();
+                                $published = $d['published_at'];
+                                echo "$published"
+                                ?>
+                            </div>
                             <div class="modified">
                                 Modified 3 years, 2 months ago
                             </div>
@@ -32,19 +50,12 @@
                         </div>
                     </div>
                     <div class="question-content">
-                        I'm going through a MOOC about an introduction to c++, and am stuck in an exercise about
-                        functions. The exercise is about a program that changes a number to the way it was read.
-                        For example:
-                        "1" is read like "one one" so the next number should be
-                        "11" which is read like "two ones" the next number is
-                        "21" -> "one two and one one"
-                        "1211" -> "one one and one two and two ones"
-                        "111221" -> "three ones and two twos and one one "
-                        "312211"..... and so on
-                        The user should give the starting number and the number of times we should do this operation,
-                        and the program should output the last number. Like in the example the input should be "1 5" and
-                        the program should print "312211". In the program they just asked to write three functions to
-                        complete the code they gave us.
+                        <?php
+                                $data = $conn->query("select details from `post`");
+                                $d = $data->fetch();
+                                $details = $d['details'];
+                                echo "$details"
+                                ?>
                     </div>
                     <div class="answer">
 
@@ -68,6 +79,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
 

@@ -15,17 +15,17 @@
 
 <body>
     <style>
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include 'nav.php'
     ?>
     <div class="container">
 
-        <h1 class='title'>Display</h1>
+        <h1 class='title'>Display Users</h1>
         <div>
             <button class='btn btn-primary my-5'>
                 <a class='text-light text-decoration-none' href="user.php">
@@ -47,9 +47,6 @@
                 </tr>
             </thead>
             <?php
-            // $sql = 'SELECT * FROM `crud`';
-            // $result = mysqli_query($conn, $sql);
-
             $data = $conn->query("select id, name, post, password, email from `crud`");
             $d = $data->fetchAll();
 
