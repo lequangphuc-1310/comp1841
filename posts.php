@@ -15,10 +15,10 @@
 
 <body>
     <style>
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include 'nav.php'
@@ -38,7 +38,9 @@
             </thead>
             <?php
 
-            $data = $conn->query("select id, title, details from `post`");
+            // $data = $conn->query("select id, title, details from `post`");
+            $data = $conn->query("select user.*,post.title,post.details,post.id from `user`, `post` where user.id=post.user_id;");
+
             $d = $data->fetchAll();
 
             if ($d) {
@@ -46,12 +48,14 @@
                     $id = $row['id'];
                     $title = $row['title'];
                     $details = $row['details'];
+                    $name = $row['name'];
+                    $email = $row['email'];
                     echo
                     "
                     <tr class='w3-hover-green'>
                         <td>$id</td>
-                        <td>---</td>
-                        <td>---</td>
+                        <td>$name</td>
+                        <td>$email</td>
                         <td>$title</td>
                         <td>
                             <button class='btn btn-danger'><a class='text-light text-decoration-none' href='home.php?postId=" . $id . "'>Go to this post</a></button>

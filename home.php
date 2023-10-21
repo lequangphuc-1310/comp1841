@@ -3,17 +3,21 @@ include 'connect.php';
 // $postId = $_GET['postId'];
 if (array_key_exists('postId', $_GET)) {
     $postId = $_GET['postId'];
-    $sql = "select * from `post` where id = $postId";
+    $sql = "select user.name, user.email, post.title,post.details,post.id,post.published_at from `user`, `post` where post.user_id=user.id and post.id=$postId;";
     $result = $conn->query($sql);
     $d = $result->fetch();
     $title = $d['title'];
+    $name = $d['name'];
+    $email = $d['email'];
     $details = $d['details'];
     $published = $d['published_at'];
 } else {
-    $sql = "select * from `post` ORDER BY id DESC LIMIT 1";
+    $sql = "select user.name, user.email, post.title,post.details,post.id,post.published_at from `user`,`post` where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
     $result = $conn->query($sql);
     $d = $result->fetch();
     $title = $d['title'];
+    $name = $d['name'];
+    $email = $d['email'];
     $details = $d['details'];
     $published = $d['published_at'];
 }
@@ -23,7 +27,7 @@ if (array_key_exists('postId', $_GET)) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home</title>
-<link rel="stylesheet" type="text/css" href="./home.css" />
+<link rel="stylesheet" type="text/css" href="./home.css?v=<?php echo time(); ?>" />
 </head>
 
 <body>
@@ -42,9 +46,20 @@ if (array_key_exists('postId', $_GET)) {
                 <div class="question">
                     <div class="question-title">
                         <div class='question-title-content'>
-                            <?php
-                            echo $title
-                            ?>
+
+                            <div class='question-title-content-up'>
+                                <?php
+                                echo $title
+                                ?>
+                            </div>
+                            <div class='question-title-content-down-name'>
+                                <?php
+                                echo $name;
+                                ?>
+                                <?php
+                                echo $email
+                                ?>
+                            </div>
                         </div>
                         <div class="question-title-extra">
                             <div class="asked">
