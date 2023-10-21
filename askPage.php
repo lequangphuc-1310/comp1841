@@ -1,22 +1,3 @@
-<?php
-include 'connect.php';
-if (isset($_POST["submitPost"])) {
-    $title = $_POST["title"];
-    $details = $_POST["details"];
-    try {
-        $sql = "INSERT INTO `post` (`title`, `details`)
-    values ('$title', '$details')";
-        $result = $conn->exec($sql);
-        if ($result) {
-            header('location: posts.php');
-        }
-    } catch (PDOException $e) {
-        die("Error: " . $e->getMessage());
-    }
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,28 +11,27 @@ if (isset($_POST["submitPost"])) {
 
 <body>
     <style type="text/css">
-        /* .container {
+    /* .container {
             margin: 20px auto;
         } */
 
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
-    include "nav.php"
+    include "nav.php";
     ?>
     <div class="ask-page-container ">
-
         <h1 class='title'>Ask a Question</h1>
         <form action="askPage.php" method='POST'>
             <div class='row'>
@@ -75,6 +55,26 @@ if (isset($_POST["submitPost"])) {
                 <div class='form-group col-12 label'>
                     <input type='submit' name='submitPost' value='Submit' class="btn btn-primary" />
                 </div>
+                <?php
+                include 'connect.php';
+
+                if (isset($_POST["submitPost"])) {
+                    $title = $_POST["title"];
+                    $details = $_POST["details"];
+                    $user_id = $_SESSION['id'];
+                    try {
+                        $sql = "INSERT INTO `post` (`title`, `details`, `user_id`)
+                        values ('$title', '$details', '$user_id')";
+                        $result = $conn->exec($sql);
+                        if ($result) {
+                            header('location: posts.php');
+                        }
+                    } catch (PDOException $e) {
+                        die("Error: " . $e->getMessage());
+                    }
+                }
+                ?>
+
             </div>
         </form>
     </div>

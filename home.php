@@ -1,7 +1,8 @@
 <?php
 include 'connect.php';
 // $postId = $_GET['postId'];
-if (array_key_exists('hop', $_GET)) {
+if (array_key_exists('postId', $_GET)) {
+    $postId = $_GET['postId'];
     $sql = "select * from `post` where id = $postId";
     $result = $conn->query($sql);
     $d = $result->fetch();
@@ -21,7 +22,7 @@ if (array_key_exists('hop', $_GET)) {
 <html lang="en">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>Home</title>
 <link rel="stylesheet" type="text/css" href="./home.css" />
 </head>
 
