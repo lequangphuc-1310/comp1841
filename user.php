@@ -6,9 +6,8 @@ if (isset($_POST["submit"])) {
     $password = $_POST["password"];
     $email = $_POST["email"];
     try {
-        $sql = "INSERT INTO `crud` (`name`, `password`, `email`)
-    values ('$name', '$password', '$email')";
-        $result = $conn->query($sql);
+        $sql = "INSERT INTO `user` (`name`, `password`, `email`) values ('$name', '$password', '$email')";
+        $result = $conn->exec($sql);
         if ($result) {
             header('location: display.php');
         }
@@ -31,22 +30,22 @@ if (isset($_POST["submit"])) {
 
 <body>
     <style type="text/css">
-    /* .container {
+        /* .container {
             margin: 20px auto;
         } */
 
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "nav.php"

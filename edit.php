@@ -1,7 +1,7 @@
 <?php
 include 'connect.php';
 $id = $_GET['updateid'];
-$sql = "select * from `crud` where id = $id";
+$sql = "select * from `user` where id = $id";
 $result = $conn->query($sql);
 $d = $result->fetch();
 $name = $d['name'];
@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
-    $sql = "update `crud` set id=$id, name='$name', password='$password', email='$email' where id=$id ";
+    $sql = "update `user` set id=$id, name='$name', password='$password', email='$email' where id=$id ";
     $result = $conn->query($sql);
     if ($result) {
         echo 'update scuees';
@@ -36,22 +36,22 @@ if (isset($_POST['submit'])) {
 
 <body>
     <style type="text/css">
-        /* .container {
+    /* .container {
             margin: 20px auto;
         } */
 
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <h1 class='title'>CRUD EDIT USER</h1>
 

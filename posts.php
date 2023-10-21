@@ -37,8 +37,6 @@
                 </tr>
             </thead>
             <?php
-            // $sql = 'SELECT * FROM `crud`';
-            // $result = mysqli_query($conn, $sql);
 
             $data = $conn->query("select id, title, details from `post`");
             $d = $data->fetchAll();
@@ -56,8 +54,7 @@
                         <td>---</td>
                         <td>$title</td>
                         <td>
-                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateid=" . $id . "'>Edit</a></button>
-                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteid=" . $id . "'>Delete</a></button>
+                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='home.php?postId=" . $id . "'>Go to this post</a></button>
                         </td>
                     </tr> ";
                 }

@@ -1,13 +1,5 @@
 <?php
 
-// $con = new mysqli('localhost', 'root', '', 'phpstepbystepyoutube');
-
-// if (!$con) {
-//     die(mysqli_error($con));
-// } else {
-//     // echo 'connection established successfully';
-// }
-
 try {
     $host = 'localhost';
     $dbName = 'comp1841';

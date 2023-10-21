@@ -15,10 +15,10 @@
 
 <body>
     <style>
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include 'nav.php'
@@ -47,7 +47,7 @@
                 </tr>
             </thead>
             <?php
-            $data = $conn->query("select id, name, post, password, email from `crud`");
+            $data = $conn->query("select id, name, post, password, email from `user`");
             $d = $data->fetchAll();
 
             if ($d) {

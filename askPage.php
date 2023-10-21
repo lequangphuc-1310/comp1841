@@ -6,7 +6,7 @@ if (isset($_POST["submitPost"])) {
     try {
         $sql = "INSERT INTO `post` (`title`, `details`)
     values ('$title', '$details')";
-        $result = $conn->query($sql);
+        $result = $conn->exec($sql);
         if ($result) {
             header('location: posts.php');
         }

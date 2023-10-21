@@ -1,5 +1,21 @@
 <?php
-include 'connect.php'
+include 'connect.php';
+// $postId = $_GET['postId'];
+if (array_key_exists('hop', $_GET)) {
+    $sql = "select * from `post` where id = $postId";
+    $result = $conn->query($sql);
+    $d = $result->fetch();
+    $title = $d['title'];
+    $details = $d['details'];
+    $published = $d['published_at'];
+} else {
+    $sql = "select * from `post` ORDER BY id DESC LIMIT 1";
+    $result = $conn->query($sql);
+    $d = $result->fetch();
+    $title = $d['title'];
+    $details = $d['details'];
+    $published = $d['published_at'];
+}
 ?>
 
 <html lang="en">
@@ -26,19 +42,13 @@ include 'connect.php'
                     <div class="question-title">
                         <div class='question-title-content'>
                             <?php
-                            $data = $conn->query("select title from `post`");
-                            $d = $data->fetch();
-                            $name = $d['title'];
-                            echo "$name"
+                            echo $title
                             ?>
                         </div>
                         <div class="question-title-extra">
                             <div class="asked">
                                 <?php
-                                $data = $conn->query("select published_at from `post`");
-                                $d = $data->fetch();
-                                $published = $d['published_at'];
-                                echo "$published"
+                                echo $published
                                 ?>
                             </div>
                             <div class="modified">
@@ -51,11 +61,8 @@ include 'connect.php'
                     </div>
                     <div class="question-content">
                         <?php
-                                $data = $conn->query("select details from `post`");
-                                $d = $data->fetch();
-                                $details = $d['details'];
-                                echo "$details"
-                                ?>
+                        echo $details
+                        ?>
                     </div>
                     <div class="answer">
 
