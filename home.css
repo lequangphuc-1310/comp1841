@@ -82,6 +82,11 @@
     font-weight: 500;
 }
 
+.question-title-content-down-name {
+    font-weight: 400;
+    font-size  : 14px;
+}
+
 .question-title-content {
     margin: 10px;
 }

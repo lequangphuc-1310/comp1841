@@ -11,22 +11,18 @@
 
 <body>
     <style type="text/css">
-    /* .container {
-            margin: 20px auto;
-        } */
+        input {
+            border: 1px solid black !important;
+        }
 
-    input {
-        border: 1px solid black !important;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
-
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "nav.php";

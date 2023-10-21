@@ -47,7 +47,19 @@ if (array_key_exists('postId', $_GET)) {
                 // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
                 if ($_SESSION['user_id'] != $_SESSION['admin_id']) {
                     echo "
-                <div class='category-item'>Contact Administrator</div>
+                <div class='category-item'>
+                <a href='contactAdmin.php'>
+                Contact Administrator
+                </a>
+                </div>
+                ";
+                } else {
+                    echo "
+                <div class='category-item'>
+                <a href='contactUser.php'>
+                Manage Users' Request
+                </a>
+                </div>
                 ";
                 }
                 ?>
@@ -67,7 +79,7 @@ if (array_key_exists('postId', $_GET)) {
                             <div class='question-title-content-down-name'>
                                 <?php
                                 echo $name;
-                                ?>
+                                ?><span> - </span>
                                 <?php
                                 echo $email
                                 ?>

@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 					$_SESSION['user_id'] = $user_data['id'];
 					if ($user_data['email'] == 'admin@gmail.com') {
 						$_SESSION['admin'] = true;
+						$_SESSION['admin_id'] = $user_data['id'];
 						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/home.php');
 					} else {
 						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/home.php');

@@ -41,11 +41,8 @@ $_SESSION['id'] = $user_data['id'];
             </div>
         </div>
         <div class="nav-child-right">
-            <?php
-            if ($_SESSION['user_id'] == $_SESSION['admin_id']) {
-                echo '<div class="admin-notification">Notifications</div>';
-            }
-            ?>
+
+            <div class="admin-notification">Notifications</div>
             <span>Hello, <?php echo $user_data['name']; ?></span>
             <a href="./auth/login.php">Logout</a>
 
