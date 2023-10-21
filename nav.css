@@ -19,6 +19,16 @@
     gap           : 10px;
 }
 
+.nav-child-right {
+    display: flex;
+    gap    : 15px;
+}
+
+.btn-nav.active {
+    /* text-decoration : underline; */
+    background-color: red;
+}
+
 .text-decoration-none {
     text-decoration: none;
     color          : #000;

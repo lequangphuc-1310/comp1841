@@ -39,7 +39,9 @@ if (array_key_exists('postId', $_GET)) {
         <div class="body">
             <div class="category">
                 <div class="category-item"><a href='askPage.php'>Post a question to community</a></div>
-                <div class="category-item">View your account's information</div>
+                <div class="category-item">
+                    <a href='userAccount.php'>View your account's information</a>
+                </div>
                 <div class="category-item">Contact Administrator</div>
             </div>
             <div class="content">

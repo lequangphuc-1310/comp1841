@@ -22,24 +22,23 @@ $_SESSION['id'] = $user_data['id'];
 <body>
     <div class="nav">
         <div class="nav-child-left">
-            <div class="nav-child">
-                <button class="btn-nav"><a class='text-decoration-none' href='home.php'>Home</a></button>
+            <div class="nav-child"><a class='text-decoration-none' href='home.php'>Home</a>
             </div>
-            <div class="nav-child">
-                <button class="btn-nav"><a class='text-decoration-none' href='display.php'>View List
-                        Users</a></button>
+            <div class="nav-child"><a class='text-decoration-none' href='display.php'>View List
+                    Users</a>
             </div>
-            <div class="nav-child">
-                <button class="btn-nav"><a class='text-decoration-none' href='posts.php'>View List
-                        Posts</a></button>
+            <div class="nav-child"><a class='text-decoration-none' href='posts.php'>View List
+                    Posts</a>
             </div>
         </div>
         <div class="nav-child-right">
-            <a href="./auth/login.php">Logout</a>
             <span>Hello, <?php echo $user_data['name']; ?></span>
+            <a href="./auth/login.php">Logout</a>
 
         </div>
     </div>
+    <script src='./nav.js'></script>
 </body>
+
 
 </html>
