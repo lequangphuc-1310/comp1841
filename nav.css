@@ -39,3 +39,7 @@
     border : 1px solid orange;
     outline: none;
 }
+
+.admin-notification {
+    cursor: pointer;
+}

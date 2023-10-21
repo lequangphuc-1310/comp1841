@@ -42,7 +42,17 @@ if (array_key_exists('postId', $_GET)) {
                 <div class="category-item">
                     <a href='userAccount.php'>View your account's information</a>
                 </div>
-                <div class="category-item">Contact Administrator</div>
+
+                <?php
+                // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+                if ($_SESSION['user_id'] != $_SESSION['admin_id']) {
+                    echo "
+                <div class='category-item'>Contact Administrator</div>
+                ";
+                }
+                ?>
+
+
             </div>
             <div class="content">
                 <div class="question">

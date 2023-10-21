@@ -30,29 +30,29 @@ if (isset($_POST["submit"])) {
 
 <body>
     <style type="text/css">
-        /* .container {
+    /* .container {
             margin: 20px auto;
         } */
 
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include "nav.php"
     ?>
     <h1 class='title'>CRUD ADD NEW USER</h1>
     <div class="container ">
-        <form action="user.php" method='POST'>
+        <form action="addUser.php" method='POST'>
             <div class='row'>
                 <div class='form-group col-12 label'>
                     <label for="">Enter name</label>

@@ -21,13 +21,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			$checkRow = $conn->prepare("SELECT COUNT(`name`) FROM `user` WHERE `name` = ?");
 			$checkRow->execute(array($name));
 			$countRow = $checkRow->fetchColumn();
+
+
+			$queryAdmin = "select * from user where email = 'admin@gmail.com' limit 1;";
+			$resultAdmin = $conn->query($queryAdmin);
+
+
+
 			if ($result && $countRow > 0) {
 
 				$user_data = $result->fetch();
+				$admin_data = $resultAdmin->fetch();
 
 				if ($user_data['password'] === $password) {
 					$_SESSION['user_id'] = $user_data['id'];
-					header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/home.php');
+					if ($user_data['email'] == 'admin@gmail.com') {
+						$_SESSION['admin'] = true;
+						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/home.php');
+					} else {
+						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/home.php');
+					}
+
 					die;
 				}
 			}

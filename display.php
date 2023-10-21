@@ -28,7 +28,7 @@
         <h1 class='title'>Display Users</h1>
         <div>
             <button class='btn btn-primary my-5'>
-                <a class='text-light text-decoration-none' href="user.php">
+                <a class='text-light text-decoration-none' href="addUser.php">
                     Add
                     User
                 </a>
