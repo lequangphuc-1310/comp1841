@@ -61,52 +61,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <html>
 
 <head>
-    <title>Login</title>
+	<title>Login</title>
+	<link href="csslogin.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <style type="text/css">
-    #text {
+	<div class="login-container">
+		<div class="box box-login">
+			<!-- <div>
+                <h4>Sign Up</h4>
+            </div> -->
+			<form method="post">
+				<div class='signup-title'><span class="signup-title-red">L</span>og<span class='signup-title-red'>I</span>n
+				</div>
+				<input id="text" type="text" name="name" placeholder="Enter your name"><br><br>
+				<input id="text" type="password" name="password" placeholder="Enter your password"><br><br>
 
-        height: 25px;
-        border-radius: 5px;
-        padding: 4px;
-        border: solid thin #aaa;
-        width: 100%;
-    }
+				<button id="button" class='logIn' type="submit"><a href="login.php">Click to Login</a></button><br><br>
 
-    #button {
+			</form>
+		</div>
+	</div>
 
-        padding: 10px;
-        width: 100px;
-        color: white;
-        background-color: lightblue;
-        border: none;
-    }
-
-    #box {
-
-        background-color: grey;
-        margin: auto;
-        width: 300px;
-        padding: 20px;
-    }
-    </style>
-
-    <div id="box">
-
-        <form method="post" action='login.php'>
-            <div style="font-size: 20px;margin: 10px;color: white;">Login</div>
-
-            <input id="text" type="text" name="name"><br><br>
-            <input id="text" type="password" name="password"><br><br>
-
-            <input id="button" type="submit" value="Login"><br><br>
-
-            <a href="signup.php">Click to Signup</a><br><br>
-        </form>
-    </div>
 </body>
 
 </html>

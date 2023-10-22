@@ -3,78 +3,66 @@
     padding: 0;
 }
 
-.container {
-    display               : flex;
-    /* border             : 1px solid red; */
-    flex-direction        : column;
-    margin                : 0 50px;
-    /* background-color   : red; */
+body {
+    background-color: #fff;
 }
 
+a {
+    text-decoration: none;
+    color          : #000;
+}
+
+
+.container {
+    position        : relative;
+    top             : 76px px;
+    display         : flex;
+    /* border       : 1px solid red; */
+    flex-direction  : column;
+    margin          : 0 50px 0 50px;
+    background-color: #fff;
+    color           : #000;
+    z-index         : -1;
+}
 
 
 .body {
     display       : flex;
     flex-direction: row;
-    width         : 100%;
-    /* margin     : 0 50px; */
-
-}
-
-.category {
-    display            : flex;
-    border             : 1px solid red;
-    width              : 20%;
-    /* background-color: aqua; */
-    display            : flex;
-    flex-direction     : column;
-}
-
-.category-item {
-    border : blue 1px solid;
-    padding: 10px;
-    cursor : pointer;
-
-}
-
-.category-item:hover {
-    opacity: 0.8;
-}
-
-.category-item.active {
-    text-decoration: underline;
-    color          : red;
+    margin        : 0 80px;
 }
 
 
 .content {
-    display       : flex;
-    border        : 1px solid red;
-    flex-direction: column;
+    display          : flex;
+    /* border        : 1px solid red; */
+    flex-direction   : column;
     ;
     height: 100%;
-    width : 80%;
+    width : 100%;
 }
 
 .question {
-    display       : flex;
-    flex-direction: column;
-    border        : 1px solid red;
-    width         : 100%;
-    /* padding    : 10px; */
+    display          : flex;
+    flex-direction   : column;
+    /* border        : 1px solid red; */
+    width            : 100%;
+    /* padding       : 10px; */
 }
 
 .question-title {
-    display       : flex;
-    border        : 1px solid red;
-    margin        : 0 10px;
-    flex-direction: column;
-    font-family   : Arial, Helvetica, sans-serif;
+    display          : flex;
+    /* border        : 1px solid red; */
+    margin           : 0 10px;
+    flex-direction   : column;
+    font-family      : Arial, Helvetica, sans-serif;
 }
 
 .question-title-content-up {
     font-size  : 20px;
     font-weight: 600;
+    font-family: system-ui;
+    color      : #381DDB;
 }
 
 .question-title-content-down {
@@ -85,6 +73,8 @@
 .question-title-content-down-name {
     font-weight: 400;
     font-size  : 14px;
+    opacity    : 0.7;
+
 }
 
 .question-title-content {
@@ -92,56 +82,64 @@
 }
 
 .question-title-extra {
-    display        : flex;
-    justify-content: space-between;
-    /* width       : 100%; */
-    font-size      : 12px !important;
-    font-weight    : 500;
-    gap            : 15px;
-    margin         : 10px 0;
+    display              : flex;
+    justify-content      : start;
+    width                : 80%;
+    font-size            : 12px !important;
+    font-weight          : 500;
+    /* gap               : 2px; */
+    /* margin            : 10px 0; */
 }
+
 
 .question-title-extra-child {
     display    : flex;
     align-items: center;
+    color      : #84bfc3;
 }
 
 .asked {
     margin: 0 10px;
-    border: 1px solid green;
 }
 
 .module {
     /* margin: 10px; */
-    border: 1px solid green;
 }
 
 .viewed {
     margin: 10px;
-    border: 1px solid green;
 }
 
 .question-content {
-    display  : flex;
-    border   : 1px solid red;
-    /* height: 500px; */
-    margin   : 10px 10px;
-    font-size: 18px;
-    padding  : 15px
+    display            : flex;
+    /* border          : 1px solid red; */
+    /* color           : #000; */
+    /* background-color: #a8a3a0; */
+    margin             : 10px 10px;
+    font-size          : 18px;
+    opacity            : 0.9;
+    padding            : 15px;
+    border-radius      : 5px;
+    box-shadow         : 0px 1px 1px 0px rgba(0, 0, 0, 0.15),
+        0px 2px 2px 0px rgba(0, 0, 0, 0.15),
+        0px 4px 4px 0px rgba(0, 0, 0, 0.15),
+        0px 8px 8px 0px rgba(0, 0, 0, 0.15);
 }
 
 .existed-answer {
-    display       : flex;
-    border        : 1px solid red;
-    margin        : 10px 40px;
-    font-size     : 16px;
-    gap           : 20px;
-    flex-direction: column;
+    display          : flex;
+    /* border        : 1px solid red; */
+    margin           : 10px 40px;
+    font-size        : 16px;
+    gap              : 12px;
+    flex-direction   : column;
 }
 
 .each-existed-answer {
-    min-height      : 40px;
+    min-height      : 20px;
+    border-radius   : 8px;
     display         : flex;
+    background-color: #EFECFC;
     align-items     : center;
     flex-wrap       : wrap;
     /* border       : 1px solid green; */
@@ -149,6 +147,10 @@
     border-top      : 1px solid #ccc;
     padding         : 10px 14px;
     font-family     : Arial, Helvetica, sans-serif;
+    box-shadow      : 0px 1px 1px 0px rgba(0, 0, 0, 0.15),
+        0px 2px 2px 0px rgba(0, 0, 0, 0.15),
+        0px 4px 4px 0px rgba(0, 0, 0, 0.15),
+        0px 8px 8px 0px rgba(0, 0, 0, 0.15);
 }
 
 .answerAuthorName {
@@ -169,22 +171,31 @@
 
 .answerAuthorPublished {
     font-size: 13px;
-    color    : #a7adb4;
+    color    : #333;
 }
 
 
 .your-answer {
-    display       : flex;
-    flex-direction: column;
-    border        : 1px solid red;
-    margin        : 10px 20px;
-    font-size     : 16px;
-    padding       : 20px;
+    display          : flex;
+    flex-direction   : column;
+    /* border        : 1px solid red; */
+    margin           : 10px 20px;
+    font-size        : 16px;
+    padding          : 20px;
 }
 
 .your-answer h4 {
     margin     : 15px 0;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.textArea {
+    background-color: transparent;
+    color           : #000;
+    border          : 1px solid #111;
+    border-radius   : 8px;
+    padding         : 10px 12px;
+    outline         : none;
 }
 
 .submit-answer {
@@ -193,7 +204,30 @@
     justify-content: end;
 }
 
+input.btn-submit {
+    border-radius   : 8px;
+    padding         : 10px 14px;
+    background-color: #381DDB;
+    color           : #fff;
+    cursor          : pointer;
+}
 
-.btn-submit {
-    padding: 10px 14px;
+.btn-blue {
+    background-color: #381DDB !important;
+    border-radius   : 8px;
+    padding         : 10px 14px;
+    color           : #fff;
+    cursor          : pointer;
+}
+
+input.btn.btn-blue {
+    color: #fff;
+}
+
+
+html,
+body {
+    height  : 100% !important;
+    overflow: auto;
+
 }

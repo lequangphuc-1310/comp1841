@@ -16,10 +16,18 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
 
 <body>
     <style>
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -34,7 +42,7 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
         if ($_SESSION['user_id'] == $_SESSION['admin_id']) {
             echo "
                 <div>
-                    <button class='btn btn-primary my-5'>
+                    <button class='btn btn-blue my-5'>
                         <a class='text-light text-decoration-none' href='/comp1841/admin/addModule.php'>
                             Add
                             Modules

@@ -6,23 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="./askPage.css" />
+    <link rel="stylesheet" type="text/css" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>" />
     <title>Add New Post</title>
 </head>
 
 <body>
     <style type="text/css">
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -74,7 +75,7 @@
                     <textarea rows="10" cols="50" style="resize: none;"></textarea>
                 </div> -->
                 <div class='form-group col-12 label'>
-                    <input type='submit' name='submitPost' value='Submit' class="btn btn-primary" />
+                    <input type='submit' name='submitPost' value='Submit' class="btn btn-blue" />
                 </div>
                 <?php
                 include '/xampp/htdocs/comp1841/auth/connection.php';
@@ -93,7 +94,8 @@
                         values ('$title', '$details', '$user_id', '$module_id')";
                         $result = $conn->exec($sql);
                         if ($result) {
-                            header('location: /comp1841/crud/user/posts.php');
+                            // header('location: /comp1841/crud/user/posts.php');
+                            echo "<script>window.location.href='/comp1841/crud/user/posts.php';</script>";
                         }
                     } catch (PDOException $e) {
                         die("Error: " . $e->getMessage());

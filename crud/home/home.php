@@ -51,36 +51,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
     <div class="container">
 
         <div class="body">
-            <div class="category">
-                <div class="category-item"><a href='/comp1841/crud/askPage/askPage.php'>Post a question to community</a>
-                </div>
-                <div class="category-item">
-                    <a href='/comp1841/crud/user/userAccount.php'>View your account's information</a>
-                </div>
 
-                <?php
-                // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-                if ($_SESSION['user_id'] != $_SESSION['admin_id']) {
-                    echo "
-                <div class='category-item'>
-                <a href='/comp1841/crud/user/contactAdmin.php'>
-                Contact Administrator
-                </a>
-                </div>
-                ";
-                } else {
-                    echo "
-                <div class='category-item'>
-                <a href='/comp1841/admin/contactUser.php'>
-                Manage Users' Request
-                </a>
-                </div>
-                ";
-                }
-                ?>
-
-
-            </div>
             <div class="content">
                 <div class="question">
                     <div class="question-title">
@@ -163,9 +134,11 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                 }
                             }
                             ?>
-                            <textarea name='answer' rows="10" cols="100" style="resize: none;"></textarea>
+                            <textarea class='textArea' name='answer' rows="10" cols="100"
+                                style="resize: none;"></textarea>
                             <div class="submit-answer">
-                                <input class="btn-submit" value='Submit Answer' type='submit' name='submitAnswer' />
+                                <input placholder='Type something...' class="btn-submit" value='Submit Answer'
+                                    type='submit' name='submitAnswer' />
                             </div>
 
 

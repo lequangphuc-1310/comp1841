@@ -26,27 +26,29 @@ if (isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>" />
+
     <title>Add New User</title>
 </head>
 
 <body>
     <style type="text/css">
-    /* .container {
+        /* .container {
             margin: 20px auto;
         } */
 
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -73,7 +75,7 @@ if (isset($_POST["submit"])) {
                     <input class="form-control" name='mobile' />
                 </div> -->
                 <div class='form-group col-12 label'>
-                    <input type='submit' name='submit' class="btn btn-primary" />
+                    <input type='submit' name='submit' class="btn btn-blue" />
                 </div>
             </div>
         </form>

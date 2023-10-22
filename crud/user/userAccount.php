@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>My account</title>
 </head>
@@ -74,7 +75,7 @@
                     <input class="form-control" name='email' value=<?php echo $email; ?> />
                 </div>
                 <div class='form-group col-12 label'>
-                    <input type='submit' value='update' name='submit' class="btn btn-primary" />
+                    <input type='submit' value='Update' name='submit' class="btn btn-blue" />
                 </div>
             </div>
         </form>
