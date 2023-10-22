@@ -3,7 +3,7 @@ include 'connect.php';
 // $postId = $_GET['postId'];
 if (array_key_exists('postId', $_GET)) {
     $postId = $_GET['postId'];
-    $sql = "select user.name, user.email, post.title,post.details,post.id,post.published_at from `user`, `post` where post.user_id=user.id and post.id=$postId;";
+    $sql = "select user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`, `post` where post.user_id=user.id and post.id=$postId;";
     $result = $conn->query($sql);
     $d = $result->fetch();
     $title = $d['title'];
@@ -11,15 +11,29 @@ if (array_key_exists('postId', $_GET)) {
     $email = $d['email'];
     $details = $d['details'];
     $published = $d['published_at'];
+    $moduleId = $d['module'];
+    $sqlGetModule = ("select * from `module` where id=$moduleId");
+    $resultGetModule = $conn->query($sqlGetModule);
+    $dataResultGetModule = $resultGetModule->fetch();
+    $module_name = $dataResultGetModule['module_name'];
+    $module_id = $dataResultGetModule['module_id'];
 } else {
-    $sql = "select user.name, user.email, post.title,post.details,post.id,post.published_at from `user`,`post` where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
+    $sql = "select user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`,`post`
+where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
     $result = $conn->query($sql);
     $d = $result->fetch();
+    $postId = $d['id'];
     $title = $d['title'];
     $name = $d['name'];
     $email = $d['email'];
     $details = $d['details'];
     $published = $d['published_at'];
+    $moduleId = $d['module'];
+    $sqlGetModule = ("select * from `module` where id=$moduleId");
+    $resultGetModule = $conn->query($sqlGetModule);
+    $dataResultGetModule = $resultGetModule->fetch();
+    $module_name = $dataResultGetModule['module_name'];
+    $module_id = $dataResultGetModule['module_id'];
 }
 ?>
 
@@ -86,15 +100,17 @@ if (array_key_exists('postId', $_GET)) {
                             </div>
                         </div>
                         <div class="question-title-extra">
-                            <div class="asked">
+                            <div class="question-title-extra-child asked">
                                 <?php
                                 echo $published
                                 ?>
                             </div>
-                            <div class="modified">
-                                Modified 3 years, 2 months ago
+                            <div class="question-title-extra-child module">
+                                <?php
+                                echo $module_id . ' - ' .  $module_name;
+                                ?>
                             </div>
-                            <div class="viewed">Viewed 149 times
+                            <div class="question-title-extra-child viewed">Viewed 149 times
                             </div>
 
                         </div>
@@ -104,30 +120,67 @@ if (array_key_exists('postId', $_GET)) {
                         echo $details
                         ?>
                     </div>
-                    <div class="answer">
+                    <div class="existed-answer">
+                        <?php
+                        $sqlExistedAnswer = "select user.name, user.email,answer.* from `user`, `answer` where answer.user_id=user.id and post_id=$postId;";
+                        $resultExistedAnswer = $conn->query($sqlExistedAnswer);
+                        $datasqlExistedAnswer = $resultExistedAnswer->fetchAll();
+                        foreach ($datasqlExistedAnswer as $row) {
+                            $answerAuthorName = $row['name'];
+                            $answerAuthorEmail = $row['email'];
+                            $existedAnswer = $row['answer'];
+                            $answerAuthorPublished = $row['published_at'];
+                            // echo $answerAuthorName . '<br/>';
+                            // echo $answerAuthorEmail . '<br/>';
+                            // echo $existedAnswer . '<br/>';
+                            // echo $answerAuthorPublished . '<br/>';
 
-                        The easiest way to get help with such problems is to help yourself, by learning how to use a
-                        debugger to step through the code and see the values of variables at each step. Then you would
-                        see the obvious problem here as pointed out above. –
-                        underscore_d
-                        Aug 5, 2020 at 9:43
-                        @Yksisarvinen nombre = (nombre * 10) + chiffre;i changed it with this and still the same problem
-                        –
-                        user14052726
-                        Aug 5, 2020 at 9:55
-                        @aymanedu Well, is chiffre_prec or chiffre a non-zero value? Seems to me that they are also
-                        equal to zero all the time. Debugger would have helped you - you can examine value of each and
-                        every variable at any point of execution of your code. –
-                        Yksisarvinen
-                        Aug 5, 2020 at 9:59
-                        @Yksisarvinen chiffre_prec's value is 1 for me though. in the 1 5 example. –
-                        user14052726
-                        Aug 5, 2020 at 10:11
+                            echo '<div class="each-existed-answer">' . '<span class="answerAuthorName">' . $answerAuthorName . '</span>	&nbsp;-&nbsp; <span class="existedAnswer">' . $existedAnswer . '</span>&nbsp;-&nbsp;<span class="answerAuthorEmail">' . $answerAuthorEmail . '</span>&nbsp;-&nbsp; <span class="answerAuthorPublished">' . $answerAuthorPublished . '</span></div>';
+                        }
+                        ?>
+
                     </div>
-                </div>
-            </div>
+                    <form method="POST" action='home.php'>
+                        <div class="your-answer">
+                            <h4>Your answer</h4>
+                            <?php
+                            if (isset($_POST['submitAnswer'])) {
+                                $inputAnswer =  $_POST["answer"];
+                                $answer = mysql_escape_mimic($inputAnswer);
+                                $user_id = $_SESSION['id'];
 
-        </div>
+                                try {
+                                    $check_duplicated = "select * from `answer` where user_id=$user_id and answer='$answer'";
+                                    $answerDisplay = $conn->query($check_duplicated);
+                                    $countRow = $answerDisplay->fetchColumn();
+                                    // var_dump($user_id, $postId, $answer, $moduleId);
+                                    // echo $user_id, $postId, $answer, $moduleId;
+
+                                    if ($countRow == 0) {
+                                        $sql = "INSERT INTO `answer` (`user_id`, `post_id`, `answer`, `module`)
+                                            values ($user_id, $postId, '$answer', $moduleId)";
+                                        $result = $conn->query($sql);
+                                        if ($result) {
+                                            // echo 'ok no duplicate';
+                                        }
+                                    }
+                                } catch (PDOException $e) {
+                                    die("Error: " . $e->getMessage());
+                                }
+                            }
+                            ?>
+                            <textarea name='answer' rows="10" cols="100" style="resize: none;"></textarea>
+                            <div class="submit-answer">
+                                <input class="btn-submit" value='Submit Answer' type='submit' name='submitAnswer' />
+                            </div>
+
+
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
 
 
 

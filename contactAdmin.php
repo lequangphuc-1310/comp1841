@@ -11,18 +11,18 @@
 
 <body>
     <style type="text/css">
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include "nav.php";
@@ -42,7 +42,8 @@
                 include 'connect.php';
 
                 if (isset($_POST["submitPost"])) {
-                    $user_send = ($_POST["user_send"]);
+                    $input_user_send = ($_POST["user_send"]);
+                    $user_send = mysql_escape_mimic($input_user_send);
                     $user_id = $_SESSION['id'];
                     try {
                         $sql = "INSERT INTO `admin_user` (`user_send`, `user_id`)

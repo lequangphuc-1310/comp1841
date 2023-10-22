@@ -39,6 +39,9 @@ $_SESSION['id'] = $user_data['id'];
             <div class="nav-child"><a class='text-decoration-none' href='posts.php'>View List
                     Posts</a>
             </div>
+            <div class='nav-child'><a class='text-decoration-none' href='modules.php'>View List
+                    Modules</a>
+            </div>
         </div>
         <div class="nav-child-right">
 

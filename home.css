@@ -92,28 +92,31 @@
 }
 
 .question-title-extra {
+    display        : flex;
+    justify-content: space-between;
+    /* width       : 100%; */
+    font-size      : 12px !important;
+    font-weight    : 500;
+    gap            : 15px;
+    margin         : 10px 0;
+}
+
+.question-title-extra-child {
     display    : flex;
-    width      : 100%;
-    font-size  : 12px !important;
-    font-weight: 500;
-    gap        : 15px;
-    margin     : 10px 0;
+    align-items: center;
 }
 
 .asked {
-    width : 30%;
     margin: 0 10px;
     border: 1px solid green;
 }
 
-.modified {
-    width    : 30%;
+.module {
     /* margin: 10px; */
-    border   : 1px solid green;
+    border: 1px solid green;
 }
 
 .viewed {
-    width : 30%;
     margin: 10px;
     border: 1px solid green;
 }
@@ -127,10 +130,68 @@
 
 }
 
-.answer {
-    display  : flex;
-    border   : 1px solid red;
-    margin   : 10px 40px;
-    font-size: 16px;
+.existed-answer {
+    display       : flex;
+    border        : 1px solid red;
+    margin        : 10px 40px;
+    font-size     : 16px;
+    gap           : 20px;
+    flex-direction: column;
+}
 
+.each-existed-answer {
+    min-height      : 40px;
+    display         : flex;
+    align-items     : center;
+    /* border       : 1px solid green; */
+    border-bottom   : 1px solid #ccc;
+    border-top      : 1px solid #ccc;
+    padding         : 10px 14px;
+    font-family     : Arial, Helvetica, sans-serif;
+}
+
+.answerAuthorName {
+    font-size  : 15px;
+    font-weight: 600;
+    cursor     : pointer;
+}
+
+.existedAnswer {
+    font-size: 15px;
+    color    : #222;
+}
+
+.answerAuthorEmail {
+    font-size: 13px;
+    color    : #222;
+}
+
+.answerAuthorPublished {
+    font-size: 13px;
+    color    : #a7adb4;
+}
+
+
+.your-answer {
+    display       : flex;
+    flex-direction: column;
+    border        : 1px solid red;
+    margin        : 10px 20px;
+    font-size     : 16px;
+}
+
+.your-answer h4 {
+    margin     : 15px 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.submit-answer {
+    display        : flex;
+    margin         : 15px 0;
+    justify-content: end;
+}
+
+
+.btn-submit {
+    padding: 10px 14px;
 }
