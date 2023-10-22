@@ -1,26 +1,29 @@
 <?php
 include 'connect.php';
-$id = $_GET['updateid'];
-$sql = "select * from `user` where id = $id";
-$result = $conn->query($sql);
-$d = $result->fetch();
-$name = $d['name'];
-$password = $d['password'];
-$email = $d['email'];
 
-if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
-    $mobile = $_POST['mobile'];
-    $sql = "update `user` set id=$id, name='$name', password='$password', email='$email' where id=$id ";
+if (isset($_GET['updateUserId'])) {
+    $id = $_GET['updateUserId'];
+    $sql = "select * from `user` where id = $id";
     $result = $conn->query($sql);
-    if ($result) {
-        echo 'update scuees';
-        header('location: display.php');
+    $d = $result->fetch();
+    $name = $d['name'];
+    $password = $d['password'];
+    $email = $d['email'];
+
+
+    if (isset($_POST['submit'])) {
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+        $mobile = $_POST['mobile'];
+        $sql = "update `user` set id=$id, name='$name', password='$password', email='$email' where id=$id ";
+        $result = $conn->query($sql);
+        if ($result) {
+            echo 'update scuees';
+            header('location: display.php');
+        }
     }
 }
-
 ?>
 
 
@@ -57,23 +60,73 @@ if (isset($_POST['submit'])) {
 
     <div class="container ">
         <form method='POST'>
-            <div class='row'>
-                <div class='form-group col-12 label'>
-                    <label for="">Enter name</label>
-                    <input class="form-control" name='name' value=<?php echo "{$name}"; ?> />
+
+            <?php
+            if (isset($_GET['updateModuleId'])) {
+                $moduleId = $_GET['updateModuleId'];
+
+
+                $sql = "select * from `module` where id = $moduleId";
+                $result = $conn->query($sql);
+                $d = $result->fetch();
+                $module_name = $d['module_name'];
+                $module_id = $d['module_id'];
+
+                echo
+                "
+                <div class='row'>
+                    <div class='form-group col-12 label'>
+                        <label >Enter Module's name</label>
+                        <input class='form-control' name='nameModule' value=" . $module_name . " />
+                    </div>
+                    <div class='form-group col-12 label'>
+                        <label>Enter module's id</label>
+                        <input class='form-control' name='idModule' value=" . $module_id . " />
+                    </div>
+                    <div class='form-group col-12 label'>
+                        <input type='submit' value='update' name='submit' class='btn btn-primary' />
+                    </div>
                 </div>
-                <div class='form-group col-12 label'>
-                    <label for="">Enter password</label>
-                    <input type='password' class="form-control" name='password' value=<?php echo $password; ?> />
-                </div>
-                <div class='form-group col-12 label'>
-                    <label for="">Enter email</label>
-                    <input class="form-control" name='email' value=<?php echo $email; ?> />
-                </div>
-                <div class='form-group col-12 label'>
-                    <input type='submit' value='update' name='submit' class="btn btn-primary" />
-                </div>
-            </div>
+                ";
+            } else {
+                echo "
+                    <div class='row'>
+                        <div class='form-group col-12 label'>
+                            <label >Enter name</label>
+                            <input class='form-control' name='name' value=" . $name . " />
+                        </div>
+                        <div class='form-group col-12 label'>
+                            <label>Enter password</label>
+                            <input type='password' class='form-control' name='password' value=" . $password . " />
+                        </div>
+                        <div class='form-group col-12 label'>
+                            <label>Enter email</label>
+                            <input class='form-control' name='email' value=" . $email . " />
+                        </div>
+                        <div class='form-group col-12 label'>
+                            <input type='submit' value='update' name='submit' class='btn btn-primary' />
+                        </div>
+                    </div>
+                    ";
+            }
+            ?>
+            <?php
+            if (isset($_GET['updateModuleId'])) {
+                if (isset($_POST['submit'])) {
+                    $module_name = $_POST['nameModule'];
+                    $module_id = $_POST['idModule'];
+                    $sql = "update `module` set id=$moduleId, module_name='$module_name', module_id='$module_id' where id=$moduleId";
+                    $result = $conn->query($sql);
+                    echo $moduleId, $module_name, $module_id;
+
+                    if ($result) {
+                        // echo 'update scuees';
+                        header('location: modules.php');
+                    }
+                }
+            }
+            ?>
+
         </form>
     </div>
 

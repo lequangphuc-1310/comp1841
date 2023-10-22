@@ -10,16 +10,15 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Display Modules</title>
-    <link rel="stylesheet" href="./home.css">
 
 </head>
 
 <body>
     <style>
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include 'nav.php'
@@ -71,8 +70,8 @@
                         <td>$module_name</td>
                         <td>$module_id</td>
                         <td>
-                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateid=" . $id . "'>Edit</a></button>
-                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteid=" . $id . "'>Delete</a></button>
+                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateModuleId=" . $id . "'>Edit</a></button>
+                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteModuleId=" . $id . "'>Delete</a></button>
                         </td>
                     </tr> ";
                 }

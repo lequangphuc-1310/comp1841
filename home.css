@@ -143,6 +143,7 @@
     min-height      : 40px;
     display         : flex;
     align-items     : center;
+    flex-wrap       : wrap;
     /* border       : 1px solid green; */
     border-bottom   : 1px solid #ccc;
     border-top      : 1px solid #ccc;
@@ -178,6 +179,7 @@
     border        : 1px solid red;
     margin        : 10px 20px;
     font-size     : 16px;
+    padding       : 20px;
 }
 
 .your-answer h4 {

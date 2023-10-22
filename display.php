@@ -15,10 +15,10 @@
 
 <body>
     <style>
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include 'nav.php'
@@ -64,8 +64,8 @@
                         <td>$email</td>
                         <td>$password</td>
                         <td>
-                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateid=" . $id . "'>Edit</a></button>
-                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteid=" . $id . "'>Delete</a></button>
+                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateUserId=" . $id . "'>Edit</a></button>
+                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteUserId=" . $id . "'>Delete</a></button>
                         </td>
                     </tr> ";
                 }
