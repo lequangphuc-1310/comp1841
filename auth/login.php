@@ -2,8 +2,8 @@
 
 session_start();
 
-include("connection.php");
-include("functions.php");
+include("/xampp/htdocs/comp1841/auth/connection.php");
+include("/xampp/htdocs/comp1841/auth/functions.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -38,9 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 					if ($user_data['email'] == 'admin@gmail.com') {
 						$_SESSION['admin'] = true;
 						$_SESSION['admin_id'] = $user_data['id'];
-						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/home.php');
+						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/crud/home/home.php');
 					} else {
-						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/home.php');
+						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/crud/home/home.php');
 					}
 
 					die;
@@ -61,52 +61,52 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <html>
 
 <head>
-	<title>Login</title>
+    <title>Login</title>
 </head>
 
 <body>
 
-	<style type="text/css">
-		#text {
+    <style type="text/css">
+    #text {
 
-			height: 25px;
-			border-radius: 5px;
-			padding: 4px;
-			border: solid thin #aaa;
-			width: 100%;
-		}
+        height: 25px;
+        border-radius: 5px;
+        padding: 4px;
+        border: solid thin #aaa;
+        width: 100%;
+    }
 
-		#button {
+    #button {
 
-			padding: 10px;
-			width: 100px;
-			color: white;
-			background-color: lightblue;
-			border: none;
-		}
+        padding: 10px;
+        width: 100px;
+        color: white;
+        background-color: lightblue;
+        border: none;
+    }
 
-		#box {
+    #box {
 
-			background-color: grey;
-			margin: auto;
-			width: 300px;
-			padding: 20px;
-		}
-	</style>
+        background-color: grey;
+        margin: auto;
+        width: 300px;
+        padding: 20px;
+    }
+    </style>
 
-	<div id="box">
+    <div id="box">
 
-		<form method="post" action='login.php'>
-			<div style="font-size: 20px;margin: 10px;color: white;">Login</div>
+        <form method="post" action='login.php'>
+            <div style="font-size: 20px;margin: 10px;color: white;">Login</div>
 
-			<input id="text" type="text" name="name"><br><br>
-			<input id="text" type="password" name="password"><br><br>
+            <input id="text" type="text" name="name"><br><br>
+            <input id="text" type="password" name="password"><br><br>
 
-			<input id="button" type="submit" value="Login"><br><br>
+            <input id="button" type="submit" value="Login"><br><br>
 
-			<a href="signup.php">Click to Signup</a><br><br>
-		</form>
-	</div>
+            <a href="signup.php">Click to Signup</a><br><br>
+        </form>
+    </div>
 </body>
 
 </html>

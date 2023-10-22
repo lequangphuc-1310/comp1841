@@ -5,27 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./askPage.css" />
+    <link rel="stylesheet" type="text/css" href="/comp1841/crud/askPage/askPage.css" />
     <title>Contact Admin</title>
 </head>
 
 <body>
     <style type="text/css">
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
-    include "nav.php";
+    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+
     ?>
     <div class="ask-page-container ">
         <h1 class='title'>Ask a Question to Admin</h1>
@@ -39,7 +40,8 @@
                     <input type='submit' name='submitPost' value='Submit' class="btn btn-primary" />
                 </div>
                 <?php
-                include 'connect.php';
+                include '/xampp/htdocs/comp1841/auth/connection.php';
+
 
                 if (isset($_POST["submitPost"])) {
                     $input_user_send = ($_POST["user_send"]);
@@ -50,7 +52,7 @@
                         values ('$user_send', '$user_id')";
                         $result = $conn->exec($sql);
                         if ($result) {
-                            header('location: home.php');
+                            header('location: /comp1841/crud/home/home.php');
                             // echo 'success ask admin';
                         }
                     } catch (PDOException $e) {

@@ -1,5 +1,6 @@
 <?php
-include 'connect.php';
+include '/xampp/htdocs/comp1841/auth/connection.php';
+
 
 if (isset($_GET['updateUserId'])) {
     $id = $_GET['updateUserId'];
@@ -20,7 +21,7 @@ if (isset($_GET['updateUserId'])) {
         $result = $conn->query($sql);
         if ($result) {
             echo 'update scuees';
-            header('location: display.php');
+            header('location: /comp1841/admin/display.php');
         }
     }
 }
@@ -39,23 +40,26 @@ if (isset($_GET['updateUserId'])) {
 
 <body>
     <style type="text/css">
-    /* .container {
+        /* .container {
             margin: 20px auto;
         } */
 
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
+    <?php
+    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+    ?>
     <h1 class='title'>CRUD EDIT USER</h1>
 
     <div class="container ">
@@ -77,7 +81,7 @@ if (isset($_GET['updateUserId'])) {
                 <div class='row'>
                     <div class='form-group col-12 label'>
                         <label >Enter Module's name</label>
-                        <input class='form-control' name='nameModule' value=" . $module_name . " />
+                        <textarea class='form-control' name='nameModule'> $module_name </textarea>
                     </div>
                     <div class='form-group col-12 label'>
                         <label>Enter module's id</label>
@@ -120,8 +124,7 @@ if (isset($_GET['updateUserId'])) {
                     echo $moduleId, $module_name, $module_id;
 
                     if ($result) {
-                        // echo 'update scuees';
-                        header('location: modules.php');
+                        header('location: /comp1841/crud/module/modules.php');
                     }
                 }
             }

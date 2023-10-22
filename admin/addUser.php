@@ -1,5 +1,6 @@
 <?php
-include 'connect.php';
+include '/xampp/htdocs/comp1841/auth/connection.php';
+
 
 if (isset($_POST["submit"])) {
     $name = $_POST["name"];
@@ -9,7 +10,7 @@ if (isset($_POST["submit"])) {
         $sql = "INSERT INTO `user` (`name`, `password`, `email`) values ('$name', '$password', '$email')";
         $result = $conn->exec($sql);
         if ($result) {
-            header('location: display.php');
+            header('location: /comp1841/admin/display.php');
         }
     } catch (PDOException $e) {
         die("Error: " . $e->getMessage());
@@ -48,7 +49,8 @@ if (isset($_POST["submit"])) {
     }
     </style>
     <?php
-    include "nav.php"
+    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+
     ?>
     <h1 class='title'>CRUD ADD NEW USER</h1>
     <div class="container ">
@@ -64,7 +66,7 @@ if (isset($_POST["submit"])) {
                 </div>
                 <div class='form-group col-12 label'>
                     <label for="">Enter email</label>
-                    <input class="form-control" name='email' />
+                    <input type='email' class="form-control" name='email' />
                 </div>
                 <!-- <div class='form-group col-12 label'>
                     <label for="">Enter mobile</label>

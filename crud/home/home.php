@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include '/xampp/htdocs/comp1841/auth/connection.php';
 // $postId = $_GET['postId'];
 if (array_key_exists('postId', $_GET)) {
     $postId = $_GET['postId'];
@@ -46,15 +46,16 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
 
 <body>
     <?php
-    include "nav.php";
+    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
     ?>
     <div class="container">
 
         <div class="body">
             <div class="category">
-                <div class="category-item"><a href='askPage.php'>Post a question to community</a></div>
+                <div class="category-item"><a href='/comp1841/crud/askPage/askPage.php'>Post a question to community</a>
+                </div>
                 <div class="category-item">
-                    <a href='userAccount.php'>View your account's information</a>
+                    <a href='/comp1841/crud/user/userAccount.php'>View your account's information</a>
                 </div>
 
                 <?php
@@ -62,7 +63,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                 if ($_SESSION['user_id'] != $_SESSION['admin_id']) {
                     echo "
                 <div class='category-item'>
-                <a href='contactAdmin.php'>
+                <a href='/comp1841/crud/user/contactAdmin.php'>
                 Contact Administrator
                 </a>
                 </div>
@@ -70,7 +71,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                 } else {
                     echo "
                 <div class='category-item'>
-                <a href='contactUser.php'>
+                <a href='/comp1841/admin/contactUser.php'>
                 Manage Users' Request
                 </a>
                 </div>
@@ -110,7 +111,8 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                 echo $module_id . ' - ' .  $module_name;
                                 ?>
                             </div>
-                            <div class="question-title-extra-child viewed">Viewed 149 times
+                            <div class="question-title-extra-child viewed">
+                                Viewed 149 times
                             </div>
 
                         </div>
@@ -130,17 +132,12 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                             $answerAuthorEmail = $row['email'];
                             $existedAnswer = $row['answer'];
                             $answerAuthorPublished = $row['published_at'];
-                            // echo $answerAuthorName . '<br/>';
-                            // echo $answerAuthorEmail . '<br/>';
-                            // echo $existedAnswer . '<br/>';
-                            // echo $answerAuthorPublished . '<br/>';
-
                             echo '<div class="each-existed-answer">' . '<span class="answerAuthorName">' . $answerAuthorName . '</span>	&nbsp;-&nbsp; <span class="existedAnswer">' . $existedAnswer . '</span>&nbsp;-&nbsp;<span class="answerAuthorEmail">' . $answerAuthorEmail . '</span>&nbsp;-&nbsp; <span class="answerAuthorPublished">' . $answerAuthorPublished . '</span></div>';
                         }
                         ?>
 
                     </div>
-                    <form method="POST" action='home.php'>
+                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <div class="your-answer">
                             <h4>Your answer</h4>
                             <?php
@@ -153,15 +150,12 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                     $check_duplicated = "select * from `answer` where user_id=$user_id and answer='$answer'";
                                     $answerDisplay = $conn->query($check_duplicated);
                                     $countRow = $answerDisplay->fetchColumn();
-                                    // var_dump($user_id, $postId, $answer, $moduleId);
-                                    // echo $user_id, $postId, $answer, $moduleId;
 
                                     if ($countRow == 0) {
                                         $sql = "INSERT INTO `answer` (`user_id`, `post_id`, `answer`, `module`)
                                             values ($user_id, $postId, '$answer', $moduleId)";
                                         $result = $conn->query($sql);
                                         if ($result) {
-                                            // echo 'ok no duplicate';
                                         }
                                     }
                                 } catch (PDOException $e) {

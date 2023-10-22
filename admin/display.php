@@ -1,4 +1,6 @@
-<?php include 'connect.php'; ?>
+<?php
+include '/xampp/htdocs/comp1841/auth/connection.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,20 +17,21 @@
 
 <body>
     <style>
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
-    include 'nav.php'
+    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+
     ?>
     <div class="container">
 
         <h1 class='title'>Display Users</h1>
         <div>
             <button class='btn btn-primary my-5'>
-                <a class='text-light text-decoration-none' href="addUser.php">
+                <a class='text-light text-decoration-none' href="/comp1841/admin/addUser.php">
                     Add
                     User
                 </a>
@@ -64,8 +67,8 @@
                         <td>$email</td>
                         <td>$password</td>
                         <td>
-                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateUserId=" . $id . "'>Edit</a></button>
-                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteUserId=" . $id . "'>Delete</a></button>
+                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='/comp1841/crud/edit.php?updateUserId=" . $id . "'>Edit</a></button>
+                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='/comp1841/crud/delete.php?deleteUserId=" . $id . "'>Delete</a></button>
                         </td>
                     </tr> ";
                 }

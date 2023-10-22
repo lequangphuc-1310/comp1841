@@ -28,10 +28,12 @@
     }
     </style>
     <?php
-    include "nav.php"
+    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+
     ?>
     <?php
-    include 'connect.php';
+    include '/xampp/htdocs/comp1841/auth/connection.php';
+
     $user_id = $_SESSION['id'];
     $sql = "select * from `user` where id = $user_id";
     $result = $conn->query($sql);
@@ -48,8 +50,7 @@
         $sql = "update `user` set id=$user_id, name='$name', password='$password', email='$email' where id=$user_id ";
         $result = $conn->query($sql);
         if ($result) {
-            echo 'update scuees';
-            header('location: home.php');
+            header('location: /comp1841/crud/home/home.php');
         }
     }
 

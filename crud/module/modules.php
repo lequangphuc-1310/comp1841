@@ -1,4 +1,5 @@
-<?php include 'connect.php';
+<?php
+include '/xampp/htdocs/comp1841/auth/connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,13 +16,14 @@
 
 <body>
     <style>
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
-    include 'nav.php'
+    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+
     ?>
     <div class="container">
 
@@ -33,7 +35,7 @@
             echo "
                 <div>
                     <button class='btn btn-primary my-5'>
-                        <a class='text-light text-decoration-none' href='addModule.php'>
+                        <a class='text-light text-decoration-none' href='/comp1841/admin/addModule.php'>
                             Add
                             Modules
                         </a>
@@ -70,8 +72,8 @@
                         <td>$module_name</td>
                         <td>$module_id</td>
                         <td>
-                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateModuleId=" . $id . "'>Edit</a></button>
-                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteModuleId=" . $id . "'>Delete</a></button>
+                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='/comp1841/crud/edit.php?updateModuleId=" . $id . "'>Edit</a></button>
+                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='/comp1841/crud/delete.php?deleteModuleId=" . $id . "'>Delete</a></button>
                         </td>
                     </tr> ";
                 }

@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include '/xampp/htdocs/comp1841/auth/connection.php';
 
 if (isset($_POST["submit"])) {
     $module_name = $_POST["module_name"];
@@ -8,7 +8,7 @@ if (isset($_POST["submit"])) {
         $sql = "INSERT INTO `module` (`module_name`, `module_id`) values ('$module_name', '$module_id')";
         $result = $conn->exec($sql);
         if ($result) {
-            header('location: modules.php');
+            header('location: /comp1841/crud/module/modules.php');
         }
     } catch (PDOException $e) {
         die("Error: " . $e->getMessage());
@@ -29,25 +29,26 @@ if (isset($_POST["submit"])) {
 
 <body>
     <style type="text/css">
-        /* .container {
+    /* .container {
             margin: 20px auto;
         } */
 
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
-    include "nav.php"
+    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+
     ?>
     <h1 class='title'>CRUD ADD NEW MODULE</h1>
     <div class="container ">
@@ -55,20 +56,12 @@ if (isset($_POST["submit"])) {
             <div class='row'>
                 <div class='form-group col-12 label'>
                     <label for="">Enter module's name</label>
-                    <input class="form-control" name='module_name' />
+                    <textarea row='1' col='50' class="form-control" name='module_name'> </textarea>
                 </div>
                 <div class='form-group col-12 label'>
                     <label for="">Enter module's id</label>
                     <input type='module_id' class="form-control" name='module_id' />
                 </div>
-                <!-- <div class='form-group col-12 label'>
-                    <label for="">Enter email</label>
-                    <input class="form-control" name='email' />
-                </div> -->
-                <!-- <div class='form-group col-12 label'>
-                    <label for="">Enter mobile</label>
-                    <input class="form-control" name='mobile' />
-                </div> -->
                 <div class='form-group col-12 label'>
                     <input type='submit' name='submit' class="btn btn-primary" />
                 </div>

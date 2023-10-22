@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="./askPage.css" />
     <title>Add New Post</title>
 </head>
@@ -25,7 +25,8 @@
     }
     </style>
     <?php
-    include "nav.php";
+    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+
     ?>
     <div class="ask-page-container ">
         <h1 class='title'>Ask a Question</h1>
@@ -76,7 +77,7 @@
                     <input type='submit' name='submitPost' value='Submit' class="btn btn-primary" />
                 </div>
                 <?php
-                include 'connect.php';
+                include '/xampp/htdocs/comp1841/auth/connection.php';
 
                 if (isset($_POST["submitPost"])) {
                     $inputTitle =  $_POST["title"];
@@ -92,7 +93,7 @@
                         values ('$title', '$details', '$user_id', '$module_id')";
                         $result = $conn->exec($sql);
                         if ($result) {
-                            header('location: posts.php');
+                            header('location: /comp1841/crud/user/posts.php');
                         }
                     } catch (PDOException $e) {
                         die("Error: " . $e->getMessage());

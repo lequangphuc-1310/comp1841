@@ -1,4 +1,6 @@
-<?php include 'connect.php';
+<?php
+include '/xampp/htdocs/comp1841/auth/connection.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +23,8 @@
         }
     </style>
     <?php
-    include 'nav.php'
+    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+
     ?>
     <div class="container">
 
@@ -58,7 +61,7 @@
                         <td>$email</td>
                         <td>$title</td>
                         <td>
-                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='home.php?postId=" . $id . "'>Go to this post</a></button>
+                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='/comp1841/crud/home/home.php?postId=" . $id . "'>Go to this post</a></button>
                         </td>
                     </tr> ";
                 }

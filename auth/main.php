@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include("connection.php");
-include("functions.php");
+include("/xampp/htdocs/comp1841/auth/connection.php");
+include("/xampp/htdocs/comp1841/auth/functions.php");
 
 $user_data = check_login($conn);
 

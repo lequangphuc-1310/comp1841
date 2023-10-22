@@ -1,29 +1,29 @@
 <?php
 session_start();
 
-include("connection.php");
-include("functions.php");
+include("/xampp/htdocs/comp1841/auth/connection.php");
+include("/xampp/htdocs/comp1841/auth/functions.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-	//something was posted
-	$name = $_POST['name'];
-	$password = $_POST['password'];
-	$email = $_POST['email'];
+    //something was posted
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
 
-	if (!empty($name) && !empty($password) && !is_numeric($name) && !is_numeric($email)) {
+    if (!empty($name) && !empty($password) && !is_numeric($name) && !is_numeric($email)) {
 
-		//save to database
-		$user_id = random_num(20);
-		$query = "insert into user (id,name,password,email) values ('$id','$name','$password', '$email')";
+        //save to database
+        $user_id = random_num(20);
+        $query = "insert into user (id,name,password,email) values ('$id','$name','$password', '$email')";
 
-		$result = $conn->query($query);
+        $result = $conn->query($query);
 
-		header("Location: login.php");
-		die;
-	} else {
-		echo "Please enter some valid information!";
-	}
+        header("Location: login.php");
+        die;
+    } else {
+        echo "Please enter some valid information!";
+    }
 }
 ?>
 
@@ -38,31 +38,31 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
 
     <style type="text/css">
-    #text {
+        #text {
 
-        height: 25px;
-        border-radius: 5px;
-        padding: 4px;
-        border: solid thin #aaa;
-        width: 100%;
-    }
+            height: 25px;
+            border-radius: 5px;
+            padding: 4px;
+            border: solid thin #aaa;
+            width: 100%;
+        }
 
-    #button {
+        #button {
 
-        padding: 10px;
-        width: 100px;
-        color: white;
-        background-color: lightblue;
-        border: none;
-    }
+            padding: 10px;
+            width: 100px;
+            color: white;
+            background-color: lightblue;
+            border: none;
+        }
 
-    #box {
+        #box {
 
-        background-color: grey;
-        margin: auto;
-        width: 300px;
-        padding: 20px;
-    }
+            background-color: grey;
+            margin: auto;
+            width: 300px;
+            padding: 20px;
+        }
     </style>
 
     <div id="box">
