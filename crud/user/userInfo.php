@@ -16,15 +16,15 @@
     ?>
 
     <style>
-        * {
-            background-size: cover !important
-        }
+    * {
+        background-size: cover !important
+    }
 
-        .your-avt {
-            display: flex;
-            justify-content: center;
-            align-self: center;
-        }
+    .your-avt {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+    }
     </style>
     <?php
     $userId = $_SESSION['id'];
@@ -44,7 +44,8 @@
                     ?>
                     <img src="/uploads/<?php echo $img; ?>" alt="">
                     <div class="your-avt">
-                        <div class='your-avt-img' style='background: url("uploads/<?php echo $img; ?>") center center no-repeat; height: 110px; width: 110px; '>
+                        <div class='your-avt-img'
+                            style='background: url("uploads/<?php echo $img; ?>") center center no-repeat; height: 110px; width: 110px; '>
                         </div>
                     </div>
 
@@ -70,7 +71,9 @@
         <div class="user-details">
             <div class="user-details-left">
                 <div class="userSecure">
-                    <a href="/comp1841/crud/user/userSecure.php">Secure your account</a>
+                    <i class="fas fa-shield-alt"></i>
+                    <a href="/comp1841/crud/user/userSecure.php">Secure your
+                        account</a>
                 </div>
             </div>
             <div class="user-details-right">
@@ -95,9 +98,6 @@
                                 }
                             }
                             ?>
-                            <!-- <div class="each-user-details-existed-content">cba</div>
-                        <div class="each-user-details-existed-content">bac</div>
-                        <div class="each-user-details-existed-content">bac</div> -->
                         </div>
                     </div>
                     <div class="user-details-right-child user-details-answers">

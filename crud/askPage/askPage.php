@@ -12,26 +12,26 @@
 
 <body>
     <style type="text/css">
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -94,6 +94,7 @@
                     $inputDetails = $_POST["details"];
                     $details = mysql_escape_mimic($inputDetails);
                     $module_id = $_POST['module_id'];
+                    $userId = $_SESSION['id'];
                     // echo $module_id;
 
                     $user_id = $_SESSION['id'];
@@ -101,9 +102,15 @@
                         $sql = "INSERT INTO `post` (`title`, `details`, `user_id`, `module`)
                         values ('$title', '$details', '$user_id', '$module_id')";
                         $result = $conn->exec($sql);
+                        $sql2 = "SELECT p.id, p.user_id from `post` as p inner join  `user` as u on p.user_id = u.id where p.user_id=u.id and u.id=$userId order by p.id desc limit 1 ;";
+                        $result2 = $conn->query($sql2);
+                        $d = $result2->fetch();
+                        $latestPostId = $d['id'];
                         if ($result) {
-                            // header('location: /comp1841/crud/user/posts.php');
-                            echo "<script>window.location.href='/comp1841/crud/user/posts.php';</script>";
+                            if ($result2) {
+                                // header('location: /comp1841/crud/user/posts.php');
+                                echo "<script>window.location.href='/comp1841/crud/home/home.php?postId=$latestPostId';</script>";
+                            }
                         }
                     } catch (PDOException $e) {
                         die("Error: " . $e->getMessage());
