@@ -5,25 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" type="text/css" href="./askPage.css" />
-    <link rel="stylesheet" type="text/css" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="/comp1841/crud/askPage/askPage.css?v=<?php echo time(); ?>" />
+    <!-- <link rel="stylesheet" type="text/css" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>" /> -->
     <title>Add New Post</title>
 </head>
 
 <body>
     <style type="text/css">
-        input {
-            border: 1px solid black !important;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
+
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -33,12 +41,12 @@
         <h1 class='title'>Ask a Question</h1>
         <form action="askPage.php" method='POST'>
             <div class='row'>
-                <div class='form-group col-8 content'>
+                <div class='content'>
                     <h4>Title</h4>
                     <label for="">Enter a title</label>
                     <input name='title' class="form-control" name='name' />
                 </div>
-                <div class='form-group col-8 content'>
+                <div class='content'>
                     <h4>What are the details of your problem</h4>
                     <label for="">Introduce the problem and expand on what you put in the title. Minimum 20
                         characters.</label>

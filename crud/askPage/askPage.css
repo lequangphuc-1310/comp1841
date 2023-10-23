@@ -4,7 +4,9 @@
 }
 
 .row {
-    gap: 20px !important;
+    display       : flex;
+    flex-direction: column;
+    gap           : 20px !important;
 }
 
 .ask-page-container {
@@ -14,6 +16,11 @@
     flex-direction  : column;
     padding         : 50px;
     background-color: #f1f1f1;
+    font-family     : system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.ask-page-container h1 {
+    margin-bottom: 10px;
 }
 
 .row .content {
@@ -24,8 +31,29 @@
     background-color: #fff;
     border          : 1px solid #ccc;
     padding         : 20px 20px;
+    border-radius   : 16px;
+    box-shadow      : 0px -18px 20px -30px rgba(0, 0, 0, 0.45), 19px 0px 20px -24px rgba(0, 0, 0, 0.45), 0px 26px 10px -26px rgba(0, 0, 0, 0.45), -13px 0px 20px -20px rgba(0, 0, 0, 0.45);
 }
 
 .content label {
     margin-bottom: 10px;
+}
+
+.content>input {
+    outline      : none;
+    padding      : 10px 15px;
+    border-radius: 5px;
+}
+
+.content>textarea {
+    outline      : none;
+    padding      : 10px 15px;
+    border-radius: 8px;
+}
+
+.content>select {
+    padding      : 10px 8px 10px 5px;
+    border-radius: 5px;
+    outline      : none;
+    cursor       : pointer;
 }

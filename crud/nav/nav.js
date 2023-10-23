@@ -1,20 +1,8 @@
-// Get the container element
-var categoryContainer = document.getElementsByClassName("nav-child-left");
+let links = document.querySelectorAll(".links a");
+let bodyId = document.querySelector("body").id;
 
-// Get all buttons with class="btn" inside the container
-var items = document.getElementsByClassName("nav-child");
-
-// Loop through the buttons and add the active class to the current/clicked button
-for (var i = 0; i < items.length; i++) {
-    items[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName("active");
-
-        // If there's no active class
-        if (current.length > 0) {
-            current[0].className = current[0].className.replace(" active", "");
-        }
-
-        // Add the active class to the current/clicked button
-        this.className += " active";
-    });
+for (let link of links) {
+    if (link.dataset.active === bodyId) {
+        link.classList.add("active");
+    }
 }

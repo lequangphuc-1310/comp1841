@@ -45,6 +45,15 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
 </head>
 
 <body>
+    <style>
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
+    </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
     ?>
@@ -108,7 +117,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                         ?>
 
                     </div>
-                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <form method="POST">
                         <div class="your-answer">
                             <h4>Your answer</h4>
                             <?php
@@ -127,6 +136,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                             values ($user_id, $postId, '$answer', $moduleId)";
                                         $result = $conn->query($sql);
                                         if ($result) {
+                                            echo "<script>location.reload();</script>";
                                         }
                                     }
                                 } catch (PDOException $e) {

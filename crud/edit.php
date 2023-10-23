@@ -7,20 +7,19 @@ if (isset($_GET['updateUserId'])) {
     $sql = "select * from `user` where id = $id";
     $result = $conn->query($sql);
     $d = $result->fetch();
-    $name = $d['name'];
-    $password = $d['password'];
-    $email = $d['email'];
-
+    $nameData = $d['name'];
+    $passwordData = $d['password'];
+    $emailData = $d['email'];
+    echo $password;
 
     if (isset($_POST['submit'])) {
         $name = $_POST['name'];
-        $password = $_POST['password'];
+        $newpassword = $_POST['password'];
         $email = $_POST['email'];
         $mobile = $_POST['mobile'];
-        $sql = "update `user` set id=$id, name='$name', password='$password', email='$email' where id=$id ";
+        $sql = "update `user` set id=$id, name='$name', password='$newpassword', email='$email' where id=$id ";
         $result = $conn->query($sql);
         if ($result) {
-            echo 'update scuees';
             header('location: /comp1841/admin/display.php');
         }
     }
@@ -41,22 +40,30 @@ if (isset($_GET['updateUserId'])) {
 
 <body>
     <style type="text/css">
-        /* .container {
+    /* .container {
             margin: 20px auto;
         } */
 
-        input {
-            border: 1px solid black !important;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
+
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -74,19 +81,19 @@ if (isset($_GET['updateUserId'])) {
                 $sql = "select * from `module` where id = $moduleId";
                 $result = $conn->query($sql);
                 $d = $result->fetch();
-                $module_name = $d['module_name'];
-                $module_id = $d['module_id'];
+                $module_nameData = $d['module_name'];
+                $module_idData = $d['module_id'];
 
                 echo
                 "
                 <div class='row'>
                     <div class='form-group col-12 label'>
                         <label >Enter Module's name</label>
-                        <textarea class='form-control' name='nameModule'> $module_name </textarea>
+                        <textarea class='form-control' name='nameModule'> $module_nameData </textarea>
                     </div>
                     <div class='form-group col-12 label'>
                         <label>Enter module's id</label>
-                        <input class='form-control' name='idModule' value=" . $module_id . " />
+                        <input class='form-control' name='idModule' value=" . $module_idData . " />
                     </div>
                     <div class='form-group col-12 label'>
                         <input type='submit' value='update' name='submit' class='btn btn-blue' />
@@ -98,15 +105,15 @@ if (isset($_GET['updateUserId'])) {
                     <div class='row'>
                         <div class='form-group col-12 label'>
                             <label >Enter name</label>
-                            <input class='form-control' name='name' value=" . $name . " />
+                            <input class='form-control' name='name' value=" . $nameData . " />
                         </div>
                         <div class='form-group col-12 label'>
                             <label>Enter password</label>
-                            <input type='password' class='form-control' name='password' value=" . $password . " />
+                            <input type='password' class='form-control' name='password' value=" . $passwordData . " />
                         </div>
                         <div class='form-group col-12 label'>
                             <label>Enter email</label>
-                            <input class='form-control' name='email' value=" . $email . " />
+                            <input class='form-control' name='email' value=" . $emailData . " />
                         </div>
                         <div class='form-group col-12 label'>
                             <input type='submit' value='update' name='submit' class='btn btn-blue' />
@@ -125,7 +132,8 @@ if (isset($_GET['updateUserId'])) {
                     echo $moduleId, $module_name, $module_id;
 
                     if ($result) {
-                        header('location: /comp1841/crud/module/modules.php');
+                        echo "<script>window.location.href='/comp1841/crud/module/modules.php';</script>";
+                        
                     }
                 }
             }

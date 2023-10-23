@@ -22,7 +22,7 @@ a {
     margin          : 0 50px 0 50px;
     background-color: #fff;
     color           : #000;
-    z-index         : -1;
+    z-index         : 1;
 }
 
 
@@ -166,12 +166,12 @@ a {
 
 .answerAuthorEmail {
     font-size: 13px;
-    color    : #222;
+    color    : #b34545;
 }
 
 .answerAuthorPublished {
     font-size: 13px;
-    color    : #333;
+    color    : #a79999;
 }
 
 
@@ -212,13 +212,7 @@ input.btn-submit {
     cursor          : pointer;
 }
 
-.btn-blue {
-    background-color: #381DDB !important;
-    border-radius   : 8px;
-    padding         : 10px 14px;
-    color           : #fff;
-    cursor          : pointer;
-}
+
 
 input.btn.btn-blue {
     color: #fff;
