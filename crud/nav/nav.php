@@ -31,7 +31,7 @@ $_SESSION['id'] = $user_data['id'];
                                 to community</a>
                         </div>
                         <div class="category-item category-item-2">
-                            <a href='/comp1841/crud/user/userAccount.php'>View your account's information</a>
+                            <a href='/comp1841/crud/user/userInfo.php'>View your account's information</a>
                         </div>
 
                         <?php

@@ -11,26 +11,26 @@
 
 <body>
     <style type="text/css">
-        .btn-blue {
-            background-color: #381DDB !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            cursor: pointer;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
 
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -55,7 +55,7 @@
         $sql = "update `user` set id=$user_id, name='$name', password='$password', email='$email' where id=$user_id ";
         $result = $conn->query($sql);
         if ($result) {
-            header('location: /comp1841/crud/home/home.php');
+            header('location: /comp1841/crud/user/userInfo.php');
         }
     }
 

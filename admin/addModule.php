@@ -30,105 +30,98 @@ if (isset($_POST["submit"])) {
 
 <body>
     <style type="text/css">
-    html,
-    body {
-        height: 100%;
-    }
-
-    .textArea {
-        border: 1px solid #381ddb;
-    }
-
-    input {
-        border: 1px solid black !important;
-    }
-
-    .label {
-        margin: 10px 0 10px 0;
-    }
-
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
-
-    #toast {
-        visibility: hidden;
-        min-width: 250px;
-        margin-left: -125px;
-        background-color: green;
-        color: #fff;
-        text-align: center;
-        border-radius: 2px;
-        padding: 16px;
-        position: fixed;
-        z-index: 10;
-        left: 50%;
-        bottom: 60px;
-        font-size: 17px;
-    }
-
-    #toast.show {
-        visibility: visible;
-        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-
-    @-webkit-keyframes fadein {
-        from {
-            bottom: 0;
-            opacity: 0;
+        html,
+        body {
+            height: 100%;
         }
 
-        to {
+        .label {
+            margin: 10px 0 10px 0;
+        }
+
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: green;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 10;
+            left: 50%;
             bottom: 60px;
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadein {
-        from {
-            bottom: 0;
-            opacity: 0;
+            font-size: 17px;
         }
 
-        to {
-            bottom: 60px;
-            opacity: 1;
-        }
-    }
 
-    @-webkit-keyframes fadeout {
-        from {
-            bottom: 60px;
-            opacity: 1;
+        #toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
         }
 
-        to {
-            bottom: 0;
-            opacity: 0;
-        }
-    }
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
 
-    @keyframes fadeout {
-        from {
-            bottom: 60px;
-            opacity: 1;
+            to {
+                bottom: 60px;
+                opacity: 1;
+            }
         }
 
-        to {
-            bottom: 0;
-            opacity: 0;
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 60px;
+                opacity: 1;
+            }
         }
-    }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 60px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 60px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -144,7 +137,7 @@ if (isset($_POST["submit"])) {
                 </div>
                 <div class='form-group col-12 label'>
                     <label for="">Enter module's id</label>
-                    <input type='module_id' class="form-control" name='module_id' />
+                    <input type='module_id' class="form-control textArea" name='module_id' />
                 </div>
                 <div class='form-group col-12 label'>
                     <button onclick="sendToast()" name='submit' class="btn-blue">Submit</button>
@@ -155,13 +148,13 @@ if (isset($_POST["submit"])) {
 
     </div>
     <script>
-    function sendToast() {
-        var x = document.getElementById("toast");
-        x.className = "show";
-        setTimeout(function() {
-            x.className = x.className.replace("show", "");
-        }, 3000);
-    }
+        function sendToast() {
+            var x = document.getElementById("toast");
+            x.className = "show";
+            setTimeout(function() {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+        }
     </script>
 </body>
 

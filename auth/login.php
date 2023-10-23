@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <head>
 	<title>Login</title>
-	<link href="csslogin.css" rel="stylesheet">
+	<link href="csslogin.css?v=<?php echo time(); ?>" rel="stylesheet">
 </head>
 
 <body>
@@ -79,6 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				<input id="text" type="password" name="password" placeholder="Enter your password"><br><br>
 
 				<button id="button" class='logIn' type="submit"><a href="login.php">Click to Login</a></button><br><br>
+				<button id="button" class='signUp'><a href="signup.php">Click to
+						SignUp</a></button><br><br>
 
 			</form>
 		</div>

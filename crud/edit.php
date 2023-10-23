@@ -40,30 +40,31 @@ if (isset($_GET['updateUserId'])) {
 
 <body>
     <style type="text/css">
-    /* .container {
-            margin: 20px auto;
-        } */
+        .form-control.textArea {
+            outline: none;
+            border: 1px solid #111;
+        }
 
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -89,11 +90,11 @@ if (isset($_GET['updateUserId'])) {
                 <div class='row'>
                     <div class='form-group col-12 label'>
                         <label >Enter Module's name</label>
-                        <textarea class='form-control' name='nameModule'> $module_nameData </textarea>
+                        <textarea class='form-control textArea' name='nameModule'> $module_nameData </textarea>
                     </div>
                     <div class='form-group col-12 label'>
                         <label>Enter module's id</label>
-                        <input class='form-control' name='idModule' value=" . $module_idData . " />
+                        <input class='form-control textArea' name='idModule' value=" . $module_idData . " />
                     </div>
                     <div class='form-group col-12 label'>
                         <input type='submit' value='update' name='submit' class='btn btn-blue' />
@@ -133,7 +134,6 @@ if (isset($_GET['updateUserId'])) {
 
                     if ($result) {
                         echo "<script>window.location.href='/comp1841/crud/module/modules.php';</script>";
-                        
                     }
                 }
             }

@@ -1,0 +1,162 @@
+.user-info-container {
+    display       : flex;
+    flex-direction: column;
+    margin        : 0 50px;
+}
+
+.user-intro {
+    margin         : 30px 0 15px 0;
+    display        : flex;
+    flex-direction : row;
+    gap            : 2em;
+    border-radius  : 0.5em;
+    justify-content: start;
+    align-items    : center;
+    box-shadow     : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
+.user-intro-img {
+    height         : 120px;
+    border         : 1px solid green;
+    width          : 120px;
+    margin         : 10px 15px;
+    /* margin-left : 4em; */
+    display        : flex;
+    align-items    : center;
+    border-radius  : 8px;
+    justify-content: center;
+}
+
+.user-intro-edit-img {
+    display         : flex;
+    background-image: linear-gradient(to right, #FC5252, #381DDB);
+    padding         : 8px 10px;
+    cursor          : pointer;
+    margin          : 0 0 10px 8px;
+    border-radius   : 8px;
+}
+
+.user-intro-edit-img:hover {
+    opacity: 0.8;
+}
+
+.user-intro-detail {
+    display       : flex;
+    gap           : 10px;
+    flex-direction: column;
+}
+
+.user-intro-detail-name {
+    font-size  : 28px;
+    font-weight: 600;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.user-intro-detail-extra {
+    font-size: 18px;
+    color    : #888;
+}
+
+.user-details {
+    display: flex;
+    width  : 100%;
+}
+
+.user-details-left {
+    width       : 20%;
+    border-right: 1px solid #000;
+}
+
+.userSecure {
+    margin-top     : 15px;
+    padding        : 10px 15px;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+}
+
+.userSecure a {
+    color: #000;
+}
+
+.userSecure:hover {
+    border-right: 2px solid #381DDB;
+}
+
+.userSecure:hover a {
+    color: #381DDB;
+
+}
+
+.user-details-right {
+    width                  : 80%;
+    display                : flex;
+    flex-direction         : row;
+    flex-wrap              : wrap;
+    /* justify-content     : center; */
+    /* height              : 1000px; */
+    align-items            : center;
+    /* gap                 : 20px; */
+}
+
+.user-details-right-body {
+    display       : flex;
+    flex-direction: row;
+    width         : 100%;
+    flex-wrap     : wrap;
+    margin        : 0 2em;
+}
+
+.user-details-right-child {
+    border-radius : 8px;
+    margin        : 10px;
+    display       : flex;
+    align-items   : center;
+    flex-direction: column;
+    box-shadow    : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+    overflow      : hidden;
+    max-height    : 300px;
+}
+
+.user-details-right-child:hover {
+    overflow-y: auto;
+}
+
+.user-details-right-child h3 {
+    padding      : 10px;
+    border-bottom: 2px solid #FC5252;
+
+}
+
+.user-details-posts {}
+
+.user-details-answers {}
+
+.user-details-modules {}
+
+.user-details-existed-content {
+    width            : 180px;
+    /* height        : 180px; */
+    /* border        : 1px solid brown; */
+    gap              : 0.4em;
+    display          : flex;
+    flex-direction   : column;
+    padding          : 10px 38px;
+    /* margin        : 0 0 20px 0; */
+}
+
+.each-user-details-existed-content {
+    margin    : 0.1em 0.5em;
+    padding   : 10px 12px;
+    /* border : 1px solid brown */
+}
+
+.published_at {
+    font-size: 13px;
+    color    : #a79999;
+}
+
+.changeImage {
+    color: #fff;
+
+}
