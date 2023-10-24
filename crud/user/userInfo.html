@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="/comp1841/crud/user/userInfo.css?v=<?php echo time(); ?>">
+
+</head>
+
+<body>
+
+    <style>
+        * {
+            background-size: cover !important
+        }
+
+        .your-avt {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+        }
+    </style>
+
+
+
+    <div class="user-info-container">
+        <div class="user-intro">
+            <div class="user-intro-img-section">
+                <div class="user-intro-img">
+                    <!-- <img src="/uploads/<?php echo $img; ?>" alt=""> -->
+                    <div class="your-avt">
+                    </div>
+                </div>
+                <div class="user-intro-edit-img">
+                    <a class='changeImage' href='/comp1841/crud/user/importImage.php'><i class="far fa-edit">Edit Your
+                            Avatar</i></a>
+                </div>
+            </div>
+            <div class="user-intro-detail">
+                <div class="user-intro-detail-name">
+                </div>
+                <div class="user-intro-detail-extra">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="user-details">
+        <div class="user-details-left">
+            <div class="userSecure">
+                <i class="fas fa-shield-alt"></i>
+                <a href="/comp1841/crud/user/userSecure.php">Secure your
+                    account</a>
+            </div>
+        </div>
+        <div class="user-details-right">
+            <div class="user-details-right-body">
+                <div class="user-details-right-child user-details-posts">
+                    <h3>Posts</h3>
+                    <div class="user-details-existed-content">
+
+                    </div>
+                </div>
+                <div class="user-details-right-child user-details-answers">
+                    <h3>Answers</h3>
+                    <div class="user-details-existed-content">
+
+                    </div>
+                </div>
+                <div class="user-details-right-child user-details-modules">
+                    <h3>Modules</h3>
+                    <div class="user-details-existed-content">
+                        <div class="each-user-details-existed-content">abc</div>
+                        <div class="each-user-details-existed-content">cba</div>
+                        <div class="each-user-details-existed-content">bac</div>
+                        <div class="each-user-details-existed-content">bac</div>
+
+                        <div class="each-user-details-existed-content">bac</div>
+                        <div class="each-user-details-existed-content">bac</div>
+                        <div class="each-user-details-existed-content">bac</div>
+                        <div class="each-user-details-existed-content">bac</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

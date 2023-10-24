@@ -1,44 +1,3 @@
-<?php
-include '/xampp/htdocs/comp1841/auth/connection.php';
-// $postId = $_GET['postId'];
-if (array_key_exists('postId', $_GET)) {
-    $postId = $_GET['postId'];
-    $sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`, `post` where post.user_id=user.id and post.id=$postId;";
-    $result = $conn->query($sql);
-    $d = $result->fetch();
-    $title = $d['title'];
-    $askerImage = $d['image'];
-    $name = $d['name'];
-    $email = $d['email'];
-    $details = $d['details'];
-    $published = $d['published_at'];
-    $moduleId = $d['module'];
-    $sqlGetModule = ("select * from `module` where id=$moduleId");
-    $resultGetModule = $conn->query($sqlGetModule);
-    $dataResultGetModule = $resultGetModule->fetch();
-    $module_name = $dataResultGetModule['module_name'];
-    $module_id = $dataResultGetModule['module_id'];
-} else {
-    $sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`,`post`
-where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
-    $result = $conn->query($sql);
-    $d = $result->fetch();
-    $postId = $d['id'];
-    $title = $d['title'];
-    $askerImage = $d['image'];
-    $name = $d['name'];
-    $email = $d['email'];
-    $details = $d['details'];
-    $published = $d['published_at'];
-    $moduleId = $d['module'];
-    $sqlGetModule = ("select * from `module` where id=$moduleId");
-    $resultGetModule = $conn->query($sqlGetModule);
-    $dataResultGetModule = $resultGetModule->fetch();
-    $module_name = $dataResultGetModule['module_name'];
-    $module_id = $dataResultGetModule['module_id'];
-}
-?>
-
 <html lang="en">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,16 +7,71 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
 
 <body>
     <style>
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+    ?>
+    <?php
+    // $postId = $_GET['postId'];
+    if (array_key_exists('postId', $_GET)) {
+        $postId = $_GET['postId'];
+        $sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`, `post` where post.user_id=user.id and post.id=$postId;";
+        $result = $conn->query($sql);
+        $d = $result->fetch();
+        $title = $d['title'];
+        $askerImage = $d['image'];
+        $name = $d['name'];
+        $email = $d['email'];
+        $details = $d['details'];
+        $published = $d['published_at'];
+        $moduleId = $d['module'];
+        $sqlGetModule = ("select * from `module` where id=$moduleId");
+        $resultGetModule = $conn->query($sqlGetModule);
+        $dataResultGetModule = $resultGetModule->fetch();
+        $module_name = $dataResultGetModule['module_name'];
+        $module_id = $dataResultGetModule['module_id'];
+        $userId = $_SESSION['user_id'];
+        if (!$askerImage) {
+            $askerImage = 'IMG-653751dd87d0c4.57015077.png';
+            $saveAskerImageToDb = $conn->query("UPDATE `user`
+        SET image = $askerImage
+        WHERE id= $userId");
+        }
+    } else {
+        $sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`,`post`
+where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
+        $result = $conn->query($sql);
+        $d = $result->fetch();
+        $postId = $d['id'];
+        $title = $d['title'];
+        $askerImage = $d['image'];
+        $name = $d['name'];
+        $email = $d['email'];
+        $details = $d['details'];
+        $published = $d['published_at'];
+        $moduleId = $d['module'];
+        $sqlGetModule = ("select * from `module` where id=$moduleId");
+        $resultGetModule = $conn->query($sqlGetModule);
+        $dataResultGetModule = $resultGetModule->fetch();
+        $module_name = $dataResultGetModule['module_name'];
+        $module_id = $dataResultGetModule['module_id'];
+        $userId = $_SESSION['user_id'];
+
+
+        if (!$askerImage) {
+            $askerImage = 'IMG-653751dd87d0c4.57015077.png';
+            $saveAskerImageToDb = $conn->query("UPDATE `user`
+        SET `image` = '$askerImage'
+        WHERE id= $userId");
+        }
+    }
     ?>
     <div class="container">
 
@@ -68,8 +82,8 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                     <div class="question-title">
                         <div class='question-title-content'>
                             <div class="akser-avt">
-                                <div class="nav-user-avt-img"
-                                    style='background: transparent url("/comp1841/crud/user/uploads/<?php echo $askerImage; ?>") center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain'>
+                                <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/<?php echo $askerImage; ?>)
+                    center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
                                 </div>
                             </div>
                             <div>
@@ -122,14 +136,33 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                             $answerAuthorEmail = $row['email'];
                             $existedAnswer = $row['answer'];
                             $answerAuthorPublished = $row['published_at'];
+                            if (!$answerAuthorImage) {
+                                $answerAuthorImage = 'IMG-653751dd87d0c4.57015077.png';
+                            }
+
+                            // if (!$answerAuthorImage) {
+                            //     echo '<div class="answer-avt-img" style="background: url(/comp1841/crud/user/uploads/IMG-653751dd87d0c4.57015077.png)
+                            //     center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
+                            // </div>';
+                            // } else {
+                            //     echo '
+                            //     <div class="answer-avt-img" style="background: transparent url("/comp1841/crud/user/uploads/' .  $answerAuthorImage . '") center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
+
+                            //         ';
+                            // }
+
                             echo '<div class="each-existed-answer">' . '
                             <div class="answer-avt">
-                                <div class="answer-avt-img" style="background: transparent url(/comp1841/crud/user/uploads/' . $answerAuthorImage . ')
-                        center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
-                    </div>
+                                
+                            <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/' . $answerAuthorImage . ')
+                    center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
+                                </div>
+
+
+
                 </div>
-                <div class="answer-text"><span class="answerAuthorName">' . $answerAuthorName . '</span> &nbsp;-&nbsp; <span
-                        class="existedAnswer">' . $existedAnswer . '</span>&nbsp;-&nbsp;<span
+                <div class="answer-text"><span class="answerAuthorName">' . $answerAuthorName . '</span> &nbsp;-&nbsp;
+                    <span class="existedAnswer">' . $existedAnswer . '</span>&nbsp;-&nbsp;<span
                         class="answerAuthorEmail">' . $answerAuthorEmail . '</span>&nbsp;-&nbsp; <span
                         class="answerAuthorPublished">' . $answerAuthorPublished . '</span></div>
             </div>';
@@ -164,11 +197,9 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                 }
                             }
                             ?>
-                            <textarea class='textArea' name='answer' rows="10" cols="100"
-                                style="resize: none;"></textarea>
+                            <textarea class='textArea' name='answer' rows="10" cols="100" style="resize: none;"></textarea>
                             <div class="submit-answer">
-                                <input placholder='Type something...' class="btn-submit" value='Submit Answer'
-                                    type='submit' name='submitAnswer' />
+                                <input placholder='Type something...' class="btn-submit" value='Submit Answer' type='submit' name='submitAnswer' />
                             </div>
 
 

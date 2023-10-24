@@ -8,10 +8,10 @@
     margin         : 30px 0 15px 0;
     display        : flex;
     flex-direction : row;
-    gap            : 2em;
+    gap            : 1em;
     border-radius  : 0.5em;
     justify-content: start;
-    align-items    : center;
+    align-items    : start;
     box-shadow     : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
 }
 
@@ -41,9 +41,10 @@
 }
 
 .user-intro-detail {
-    display       : flex;
-    gap           : 10px;
-    flex-direction: column;
+    display          : flex;
+    /* gap           : 10px; */
+    flex-direction   : column;
+    margin-top       : 1.6em;
 }
 
 .user-intro-detail-name {
@@ -59,7 +60,7 @@
 
 .user-details {
     display: flex;
-    width  : 100%;
+    margin : 0 5em;
 }
 
 .user-details-left {
@@ -88,7 +89,8 @@
     border-right: 2px solid #381DDB;
 }
 
-.userSecure:hover a {
+.userSecure:hover a,
+.userSecure:hover i {
     color: #381DDB;
 
 }

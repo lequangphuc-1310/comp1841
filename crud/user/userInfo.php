@@ -12,7 +12,7 @@
 
 <body>
     <?php
-    include '/xampp/htdocs/comp1841/crud/nav/nav.php'
+    include '/xampp/htdocs/comp1841/crud/nav/nav.php';
     ?>
 
     <style>
@@ -41,16 +41,22 @@
                     $result = $conn->query($sql);
                     $d = $result->fetch();
                     $img = $d['image'];
-                    // echo '<pre>';
-                    // var_dump($_SESSION);
-                    // echo '</pre>';
                     ?>
                     <!-- <img src="/uploads/<?php echo $img; ?>" alt=""> -->
                     <div class="your-avt">
-                        <div class='your-avt-img' style='background: url("uploads/<?php echo $img; ?>") center center no-repeat; height: 110px; width: 110px; '>
-                        </div>
+                        <?php
+                        if (!$img) {
+                            echo '<div class="your-avt-img" style="background: url(/comp1841/crud/user/uploads/IMG-653751dd87d0c4.57015077.png)
+                            center center no-repeat; height: 110px; width: 110px; padding: 3px;background-size: contain">
+                        </div>';
+                        } else {
+                            echo '
+                            <div class="your-avt-img" style="background: transparent url(/comp1841/crud/user/uploads/' .  $img . ') center center no-repeat; height: 110px; width: 110px; padding: 3px;background-size: contain">
+                                </div>
+                                ';
+                        }
+                        ?>
                     </div>
-
                 </div>
                 <div class="user-intro-edit-img">
                     <a class='changeImage' href='/comp1841/crud/user/importImage.php'><i class="far fa-edit">Edit Your
@@ -70,77 +76,79 @@
                 <div class="user-intro-detail-extra"><?php echo $userEmail ?></div>
             </div>
         </div>
-        <div class="user-details">
-            <div class="user-details-left">
-                <div class="userSecure">
-                    <i class="fas fa-shield-alt"></i>
-                    <a href="/comp1841/crud/user/userSecure.php">Secure your
-                        account</a>
-                </div>
-            </div>
-            <div class="user-details-right">
-                <div class="user-details-right-body">
-                    <div class="user-details-right-child user-details-posts">
-                        <h3>Posts</h3>
-                        <div class="user-details-existed-content">
-                            <?php
-                            $sql = "select user.name,user.id,user.email,post.* from user, post where user.id=post.user_id and user.id=$userId;";
-                            $result = $conn->query($sql);
-                            $d = $result->fetchAll();
 
-                            if ($d) {
-                                foreach ($d as $row) {
-                                    $title = $row['title'];
-                                    $published_at = $row['published_at'];
-                                    $post_id = $row['id'];
-                                    echo
-                                    "
+    </div>
+    <div class="user-details">
+        <div class="user-details-left">
+            <div class="userSecure">
+                <i class="fas fa-shield-alt"></i>
+                <a href="/comp1841/crud/user/userSecure.php">Secure your
+                    account</a>
+            </div>
+        </div>
+        <div class="user-details-right">
+            <div class="user-details-right-body">
+                <div class="user-details-right-child user-details-posts">
+                    <h3>Posts</h3>
+                    <div class="user-details-existed-content">
+                        <?php
+                        $sql = "select user.name,user.id,user.email,post.* from user, post where user.id=post.user_id and user.id=$userId;";
+                        $result = $conn->query($sql);
+                        $d = $result->fetchAll();
+
+                        if ($d) {
+                            foreach ($d as $row) {
+                                $title = $row['title'];
+                                $published_at = $row['published_at'];
+                                $post_id = $row['id'];
+                                echo
+                                "
                         <div class='each-user-details-existed-content'><a href='/comp1841/crud/home?postId=$post_id'>$title - <span class='published_at'>$published_at</span></a></div>
                                 ";
-                                }
                             }
-                            ?>
-                        </div>
+                        }
+                        ?>
                     </div>
-                    <div class="user-details-right-child user-details-answers">
-                        <h3>Answers</h3>
-                        <div class="user-details-existed-content">
-                            <?php
-                            $sql = "select user.name,user.id,user.email,answer.* from user, answer where user.id=answer.user_id and user.id=$userId;";
-                            $result = $conn->query($sql);
-                            $d = $result->fetchAll();
+                </div>
+                <div class="user-details-right-child user-details-answers">
+                    <h3>Answers</h3>
+                    <div class="user-details-existed-content">
+                        <?php
+                        $sql = "select user.name,user.id,user.email,answer.* from user, answer where user.id=answer.user_id and user.id=$userId;";
+                        $result = $conn->query($sql);
+                        $d = $result->fetchAll();
 
-                            if ($d) {
-                                foreach ($d as $row) {
-                                    $answer = $row['answer'];
-                                    $published_at = $row['published_at'];
-                                    $post_id = $row['post_id'];
-                                    echo
-                                    "
+                        if ($d) {
+                            foreach ($d as $row) {
+                                $answer = $row['answer'];
+                                $published_at = $row['published_at'];
+                                $post_id = $row['post_id'];
+                                echo
+                                "
                         <div class='each-user-details-existed-content'><a href='/comp1841/crud/home?postId=$post_id'>$answer - <span class='published_at'>$published_at</span></a></div>
                                 ";
-                                }
                             }
-                            ?>
-                        </div>
+                        }
+                        ?>
                     </div>
-                    <div class="user-details-right-child user-details-modules">
-                        <h3>Modules</h3>
-                        <div class="user-details-existed-content">
-                            <div class="each-user-details-existed-content">abc</div>
-                            <div class="each-user-details-existed-content">cba</div>
-                            <div class="each-user-details-existed-content">bac</div>
-                            <div class="each-user-details-existed-content">bac</div>
+                </div>
+                <div class="user-details-right-child user-details-modules">
+                    <h3>Modules</h3>
+                    <div class="user-details-existed-content">
+                        <div class="each-user-details-existed-content">abc</div>
+                        <div class="each-user-details-existed-content">cba</div>
+                        <div class="each-user-details-existed-content">bac</div>
+                        <div class="each-user-details-existed-content">bac</div>
 
-                            <div class="each-user-details-existed-content">bac</div>
-                            <div class="each-user-details-existed-content">bac</div>
-                            <div class="each-user-details-existed-content">bac</div>
-                            <div class="each-user-details-existed-content">bac</div>
-                        </div>
+                        <div class="each-user-details-existed-content">bac</div>
+                        <div class="each-user-details-existed-content">bac</div>
+                        <div class="each-user-details-existed-content">bac</div>
+                        <div class="each-user-details-existed-content">bac</div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

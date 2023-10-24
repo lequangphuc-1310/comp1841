@@ -4,23 +4,23 @@
 <head>
     <title>Image Upload Using PHP</title>
     <style>
-        .import-img-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    .import-img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        min-height: 100vh;
+    }
     </style>
 </head>
 
 <body>
     <?php
-    include '/xampp/htdocs/comp1841/crud/nav/nav.php'
+    include '/xampp/htdocs/comp1841/crud/nav/nav.php';
     ?>
     <div class="import-img-container">
         <?php if (isset($_GET['error'])) : ?>
-            <p><?php echo $_GET['error']; ?></p>
+        <p><?php echo $_GET['error']; ?></p>
         <?php endif ?>
         <form method="post" enctype="multipart/form-data">
 

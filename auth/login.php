@@ -23,21 +23,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			$countRow = $checkRow->fetchColumn();
 
 
-			$queryAdmin = "select * from user where email = 'admin@gmail.com' limit 1;";
+			$queryAdmin = "select * from user where role = 'admin'";
 			$resultAdmin = $conn->query($queryAdmin);
-
+			$admin_data = $resultAdmin->fetch();
+			$_SESSION['admin_id'] = $admin_data['id'];
 
 
 			if ($result && $countRow > 0) {
 
 				$user_data = $result->fetch();
-				$admin_data = $resultAdmin->fetch();
+
+
 
 				if ($user_data['password'] === $password) {
 					$_SESSION['user_id'] = $user_data['id'];
 					if ($user_data['email'] == 'admin@gmail.com') {
-						$_SESSION['admin'] = true;
-						$_SESSION['admin_id'] = $user_data['id'];
+						// $_SESSION['admin'] = true;
 						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/crud/home/home.php');
 					} else {
 						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/crud/home/home.php');
