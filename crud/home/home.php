@@ -63,13 +63,11 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
         $module_name = $dataResultGetModule['module_name'];
         $module_id = $dataResultGetModule['module_id'];
         $userId = $_SESSION['user_id'];
+        echo "$askerImage";
 
 
         if (!$askerImage) {
             $askerImage = 'IMG-653751dd87d0c4.57015077.png';
-            $saveAskerImageToDb = $conn->query("UPDATE `user`
-        SET `image` = '$askerImage'
-        WHERE id= $userId");
         }
     }
     ?>
