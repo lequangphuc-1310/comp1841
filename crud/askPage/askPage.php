@@ -12,26 +12,26 @@
 
 <body>
     <style type="text/css">
-        .btn-blue {
-            background-color: #381DDB !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            cursor: pointer;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
 
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -75,13 +75,6 @@
                     echo "</select>";
                     ?>
                 </div>
-
-                <!-- <div class='form-group col-8 label content'>
-                    <h4>Review questions already on Stack Overflow to see if your question is a duplicate.</h4>
-                    <label for="">Clicking on these questions will open them in a new tab for you to review. Your
-                        progress here will be saved so you can come back and continue.</label>
-                    <textarea rows="10" cols="50" style="resize: none;"></textarea>
-                </div> -->
                 <div class='form-group col-12 label'>
                     <input type='submit' name='submitPost' value='Submit' class="btn btn-blue" />
                 </div>

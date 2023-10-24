@@ -5,6 +5,9 @@ include("/xampp/htdocs/comp1841/auth/functions.php");
 
 $user_data = check_login($conn);
 $_SESSION['id'] = $user_data['id'];
+// echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
 ?>
 
 
@@ -88,9 +91,22 @@ $_SESSION['id'] = $user_data['id'];
             <div class="nav-child-right">
 
                 <div class="admin-notification">Notifications</div>
+                <div class="nav-user-avt">
+                    <?php
+                    $userId = $_SESSION['user_id'];
+                    $sql = "select `image` from `user` where id = $userId;";
+                    $result = $conn->query($sql);
+                    $d = $result->fetch();
+                    $img = $d['image'];
+                    ?>
+                    <div class="nav-user-avt-img"
+                        style='background: transparent url("/comp1841/crud/user/uploads/<?php echo $img; ?>") center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain'>
+                    </div>
+                </div>
                 <span>Hello, <?php echo $user_data['name']; ?></span>
                 <div class="logout">
-                    <a class='logout-a' href="/comp1841/auth/login.php">Logout &nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                    <a class='logout-a' href="/comp1841/auth/login.php">Logout &nbsp;<i
+                            class="fas fa-sign-out-alt"></i></a>
                 </div>
 
             </div>

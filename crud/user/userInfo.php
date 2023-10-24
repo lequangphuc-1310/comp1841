@@ -16,15 +16,15 @@
     ?>
 
     <style>
-    * {
-        background-size: cover !important
-    }
+        * {
+            background-size: cover !important
+        }
 
-    .your-avt {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-    }
+        .your-avt {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+        }
     </style>
     <?php
     $userId = $_SESSION['id'];
@@ -41,11 +41,13 @@
                     $result = $conn->query($sql);
                     $d = $result->fetch();
                     $img = $d['image'];
+                    // echo '<pre>';
+                    // var_dump($_SESSION);
+                    // echo '</pre>';
                     ?>
-                    <img src="/uploads/<?php echo $img; ?>" alt="">
+                    <!-- <img src="/uploads/<?php echo $img; ?>" alt=""> -->
                     <div class="your-avt">
-                        <div class='your-avt-img'
-                            style='background: url("uploads/<?php echo $img; ?>") center center no-repeat; height: 110px; width: 110px; '>
+                        <div class='your-avt-img' style='background: url("uploads/<?php echo $img; ?>") center center no-repeat; height: 110px; width: 110px; '>
                         </div>
                     </div>
 

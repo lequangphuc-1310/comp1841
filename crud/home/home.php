@@ -3,10 +3,11 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
 // $postId = $_GET['postId'];
 if (array_key_exists('postId', $_GET)) {
     $postId = $_GET['postId'];
-    $sql = "select user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`, `post` where post.user_id=user.id and post.id=$postId;";
+    $sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`, `post` where post.user_id=user.id and post.id=$postId;";
     $result = $conn->query($sql);
     $d = $result->fetch();
     $title = $d['title'];
+    $askerImage = $d['image'];
     $name = $d['name'];
     $email = $d['email'];
     $details = $d['details'];
@@ -18,12 +19,13 @@ if (array_key_exists('postId', $_GET)) {
     $module_name = $dataResultGetModule['module_name'];
     $module_id = $dataResultGetModule['module_id'];
 } else {
-    $sql = "select user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`,`post`
+    $sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`,`post`
 where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
     $result = $conn->query($sql);
     $d = $result->fetch();
     $postId = $d['id'];
     $title = $d['title'];
+    $askerImage = $d['image'];
     $name = $d['name'];
     $email = $d['email'];
     $details = $d['details'];
@@ -65,20 +67,27 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                 <div class="question">
                     <div class="question-title">
                         <div class='question-title-content'>
+                            <div class="akser-avt">
+                                <div class="nav-user-avt-img"
+                                    style='background: transparent url("/comp1841/crud/user/uploads/<?php echo $askerImage; ?>") center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain'>
+                                </div>
+                            </div>
+                            <div>
+                                <div class='question-title-content-up'>
+                                    <?php
+                                    echo $title
+                                    ?>
+                                </div>
+                                <div class='question-title-content-down-name'>
+                                    <?php
+                                    echo $name;
+                                    ?><span> - </span>
+                                    <?php
+                                    echo $email
+                                    ?>
+                                </div>
+                            </div>
 
-                            <div class='question-title-content-up'>
-                                <?php
-                                echo $title
-                                ?>
-                            </div>
-                            <div class='question-title-content-down-name'>
-                                <?php
-                                echo $name;
-                                ?><span> - </span>
-                                <?php
-                                echo $email
-                                ?>
-                            </div>
                         </div>
                         <div class="question-title-extra">
                             <div class="question-title-extra-child asked">
@@ -104,15 +113,26 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                     </div>
                     <div class="existed-answer">
                         <?php
-                        $sqlExistedAnswer = "select user.name, user.email,answer.* from `user`, `answer` where answer.user_id=user.id and post_id=$postId;";
+                        $sqlExistedAnswer = "select user.image, user.name, user.email,answer.* from `user`, `answer` where answer.user_id=user.id and post_id=$postId;";
                         $resultExistedAnswer = $conn->query($sqlExistedAnswer);
                         $datasqlExistedAnswer = $resultExistedAnswer->fetchAll();
                         foreach ($datasqlExistedAnswer as $row) {
+                            $answerAuthorImage = $row['image'];
                             $answerAuthorName = $row['name'];
                             $answerAuthorEmail = $row['email'];
                             $existedAnswer = $row['answer'];
                             $answerAuthorPublished = $row['published_at'];
-                            echo '<div class="each-existed-answer">' . '<span class="answerAuthorName">' . $answerAuthorName . '</span>	&nbsp;-&nbsp; <span class="existedAnswer">' . $existedAnswer . '</span>&nbsp;-&nbsp;<span class="answerAuthorEmail">' . $answerAuthorEmail . '</span>&nbsp;-&nbsp; <span class="answerAuthorPublished">' . $answerAuthorPublished . '</span></div>';
+                            echo '<div class="each-existed-answer">' . '
+                            <div class="answer-avt">
+                                <div class="answer-avt-img" style="background: transparent url(/comp1841/crud/user/uploads/' . $answerAuthorImage . ')
+                        center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
+                    </div>
+                </div>
+                <div class="answer-text"><span class="answerAuthorName">' . $answerAuthorName . '</span> &nbsp;-&nbsp; <span
+                        class="existedAnswer">' . $existedAnswer . '</span>&nbsp;-&nbsp;<span
+                        class="answerAuthorEmail">' . $answerAuthorEmail . '</span>&nbsp;-&nbsp; <span
+                        class="answerAuthorPublished">' . $answerAuthorPublished . '</span></div>
+            </div>';
                         }
                         ?>
 

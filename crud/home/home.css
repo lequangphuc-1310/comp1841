@@ -29,7 +29,7 @@ a {
 .body {
     display       : flex;
     flex-direction: row;
-    margin        : 0 80px;
+    margin        : 0 8em;
 }
 
 
@@ -78,7 +78,10 @@ a {
 }
 
 .question-title-content {
-    margin: 10px;
+    margin     : 10px;
+    display    : flex;
+    gap        : 0.5em;
+    align-items: center;
 }
 
 .question-title-extra {
@@ -139,18 +142,33 @@ a {
     min-height      : 20px;
     border-radius   : 8px;
     display         : flex;
+    flex-wrap       : wrap;
+    flex-direction  : row;
+    width           : 100%;
+    /* gap          : 0.5em; */
     background-color: #EFECFC;
-    align-items     : center;
+    align-items     : start;
     flex-wrap       : wrap;
     /* border       : 1px solid green; */
     border-bottom   : 1px solid #ccc;
     border-top      : 1px solid #ccc;
     padding         : 10px 14px;
     font-family     : Arial, Helvetica, sans-serif;
-    box-shadow      : 0px 1px 1px 0px rgba(0, 0, 0, 0.15),
-        0px 2px 2px 0px rgba(0, 0, 0, 0.15),
-        0px 4px 4px 0px rgba(0, 0, 0, 0.15),
-        0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+    box-shadow      : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
+.answer-avt {
+    width: 10%;
+}
+
+.answer-text {
+    width: 90%;
+}
+
+.answer-avt-img {
+    background-size: contain;
+    border-radius  : 50%;
+    border         : 1px solid green;
 }
 
 .answerAuthorName {

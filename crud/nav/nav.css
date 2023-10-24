@@ -24,7 +24,7 @@
     font-family          : Arial, Helvetica, sans-serif;
     font-size            : 16px;
     color                : #fff;
-    padding              : 10px 50px;
+    padding              : 0.6em 8em;
     z-index              : 10000;
 }
 
@@ -159,6 +159,13 @@ a {
 
 .admin-notification {
     cursor: pointer;
+}
+
+.nav-user-avt-img {
+    border       : 1px solid green;
+    border-radius: 50%;
+    width        : 2em;
+    height       : 2em;
 }
 
 .logout {
