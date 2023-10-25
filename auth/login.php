@@ -38,13 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				if ($user_data['password'] === $password) {
 					$_SESSION['user_id'] = $user_data['id'];
 					$userDataId = $user_data['id'];
-					$user_image = 'IMG-653751dd87d0c4.57015077.png';
-					$resultSetDefaultImage = $conn->query("UPDATE `user`
-					SET `image` = '$resultSetDefaultImage'
-					WHERE id= $userDataId");
 
 					if ($user_data['email'] == 'admin@gmail.com') {
-						// $_SESSION['admin'] = true;
 						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/crud/home/home.php');
 					} else {
 						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/crud/home/home.php');

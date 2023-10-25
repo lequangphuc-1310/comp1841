@@ -14,17 +14,20 @@
     <?php
     include '/xampp/htdocs/comp1841/crud/nav/nav.php';
     ?>
+    <?php
+    $userInfoId = $_GET['userId'];
+    ?>
 
     <style>
-        * {
-            background-size: cover !important
-        }
+    * {
+        background-size: cover !important
+    }
 
-        .your-avt {
-            display: flex;
-            justify-content: center;
-            align-self: center;
-        }
+    .your-avt {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+    }
     </style>
     <?php
     $userId = $_SESSION['id'];
@@ -37,7 +40,7 @@
             <div class="user-intro-img-section">
                 <div class="user-intro-img">
                     <?php
-                    $sql = "select `image` from `user` where id = $userId;";
+                    $sql = "select `image` from `user` where id = $userInfoId;";
                     $result = $conn->query($sql);
                     $d = $result->fetch();
                     $img = $d['image'];
@@ -58,15 +61,26 @@
                         ?>
                     </div>
                 </div>
-                <div class="user-intro-edit-img">
-                    <a class='changeImage' href='/comp1841/crud/user/importImage.php'><i class="far fa-edit">Edit Your
-                            Avatar</i></a>
-                </div>
+                <?php
+                $userInfoId = $_GET['userId'];
+                if ($userInfoId == $_SESSION['id']) {
+                    echo '
+                    <div class="user-intro-edit-img">
+                        <div class="user-intro-edit-img-changeImage">
+                            <a class="changeImage" href="/comp1841/crud/user/importImage.php"><i class="far fa-edit">
+                            Edit Your Avatar</i>
+                            </a>
+                        </div>
+                    </div>
+                    ';
+                }
+                ?>
+
             </div>
             <div class="user-intro-detail">
                 <div class="user-intro-detail-name">
                     <?php
-                    $result = $conn->query("SELECT * FROM `user` where id=$userId");
+                    $result = $conn->query("SELECT * FROM `user` where id=$userInfoId");
                     $d = $result->fetch();
                     $userName = $d['name'];
                     $userEmail = $d['email'];
@@ -80,11 +94,19 @@
     </div>
     <div class="user-details">
         <div class="user-details-left">
-            <div class="userSecure">
+            <?php
+            $userInfoId = $_GET['userId'];
+            if ($userInfoId == $_SESSION['id']) {
+                echo '
+<div class="userSecure">
                 <i class="fas fa-shield-alt"></i>
                 <a href="/comp1841/crud/user/userSecure.php">Secure your
                     account</a>
             </div>
+            ';
+            }
+            ?>
+
         </div>
         <div class="user-details-right">
             <div class="user-details-right-body">
@@ -92,7 +114,7 @@
                     <h3>Posts</h3>
                     <div class="user-details-existed-content">
                         <?php
-                        $sql = "select user.name,user.id,user.email,post.* from user, post where user.id=post.user_id and user.id=$userId;";
+                        $sql = "select user.name,user.id,user.email,post.* from user, post where user.id=post.user_id and user.id=$userInfoId;";
                         $result = $conn->query($sql);
                         $d = $result->fetchAll();
 
@@ -102,9 +124,13 @@
                                 $published_at = $row['published_at'];
                                 $post_id = $row['id'];
                                 echo
-                                "
-                        <div class='each-user-details-existed-content'><a href='/comp1841/crud/home?postId=$post_id'>$title - <span class='published_at'>$published_at</span></a></div>
-                                ";
+                                " <div class='each-user-details-existed-content'>";
+                                if (!$post_id) {
+                                    echo "<div>No post yet.</div>";
+                                }
+                                echo "<a href='/comp1841/crud/home?postId=$post_id'>$title - <span class='published_at'>$published_at</span>
+                        </a>
+                        </div>";
                             }
                         }
                         ?>
@@ -134,17 +160,6 @@
                 </div>
                 <div class="user-details-right-child user-details-modules">
                     <h3>Modules</h3>
-                    <div class="user-details-existed-content">
-                        <div class="each-user-details-existed-content">abc</div>
-                        <div class="each-user-details-existed-content">cba</div>
-                        <div class="each-user-details-existed-content">bac</div>
-                        <div class="each-user-details-existed-content">bac</div>
-
-                        <div class="each-user-details-existed-content">bac</div>
-                        <div class="each-user-details-existed-content">bac</div>
-                        <div class="each-user-details-existed-content">bac</div>
-                        <div class="each-user-details-existed-content">bac</div>
-                    </div>
                 </div>
             </div>
         </div>

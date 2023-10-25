@@ -15,7 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         //save to database
         $user_id = random_num(20);
-        $query = "insert into user (id,name,password,email) values ('$id','$name','$password', '$email')";
+        $user_image = '';
+
+        $query = "insert into `user` (name,password,email, image) values ('$name','$password', '$email', 'IMG-653751dd87d0c4.57015077.png')";
 
         $result = $conn->query($query);
 

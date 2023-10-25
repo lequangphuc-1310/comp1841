@@ -7,13 +7,13 @@
 
 <body>
     <style>
-        .btn-blue {
-            background-color: #381DDB !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            cursor: pointer;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -27,6 +27,9 @@
         $d = $result->fetch();
         $title = $d['title'];
         $askerImage = $d['image'];
+        $resultGetAskerUserId = $conn->query("SELECT u.id from `user` as u inner join  `post` as p on p.user_id = u.id where p.user_id=u.id and p.id=$postId limit 1;");
+        $dataResultGetAskterUserId = $resultGetAskerUserId->fetch();
+        $askerUserId = $dataResultGetAskterUserId['id'];
         $name = $d['name'];
         $email = $d['email'];
         $details = $d['details'];
@@ -40,9 +43,6 @@
         $userId = $_SESSION['user_id'];
         if (!$askerImage) {
             $askerImage = 'IMG-653751dd87d0c4.57015077.png';
-            $saveAskerImageToDb = $conn->query("UPDATE `user`
-        SET image = $askerImage
-        WHERE id= $userId");
         }
     } else {
         $sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module from `user`,`post`
@@ -52,6 +52,9 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
         $postId = $d['id'];
         $title = $d['title'];
         $askerImage = $d['image'];
+        $resultGetAskerUserId = $conn->query("SELECT u.id from `user` as u inner join  `post` as p on p.user_id = u.id where p.user_id=u.id and p.id=$postId limit 1;");
+        $dataResultGetAskterUserId = $resultGetAskerUserId->fetch();
+        $askerUserId = $dataResultGetAskterUserId['id'];
         $name = $d['name'];
         $email = $d['email'];
         $details = $d['details'];
@@ -63,8 +66,6 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
         $module_name = $dataResultGetModule['module_name'];
         $module_id = $dataResultGetModule['module_id'];
         $userId = $_SESSION['user_id'];
-        echo "$askerImage";
-
 
         if (!$askerImage) {
             $askerImage = 'IMG-653751dd87d0c4.57015077.png';
@@ -79,10 +80,12 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                 <div class="question">
                     <div class="question-title">
                         <div class='question-title-content'>
-                            <div class="akser-avt">
-                                <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/<?php echo $askerImage; ?>)
+                            <div class="akser-avt"><a
+                                    href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
+                                    <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/<?php echo $askerImage; ?>)
                     center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
-                                </div>
+                                    </div>
+                                </a>
                             </div>
                             <div>
                                 <div class='question-title-content-up'>
@@ -90,10 +93,11 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                     echo $title
                                     ?>
                                 </div>
-                                <div class='question-title-content-down-name'>
-                                    <?php
-                                    echo $name;
-                                    ?><span> - </span>
+                                <div class='question-title-content-down-name'><a
+                                        href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
+                                        <?php
+                                        echo $name;
+                                        ?></a><span> - </span>
                                     <?php
                                     echo $email
                                     ?>
@@ -131,35 +135,28 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                         foreach ($datasqlExistedAnswer as $row) {
                             $answerAuthorImage = $row['image'];
                             $answerAuthorName = $row['name'];
+                            $answerAuthorId = $row['id'];
                             $answerAuthorEmail = $row['email'];
                             $existedAnswer = $row['answer'];
                             $answerAuthorPublished = $row['published_at'];
+                            $resultGetAnswererId = $conn->query("SELECT u.id from `user` as u inner join  `answer` as a on a.user_id = u.id where a.user_id=u.id and a.id=$answerAuthorId limit 1;");
+                            $dataResultGetAnswererId = $resultGetAnswererId->fetch();
+                            $answererId = $dataResultGetAnswererId['id'];
                             if (!$answerAuthorImage) {
                                 $answerAuthorImage = 'IMG-653751dd87d0c4.57015077.png';
                             }
 
-                            // if (!$answerAuthorImage) {
-                            //     echo '<div class="answer-avt-img" style="background: url(/comp1841/crud/user/uploads/IMG-653751dd87d0c4.57015077.png)
-                            //     center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
-                            // </div>';
-                            // } else {
-                            //     echo '
-                            //     <div class="answer-avt-img" style="background: transparent url("/comp1841/crud/user/uploads/' .  $answerAuthorImage . '") center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
-
-                            //         ';
-                            // }
-
                             echo '<div class="each-existed-answer">' . '
                             <div class="answer-avt">
-                                
+                            <a href="/comp1841/crud/user/userInfo.php?userId='. $answererId .'"  >
                             <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/' . $answerAuthorImage . ')
                     center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
-                                </div>
+                                </div></a>
 
 
 
                 </div>
-                <div class="answer-text"><span class="answerAuthorName">' . $answerAuthorName . '</span> &nbsp;-&nbsp;
+                <div class="answer-text"><span class="answerAuthorName"><a href="/comp1841/crud/user/userInfo.php?userId=' . $answererId . '">' . $answerAuthorName . '</a></span> &nbsp;-&nbsp;
                     <span class="existedAnswer">' . $existedAnswer . '</span>&nbsp;-&nbsp;<span
                         class="answerAuthorEmail">' . $answerAuthorEmail . '</span>&nbsp;-&nbsp; <span
                         class="answerAuthorPublished">' . $answerAuthorPublished . '</span></div>
@@ -195,9 +192,10 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                 }
                             }
                             ?>
-                            <textarea class='textArea' name='answer' rows="10" cols="100" style="resize: none;"></textarea>
+                            <textarea placeholder='Type something...' class='textArea' name='answer' rows="10"
+                                cols="100" style="resize: none;"></textarea>
                             <div class="submit-answer">
-                                <input placholder='Type something...' class="btn-submit" value='Submit Answer' type='submit' name='submitAnswer' />
+                                <input class="btn-submit" value='Submit Answer' type='submit' name='submitAnswer' />
                             </div>
 
 

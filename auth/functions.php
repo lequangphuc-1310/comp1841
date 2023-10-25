@@ -85,6 +85,7 @@ function importImage($fileName)
 					$img_upload_path = 'uploads/' . $new_img_name;
 					move_uploaded_file($tmp_name, $img_upload_path);
 					$id = $_SESSION['id'];
+					$userId = $_SESSION['user_id'];
 					if (move_uploaded_file($tmp_name, $img_upload_path)) {
 						echo "<script>alert('moved')</script>";
 					}
@@ -92,7 +93,7 @@ function importImage($fileName)
 					// Insert into Database
 					$sql = "update `user` set image='$new_img_name' where id=$id";
 					$result = $conn->query($sql);
-					header("Location: /comp1841/crud/user/userInfo.php");
+					header("Location: /comp1841/crud/user/userInfo.php?userId=$userId");
 				} else {
 					$messageInvalidType = "You can't upload files of this type";
 					header("Location: importImage.php?error=$messageInvalidType");

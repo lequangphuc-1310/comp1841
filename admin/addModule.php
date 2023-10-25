@@ -8,7 +8,7 @@ if (isset($_POST["submit"])) {
         $sql = "INSERT INTO `module` (`module_name`, `module_id`) values ('$module_name', '$module_id')";
         $result = $conn->exec($sql);
         if ($result) {
-            // header('location: /comp1841/crud/module/modules.php');
+            header('location: /comp1841/crud/module/modules.php');
         }
     } catch (PDOException $e) {
         die("Error: " . $e->getMessage());
