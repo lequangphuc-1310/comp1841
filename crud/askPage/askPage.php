@@ -87,10 +87,10 @@
                     $inputDetails = $_POST["details"];
                     $details = mysql_escape_mimic($inputDetails);
                     $module_id = $_POST['module_id'];
-                    $userId = $_SESSION['id'];
+                    $userId = $_SESSION['user_id'];
                     // echo $module_id;
 
-                    $user_id = $_SESSION['id'];
+                    $user_id = $_SESSION['user_id'];
                     try {
                         $sql = "INSERT INTO `post` (`title`, `details`, `user_id`, `module`)
                         values ('$title', '$details', '$user_id', '$module_id')";

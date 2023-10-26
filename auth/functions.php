@@ -84,7 +84,7 @@ function importImage($fileName)
 					$new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
 					$img_upload_path = 'uploads/' . $new_img_name;
 					move_uploaded_file($tmp_name, $img_upload_path);
-					$id = $_SESSION['id'];
+					$id = $_SESSION['user_id'];
 					$userId = $_SESSION['user_id'];
 					if (move_uploaded_file($tmp_name, $img_upload_path)) {
 						echo "<script>alert('moved')</script>";

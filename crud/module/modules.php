@@ -16,18 +16,18 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
 
 <body id='module'>
     <style>
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
 
-        .btn-blue {
-            background-color: #381DDB !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            cursor: pointer;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -58,10 +58,15 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
         <table class="w3-table-all">
             <thead>
                 <tr class="w3-light-grey w3-hover-red">
-                    <th>No.</th>
                     <th>Name</th>
                     <th>Module's id</th>
-                    <th>Operations</th>
+                    <?php
+                    if ($_SESSION['user_id'] == $_SESSION['admin_id']) {
+                        echo '
+                    <th>Operations</th>                        
+                        ';
+                    }
+                    ?>
                 </tr>
             </thead>
             <?php
@@ -73,17 +78,25 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
                     $id = $row['id'];
                     $module_name = $row['module_name'];
                     $module_id = $row['module_id'];
-                    echo
-                    "
-                    <tr class='w3-hover-green'>
-                        <td>$id</td>
+                    if ($_SESSION['user_id'] == $_SESSION['admin_id']) {
+                        echo "
+                        <tr class='w3-hover-green'>
                         <td>$module_name</td>
                         <td>$module_id</td>
                         <td>
                             <button class='btn btn-danger'><a class='text-light text-decoration-none' href='/comp1841/crud/edit.php?updateModuleId=" . $id . "'>Edit</a></button>
                             <button class='btn btn-warning'><a class='text-light text-decoration-none' href='/comp1841/crud/delete.php?deleteModuleId=" . $id . "'>Delete</a></button>
                         </td>
+                    </tr>                 
+                        ";
+                    } else {
+                        echo
+                        "
+                    <tr class='w3-hover-green'>
+                        <td>$module_name</td>
+                        <td>$module_id</td>
                     </tr> ";
+                    }
                 }
             }
             ?>

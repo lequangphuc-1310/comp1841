@@ -19,18 +19,49 @@
     ?>
 
     <style>
-    * {
-        background-size: cover !important
-    }
+        * {
+            background-size: cover !important;
+        }
 
-    .your-avt {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-    }
+        .your-avt {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+        }
+
+        #chatArea {
+            position: fixed;
+            bottom: 1em;
+            right: 3em;
+            width: 400px;
+            display: flex;
+            height: 400px;
+            margin: 10px auto;
+            border: 1px solid red;
+        }
+
+        .chatBtn {
+            margin-top: 0.6em;
+        }
+
+        .btnChat {
+            padding: 10px 14px;
+            cursor: pointer;
+            background-color: #381DDB;
+            border-radius: 4px;
+            color: #fff;
+        }
+
+        .btnChat:hover {
+            opacity: 0.7;
+        }
+
+        #myDiv {
+            display: none;
+        }
     </style>
     <?php
-    $userId = $_SESSION['id'];
+    $userId = $_SESSION['user_id'];
     ?>
 
 
@@ -63,7 +94,7 @@
                 </div>
                 <?php
                 $userInfoId = $_GET['userId'];
-                if ($userInfoId == $_SESSION['id']) {
+                if ($userInfoId == $_SESSION['user_id']) {
                     echo '
                     <div class="user-intro-edit-img">
                         <div class="user-intro-edit-img-changeImage">
@@ -88,6 +119,13 @@
                     ?>
                 </div>
                 <div class="user-intro-detail-extra"><?php echo $userEmail ?></div>
+                <div class="chatBtn">
+                    <button class="btnChat" onclick="openChat()">Chat </button>
+
+                </div>
+                <div id="chatArea" style='display:none'>
+                    <?php include '/xampp/htdocs/comp1841/crud/home/testarea.php'; ?>
+                </div>
             </div>
         </div>
 
@@ -96,7 +134,7 @@
         <div class="user-details-left">
             <?php
             $userInfoId = $_GET['userId'];
-            if ($userInfoId == $_SESSION['id']) {
+            if ($userInfoId == $_SESSION['user_id']) {
                 echo '
 <div class="userSecure">
                 <i class="fas fa-shield-alt"></i>
@@ -164,6 +202,15 @@
             </div>
         </div>
     </div>
+    <script>
+        function openChat() {
+            let areaText = document.getElementById('chatArea');
+            let btnChat = document.getElementsByClassName('btnChat');
+            if (areaText.style.display === "none") {
+                areaText.style.display = "block";
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -12,30 +12,30 @@
 
 <body>
     <style type="text/css">
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    .btn-blue:hover {
-        background-color: #FC5252;
-    }
+        .btn-blue:hover {
+            background-color: #FC5252;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -59,7 +59,7 @@
                 if (isset($_POST["submitPost"])) {
                     $input_user_send = ($_POST["user_send"]);
                     $user_send = mysql_escape_mimic($input_user_send);
-                    $user_id = $_SESSION['id'];
+                    $user_id = $_SESSION['user_id'];
                     try {
                         $sql = "INSERT INTO `admin_user` (`user_send`, `user_id`)
                         values ('$user_send', '$user_id')";

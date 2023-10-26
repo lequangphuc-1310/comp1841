@@ -4,8 +4,8 @@ include("/xampp/htdocs/comp1841/auth/connection.php");
 include("/xampp/htdocs/comp1841/auth/functions.php");
 
 $user_data = check_login($conn);
-$_SESSION['id'] = $user_data['id'];
-$thisUserId = $_SESSION['id'];
+$_SESSION['user_id'] = $user_data['id'];
+$thisUserId = $_SESSION['user_id'];
 // echo '<pre>';
 // var_dump($_SESSION);
 // echo '</pre>';
@@ -35,7 +35,7 @@ $thisUserId = $_SESSION['id'];
                                 to community</a>
                         </div>
                         <div class="category-item category-item-2">
-                            <a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $thisUserId;?>'>View your
+                            <a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $thisUserId; ?>'>View your
                                 account's information</a>
                         </div>
 
@@ -112,8 +112,7 @@ $thisUserId = $_SESSION['id'];
                 </div>
                 <span>Hello, <?php echo $user_data['name']; ?></span>
                 <div class="logout">
-                    <a class='logout-a' href="/comp1841/auth/login.php">Logout &nbsp;<i
-                            class="fas fa-sign-out-alt"></i></a>
+                    <a class='logout-a' href="/comp1841/auth/login.php">Logout &nbsp;<i class="fas fa-sign-out-alt"></i></a>
                 </div>
 
             </div>

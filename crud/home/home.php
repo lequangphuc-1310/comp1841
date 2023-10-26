@@ -7,13 +7,13 @@
 
 <body>
     <style>
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -73,15 +73,12 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
     }
     ?>
     <div class="container">
-
         <div class="body">
-
             <div class="content">
                 <div class="question">
                     <div class="question-title">
                         <div class='question-title-content'>
-                            <div class="akser-avt"><a
-                                    href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
+                            <div class="akser-avt"><a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
                                     <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/<?php echo $askerImage; ?>)
                     center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
                                     </div>
@@ -93,8 +90,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                     echo $title
                                     ?>
                                 </div>
-                                <div class='question-title-content-down-name'><a
-                                        href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
+                                <div class='question-title-content-down-name'><a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
                                         <?php
                                         echo $name;
                                         ?></a><span> - </span>
@@ -148,7 +144,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
 
                             echo '<div class="each-existed-answer">' . '
                             <div class="answer-avt">
-                            <a href="/comp1841/crud/user/userInfo.php?userId='. $answererId .'"  >
+                            <a href="/comp1841/crud/user/userInfo.php?userId=' . $answererId . '"  >
                             <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/' . $answerAuthorImage . ')
                     center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
                                 </div></a>
@@ -172,7 +168,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                             if (isset($_POST['submitAnswer'])) {
                                 $inputAnswer =  $_POST["answer"];
                                 $answer = mysql_escape_mimic($inputAnswer);
-                                $user_id = $_SESSION['id'];
+                                $user_id = $_SESSION['user_id'];
 
                                 try {
                                     $check_duplicated = "select * from `answer` where user_id=$user_id and answer='$answer'";
@@ -192,23 +188,21 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                 }
                             }
                             ?>
-                            <textarea placeholder='Type something...' class='textArea' name='answer' rows="10"
-                                cols="100" style="resize: none;"></textarea>
+                            <textarea placeholder='Type something...' class='textArea' name='answer' rows="10" cols="100" style="resize: none;"></textarea>
                             <div class="submit-answer">
                                 <input class="btn-submit" value='Submit Answer' type='submit' name='submitAnswer' />
                             </div>
-
-
-
                         </div>
                     </form>
                 </div>
 
             </div>
 
+        </div>
+    </div>
+
 
 
 </body>
-<script src="./home.js"></script>
 
 </html>

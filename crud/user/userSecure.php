@@ -39,7 +39,7 @@
     <?php
     include '/xampp/htdocs/comp1841/auth/connection.php';
 
-    $user_id = $_SESSION['id'];
+    $user_id = $_SESSION['user_id'];
     $sql = "select * from `user` where id = $user_id";
     $result = $conn->query($sql);
     $d = $result->fetch();

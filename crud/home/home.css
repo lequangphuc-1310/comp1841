@@ -28,7 +28,7 @@ a {
 
 .body {
     display       : flex;
-    flex-direction: row;
+    flex-direction: column;
     margin        : 0 8em;
 }
 
@@ -242,4 +242,11 @@ body {
     height  : 100% !important;
     overflow: auto;
 
+}
+
+.test-area {
+    width : 400px;
+    height: 400px;
+    margin: 10px auto;
+    border: 1px solid red;
 }
