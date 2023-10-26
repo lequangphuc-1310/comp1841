@@ -19,46 +19,8 @@
     ?>
 
     <style>
-    * {
-        background-size: cover !important;
-    }
 
-    .your-avt {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-    }
 
-    #chatArea {
-        position: fixed;
-        bottom: 1em;
-        right: 3em;
-        width: 400px;
-        display: flex;
-        height: 400px;
-        margin: 10px auto;
-        border: 1px solid red;
-    }
-
-    .chatBtn {
-        margin-top: 0.6em;
-    }
-
-    .btnChat {
-        padding: 10px 14px;
-        cursor: pointer;
-        background-color: #381DDB;
-        border-radius: 4px;
-        color: #fff;
-    }
-
-    .btnChat:hover {
-        opacity: 0.7;
-    }
-
-    #myDiv {
-        display: none;
-    }
     </style>
     <?php
     $userId = $_SESSION['user_id'];
@@ -121,8 +83,14 @@
                 </div>
                 <div class="user-intro-detail-extra"><?php echo $userEmail ?></div>
                 <div class="chatBtn">
-                    <button class="btnChat" onclick="openChat()">Chat </button>
-
+                    <?php if ($_SESSION['user_id'] != $userInfoId) { ?>
+                        <button class="btnChat">
+                            <a href='/comp1841/chat/chat.php?user=<?php echo $userInfoId; ?>'>Chat</a>
+                        </button>
+                    <?php } else { ?>
+                        <button class="btnChat" onclick="openChat()">Chat
+                        </button>
+                    <?php } ?>
                 </div>
                 <div id="chatArea" style='display:none'>
                     <?php include '/xampp/htdocs/comp1841/chat/homeChat.php'; ?>
@@ -201,13 +169,13 @@
         </div>
 
         <script>
-        function openChat() {
-            let areaText = document.getElementById('chatArea');
-            let btnChat = document.getElementsByClassName('btnChat');
-            if (areaText.style.display === "none") {
-                areaText.style.display = "block";
+            function openChat() {
+                let areaText = document.getElementById('chatArea');
+                let btnChat = document.getElementsByClassName('btnChat');
+                if (areaText.style.display === "none") {
+                    areaText.style.display = "block";
+                }
             }
-        }
         </script>
 </body>
 
