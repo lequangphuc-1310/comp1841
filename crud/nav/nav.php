@@ -112,7 +112,8 @@ $thisUserId = $_SESSION['user_id'];
                 </div>
                 <span>Hello, <?php echo $user_data['name']; ?></span>
                 <div class="logout">
-                    <a class='logout-a' href="/comp1841/auth/login.php">Logout &nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                    <a class='logout-a' href="/comp1841/auth/login.php">Logout &nbsp;<i
+                            class="fas fa-sign-out-alt"></i></a>
                 </div>
 
             </div>
@@ -122,7 +123,6 @@ $thisUserId = $_SESSION['user_id'];
     </div>
 
     </div>
-    <script src='./nav.js'></script>
 </body>
 
 

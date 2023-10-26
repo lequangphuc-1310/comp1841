@@ -19,46 +19,46 @@
     ?>
 
     <style>
-        * {
-            background-size: cover !important;
-        }
+    * {
+        background-size: cover !important;
+    }
 
-        .your-avt {
-            display: flex;
-            justify-content: center;
-            align-self: center;
-        }
+    .your-avt {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+    }
 
-        #chatArea {
-            position: fixed;
-            bottom: 1em;
-            right: 3em;
-            width: 400px;
-            display: flex;
-            height: 400px;
-            margin: 10px auto;
-            border: 1px solid red;
-        }
+    #chatArea {
+        position: fixed;
+        bottom: 1em;
+        right: 3em;
+        width: 400px;
+        display: flex;
+        height: 400px;
+        margin: 10px auto;
+        border: 1px solid red;
+    }
 
-        .chatBtn {
-            margin-top: 0.6em;
-        }
+    .chatBtn {
+        margin-top: 0.6em;
+    }
 
-        .btnChat {
-            padding: 10px 14px;
-            cursor: pointer;
-            background-color: #381DDB;
-            border-radius: 4px;
-            color: #fff;
-        }
+    .btnChat {
+        padding: 10px 14px;
+        cursor: pointer;
+        background-color: #381DDB;
+        border-radius: 4px;
+        color: #fff;
+    }
 
-        .btnChat:hover {
-            opacity: 0.7;
-        }
+    .btnChat:hover {
+        opacity: 0.7;
+    }
 
-        #myDiv {
-            display: none;
-        }
+    #myDiv {
+        display: none;
+    }
     </style>
     <?php
     $userId = $_SESSION['user_id'];
@@ -68,6 +68,7 @@
 
     <div class="user-info-container">
         <div class="user-intro">
+
             <div class="user-intro-img-section">
                 <div class="user-intro-img">
                     <?php
@@ -124,85 +125,82 @@
 
                 </div>
                 <div id="chatArea" style='display:none'>
-                    <?php include '/xampp/htdocs/comp1841/crud/home/testarea.php'; ?>
+                    <?php include '/xampp/htdocs/comp1841/chat/homeChat.php'; ?>
                 </div>
             </div>
         </div>
-
-    </div>
-    <div class="user-details">
-        <div class="user-details-left">
-            <?php
-            $userInfoId = $_GET['userId'];
-            if ($userInfoId == $_SESSION['user_id']) {
-                echo '
-<div class="userSecure">
-                <i class="fas fa-shield-alt"></i>
-                <a href="/comp1841/crud/user/userSecure.php">Secure your
-                    account</a>
+        <div class="user-details">
+            <div class="user-details-left">
+                <?php
+                $userInfoId = $_GET['userId'];
+                if ($userInfoId == $_SESSION['user_id']) {
+                    echo '
+                        <div class="userSecure">
+                            <i class="fas fa-shield-alt"></i>
+                            <a href="/comp1841/crud/user/userSecure.php">Secure your
+                                account</a>
+                        </div>';
+                }
+                ?>
             </div>
-            ';
-            }
-            ?>
+            <div class="user-details-right">
+                <div class="user-details-right-body">
+                    <div class="user-details-right-child user-details-posts">
+                        <h3>Posts</h3>
+                        <div class="user-details-existed-content">
+                            <?php
+                            $sql = "select user.name,user.id,user.email,post.* from user, post where user.id=post.user_id and user.id=$userInfoId;";
+                            $result = $conn->query($sql);
+                            $d = $result->fetchAll();
 
-        </div>
-        <div class="user-details-right">
-            <div class="user-details-right-body">
-                <div class="user-details-right-child user-details-posts">
-                    <h3>Posts</h3>
-                    <div class="user-details-existed-content">
-                        <?php
-                        $sql = "select user.name,user.id,user.email,post.* from user, post where user.id=post.user_id and user.id=$userInfoId;";
-                        $result = $conn->query($sql);
-                        $d = $result->fetchAll();
-
-                        if ($d) {
-                            foreach ($d as $row) {
-                                $title = $row['title'];
-                                $published_at = $row['published_at'];
-                                $post_id = $row['id'];
-                                echo
-                                " <div class='each-user-details-existed-content'>";
-                                if (!$post_id) {
-                                    echo "<div>No post yet.</div>";
-                                }
-                                echo "<a href='/comp1841/crud/home?postId=$post_id'>$title - <span class='published_at'>$published_at</span>
+                            if ($d) {
+                                foreach ($d as $row) {
+                                    $title = $row['title'];
+                                    $published_at = $row['published_at'];
+                                    $post_id = $row['id'];
+                                    echo
+                                    " <div class='each-user-details-existed-content'>";
+                                    if (!$post_id) {
+                                        echo "<div>No post yet.</div>";
+                                    }
+                                    echo "<a href='/comp1841/crud/home?postId=$post_id'>$title - <span class='published_at'>$published_at</span>
                         </a>
                         </div>";
+                                }
                             }
-                        }
-                        ?>
+                            ?>
+                        </div>
                     </div>
-                </div>
-                <div class="user-details-right-child user-details-answers">
-                    <h3>Answers</h3>
-                    <div class="user-details-existed-content">
-                        <?php
-                        $sql = "select user.name,user.id,user.email,answer.* from user, answer where user.id=answer.user_id and user.id=$userId;";
-                        $result = $conn->query($sql);
-                        $d = $result->fetchAll();
+                    <div class="user-details-right-child user-details-answers">
+                        <h3>Answers</h3>
+                        <div class="user-details-existed-content">
+                            <?php
+                            $sql = "select user.name,user.id,user.email,answer.* from user, answer where user.id=answer.user_id and user.id=$userId;";
+                            $result = $conn->query($sql);
+                            $d = $result->fetchAll();
 
-                        if ($d) {
-                            foreach ($d as $row) {
-                                $answer = $row['answer'];
-                                $published_at = $row['published_at'];
-                                $post_id = $row['post_id'];
-                                echo
-                                "
+                            if ($d) {
+                                foreach ($d as $row) {
+                                    $answer = $row['answer'];
+                                    $published_at = $row['published_at'];
+                                    $post_id = $row['post_id'];
+                                    echo
+                                    "
                         <div class='each-user-details-existed-content'><a href='/comp1841/crud/home?postId=$post_id'>$answer - <span class='published_at'>$published_at</span></a></div>
                                 ";
+                                }
                             }
-                        }
-                        ?>
+                            ?>
+                        </div>
                     </div>
-                </div>
-                <div class="user-details-right-child user-details-modules">
-                    <h3>Modules</h3>
+                    <div class="user-details-right-child user-details-modules">
+                        <h3>Modules</h3>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script>
+
+        <script>
         function openChat() {
             let areaText = document.getElementById('chatArea');
             let btnChat = document.getElementsByClassName('btnChat');
@@ -210,7 +208,7 @@
                 areaText.style.display = "block";
             }
         }
-    </script>
+        </script>
 </body>
 
 </html>
