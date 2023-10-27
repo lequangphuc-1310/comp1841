@@ -3,7 +3,7 @@
 session_start();
 
 # check if the user is logged in
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['user_id'])) {
     # check if the key is submitted
     if (isset($_POST['key'])) {
         include '/xampp/htdocs/comp1841/auth/connection.php';
@@ -11,11 +11,10 @@ if (isset($_SESSION['username'])) {
         # creating simple search algorithm :) 
         $key = "%{$_POST['key']}%";
 
-        $sql = "SELECT * FROM user
-	           WHERE name
-	           LIKE ? OR name LIKE ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([$key, $key]);
+        $sql = "SELECT * FROM `user` WHERE name LIKE '$key'";
+        // $stmt = $conn->prepare($sql);
+        // $stmt->execute([$key]);
+        $stmt = $conn->query($sql);
 
         if ($stmt->rowCount() > 0) {
             $users = $stmt->fetchAll();

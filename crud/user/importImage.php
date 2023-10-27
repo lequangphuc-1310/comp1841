@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Image Upload Using PHP</title>
+    <title>Edit Image</title>
     <style>
     .import-img-container {
         display: flex;
@@ -38,7 +38,4 @@
 if (isset($_POST['submit']) && isset($_FILES['inputImage'])) {
 
     importImage($_FILES['inputImage']);
-    echo "<pre>";
-    print_r($_FILES['inputImage']);
-    echo "</pre>";
 }

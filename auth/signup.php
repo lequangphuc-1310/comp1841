@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         header("Location: login.php");
         die;
     } else {
-        echo "Please enter some valid information!";
+        echo "<script>alert('Please enter some valid information!')</script>";
     }
 }
 ?>
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign Up</title>
     <link href="csslogin.css" rel="stylesheet">
 </head>
 
@@ -49,13 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <div class='signup-title'><span class="signup-title-red">S</span>ign<span class='signup-title-red'>U</span>p
                 </div>
 
-                <input id="text" type="email" name="email" placeholder="Enter your email"><br><br>
-                <input id="text" type="text" name="name" placeholder="Enter your name"><br><br>
-                <input id="text" type="password" name="password" placeholder="Enter your password"><br><br>
+                <input type="email" name="email" placeholder="Enter your email"><br><br>
+                <input type="text" name="name" placeholder="Enter your name"><br><br>
+                <input type="password" name="password" placeholder="Enter your password"><br><br>
 
-                <input id="button" class='signUp' type="submit" value="Sign Up"><br><br>
+                <input class='signUp' type="submit" value="Sign Up"><br><br>
 
-                <button id="button" class='logIn' type="submit"><a href="login.php">Click to Login</a></button><br><br>
+                <button class='logIn'><a href="login.php">Click to Login</a></button><br><br>
 
             </form>
         </div>

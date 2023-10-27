@@ -54,7 +54,9 @@ body {
 
 }
 
-input#text {
+input[type='text'],
+input[type='password'],
+input[type='email'] {
     padding      : 10px 14px;
     border-radius: 4px;
     border       : 1px solid #333;
@@ -87,4 +89,11 @@ input#text {
 .logIn a {
     color          : #fff;
     text-decoration: none;
+}
+
+.invalid-value {
+    padding    : 2em;
+    font-family: system-ui;
+    background : #d9cfcf;
+    color      : #000;
 }

@@ -71,7 +71,7 @@ function importImage($fileName)
 		$error = $fileName['error'];
 
 		if ($error === 0) {
-			if ($img_size > 1250000) {
+			if ($img_size > 100000) {
 				$messageTooLarge = "Sorry, your file is too large.";
 				header("Location: importImage.php?error=$messageTooLarge");
 			} else {
@@ -91,9 +91,10 @@ function importImage($fileName)
 					}
 
 					// Insert into Database
-					$sql = "update `user` set image='$new_img_name' where id=$id";
+					$sql = "update `user` set image='$new_img_name' where id=$userId";
 					$result = $conn->query($sql);
-					header("Location: /comp1841/crud/user/userInfo.php?userId=$userId");
+					// header("Location: /comp1841/crud/user/userInfo.php?userId=$userId");
+					echo "<script>window.location.href='/comp1841/crud/user/userInfo.php?userId=$userId';</script>";
 				} else {
 					$messageInvalidType = "You can't upload files of this type";
 					header("Location: importImage.php?error=$messageInvalidType");
@@ -104,7 +105,7 @@ function importImage($fileName)
 			header("Location: importImage.php?error=$unknownError");
 		}
 	} else {
-		// header("Location: importImage.php");
+		header("Location: /comp1841/crud/user/userInfo.php?userId=$userId");
 	}
 }
 // setting up the time Zone

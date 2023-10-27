@@ -20,6 +20,7 @@ $thisUserId = $_SESSION['user_id'];
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="/comp1841/crud/nav/nav.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="/comp1841/crud/user/userInfo.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -89,6 +90,11 @@ $thisUserId = $_SESSION['user_id'];
                         List
                         Modules</a>
                 </div>
+                <div class="nav-child-search">
+                    <button class="btnChat-nav" onclick="openChat()">Chat
+                    </button>
+                </div>
+
             </div>
             <div class="nav-child-right">
 
@@ -112,10 +118,12 @@ $thisUserId = $_SESSION['user_id'];
                 </div>
                 <span>Hello, <?php echo $user_data['name']; ?></span>
                 <div class="logout">
-                    <a class='logout-a' href="/comp1841/auth/login.php">Logout &nbsp;<i
-                            class="fas fa-sign-out-alt"></i></a>
+                    <a class='logout-a' href="/comp1841/auth/login.php">Logout &nbsp;<i class="fas fa-sign-out-alt"></i></a>
                 </div>
 
+            </div>
+            <div id="chatArea" style='display:none'>
+                <?php include '/xampp/htdocs/comp1841/chat/homeChat.php'; ?>
             </div>
 
 
@@ -123,6 +131,15 @@ $thisUserId = $_SESSION['user_id'];
     </div>
 
     </div>
+    <script>
+        function openChat() {
+            let areaText = document.getElementById('chatArea');
+            let btnChat = document.getElementsByClassName('btnChat');
+            if (areaText.style.display === "none") {
+                areaText.style.display = "block";
+            }
+        }
+    </script>
 </body>
 
 
