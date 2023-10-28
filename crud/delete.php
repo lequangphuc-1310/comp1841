@@ -5,7 +5,7 @@ if (isset($_GET['deleteUserId'])) {
     $sql = "delete from `user` where id = $inputId";
     $result = $conn->query($sql);
     if ($result) {
-        header('location: /comp1841/admin/display.php');
+        header('location: /comp1841/admin/displayUser.php');
     } else {
         die("Error when deleting user");
     }

@@ -73,7 +73,7 @@ $thisUserId = $_SESSION['user_id'];
                 <?php
                 if ($_SESSION['user_id'] == $_SESSION['admin_id']) {
                     echo "
-                <div class='nav-child'><a class='text-decoration-none' href='/comp1841/admin/display.php'>View List
+                <div class='nav-child'><a class='text-decoration-none' href='/comp1841/admin/displayUser.php'>View List
                     Users</a>
             </div>
                 ";
