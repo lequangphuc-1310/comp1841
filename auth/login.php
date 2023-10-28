@@ -63,29 +63,30 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <html>
 
 <head>
-    <title>Login</title>
-    <link href="csslogin.css?v=<?php echo time(); ?>" rel="stylesheet">
+	<title>Login</title>
+	<link href="csslogin.css?v=<?php echo time(); ?>" rel="stylesheet">
 </head>
 
 <body>
 
-    <div class="login-container">
-        <div class="box box-login">
-            <!-- <div>
+	<div class="login-container">
+		<div class="box box-login">
+			<!-- <div>
                 <h4>Sign Up</h4>
             </div> -->
-            <form method="post" action='login.php'>
-                <div class='signup-title'><span class="signup-title-red">L</span>og<span
-                        class='signup-title-red'>I</span>n</div>
-                <!-- <div class="invalid-value">Invalid value</div> -->
-                <input type="text" name="name" placeholder="Enter your name"><br><br>
-                <input type="password" name="password" placeholder="Enter your password"><br><br>
+			<form method="post" action='login.php'>
+				<div class='signup-title'><span class="signup-title-red">L</span>og<span class='signup-title-red'>I</span>n</div>
+				<!-- <div class="invalid-value">Invalid value</div> -->
+				<input type="text" name="name" placeholder="Enter your name"><br><br>
+				<input type="password" name="password" placeholder="Enter your password"><br><br>
 
-                <button class='logIn' type="submit">Click to Login</button><br><br>
-                <button class='signUp'><a href="signup.php">Click to
-                        SignUp</a></button><br><br>
+				<button class='logIn' type="submit">Click to Login</button><br><br>
+				<button class='signUp'><a href="signup.php">Click to
+						SignUp</a></button><br><br>
 
-        </div>
+			</form>
+		</div>
+	</div>
 </body>
 
 </html>

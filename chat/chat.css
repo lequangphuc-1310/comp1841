@@ -4,11 +4,19 @@ small {
     color  : #888;
 }
 
-.chat-container {
-    top   : 3em;
-    left  : 3em;
-    width : 40em;
-    margin: 4em auto;
+#chat-content {
+    padding: 2em 0.8em;
+    margin : 1em 3em;
+
+    border : 1px solid green;
+    padding: 0.5em 0.8em;
+    margin : 1em 1.2em;
+
+    display       : flex;
+    align-items   : end;
+    max-height    : 400px;
+    flex-direction: column;
+    overflow-y    : auto;
 }
 
 .chat-user-info {
@@ -83,14 +91,8 @@ small {
 }
 
 #chat-content {
-<<<<<<< HEAD
     padding       : 2em 0.8em;
-    margin        : 1em 3em;
-=======
-    border        : 1px solid green;
-    padding       : 0.5em 0.8em;
     margin        : 1em 1.2em;
->>>>>>> parent of 6e07212 (successfully add chat feature)
     display       : flex;
     align-items   : end;
     max-height    : 400px;

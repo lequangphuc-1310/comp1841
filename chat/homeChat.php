@@ -27,8 +27,8 @@ $conversations = getConversation($thisUserId, $conn);
                         <?php if (!empty($conversations)) { ?>
                             <?php foreach ($conversations as $conversation) {
                             ?>
-                                <li class="each-user-search">
-                                    <a href="/comp1841/chat/chat.php?user=<?php echo $conversation['id']; ?>">
+                                <a href="/comp1841/chat/chat.php?user=<?php echo $conversation['id']; ?>">
+                                    <li class="each-user-search">
 
                                         <div class="each-user-search-child">
                                             <div class='img-user-search' style="background: url(/comp1841/crud/user/uploads/<?php echo $conversation['image']; ?>) no-repeat center center; width: 50px; height: 50px; border-radius: 50%;">
@@ -49,8 +49,8 @@ $conversations = getConversation($thisUserId, $conn);
                                         </div>
 
                                         <div>
-                                    </a>
-                                </li>
+                                    </li>
+                                </a>
                             <?php } ?>
                         <?php } else { ?>
                             <div class="no-message">
