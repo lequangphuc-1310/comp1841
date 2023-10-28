@@ -1,41 +1,38 @@
-<?php
-session_start();
-if (isset($_SESSION['user_id'])) {
-    include '/xampp/htdocs/comp1841/auth/connection.php';
-    include '/xampp/htdocs/comp1841/auth/functions.php';
-    include '/xampp/htdocs/comp1841/chat/sql/user.php';
-    include '/xampp/htdocs/comp1841/chat/sql/chat.php';
-    include '/xampp/htdocs/comp1841/chat/sql/openedInbox.php';
-
-    if (!isset($_GET['user'])) {
-        header('location: /comp1841/crud/home/home.php');
-        exit;
-    }
-
-    $chatWith = getUser($_GET['user'], $conn);
-    if (empty($chatWith)) {
-        echo 'missing user id';
-        header("Location: /comp1841/crud/home/home.php");
-        exit;
-    }
-
-    $chats = getChats($_SESSION['user_id'], $chatWith['id'], $conn);
-    opened($chatWith['id'], $conn, $chats);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChitChat</title>
+    <title>Document</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" type="text/css" href="/comp1841/chat/chat.css?v=<?php echo time(); ?>" />
 </head>
 
 <body>
+    <?php include '/xampp/htdocs/comp1841/crud/nav/nav.php'; ?>
+    <?php
+    if (isset($_SESSION['user_id'])) {
+        include '/xampp/htdocs/comp1841/chat/sql/user.php';
+        include '/xampp/htdocs/comp1841/chat/sql/chat.php';
+        include '/xampp/htdocs/comp1841/chat/sql/openedInbox.php';
+
+        if (!isset($_GET['user'])) {
+            header('location: /comp1841/crud/home/home.php');
+            exit;
+        }
+
+        $chatWith = getUser($_GET['user'], $conn);
+        if (empty($chatWith)) {
+            header("Location: /comp1841/crud/home/home.php");
+            exit;
+        }
+
+        $chats = getChats($_SESSION['user_id'], $chatWith['id'], $conn);
+        opened($chatWith['id'], $conn, $chats);
+    }
+    ?>
+
 
     <div class="chat-container">
         <div class="chat-user-info">
@@ -111,12 +108,11 @@ if (isset($_SESSION['user_id'])) {
                     <textarea id='message'></textarea>
                 </div>
                 <div class="typing-send">
-                    <button class="typing-send-btn" onclick='sendMessage()'>Send</button>
+                    <button class="typing-send-btn">Send</button>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 
 
@@ -132,7 +128,12 @@ function sendMessage() {
 }
 
 
+// let scrollDown = function() {
+//     chatBox.scrollTop = chatBox.scrollHeight;
+// }
+
 let scrollDown = function() {
+    let chatBox = document.querySelector('#chat-content');
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 

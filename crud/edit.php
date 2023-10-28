@@ -20,7 +20,7 @@ if (isset($_GET['updateUserId'])) {
         $sql = "update `user` set id=$id, name='$name', password='$newpassword', email='$email' where id=$id ";
         $result = $conn->query($sql);
         if ($result) {
-            header('location: /comp1841/admin/display.php');
+            header('location: /comp1841/admin/displayUser.php');
         }
     }
 }

@@ -90,10 +90,3 @@ input[type='email'] {
     color          : #fff;
     text-decoration: none;
 }
-
-.invalid-value {
-    padding    : 2em;
-    font-family: system-ui;
-    background : #d9cfcf;
-    color      : #000;
-}

@@ -9,6 +9,7 @@ if (isset($_SESSION['user_id'])) {
         isset($_POST['message']) &&
         isset($_POST['to_id'])
     ) {
+
         include '/xampp/htdocs/comp1841/auth/connection.php';
 
 
@@ -39,8 +40,8 @@ if (isset($_SESSION['user_id'])) {
 
             // setting up the time Zone
             // It Depends on your location or your P.c settings
-define('TIMEZONE', 'Asia/Ho_Chi_Minh');
-        
+
+            define('TIMEZONE', 'Asia/Ho_Chi_Minh');
             date_default_timezone_set(TIMEZONE);
 
             $time = date("h:i:s a");
@@ -55,15 +56,15 @@ define('TIMEZONE', 'Asia/Ho_Chi_Minh');
             }
 ?>
 
-<div class="chat-content-you-container">
-    <div class="chat-content-you">
-        <div class="chat-child">
-            <p><?php echo $message; ?>
-            </p>
-            <small class=''><?php echo $time; ?></small>
-        </div>
-    </div>
-</div>
+            <div class="chat-content-you-container">
+                <div class="chat-content-you">
+                    <div class="chat-child">
+                        <p><?php echo $message; ?>
+                        </p>
+                        <small class=''><?php echo $time; ?></small>
+                    </div>
+                </div>
+            </div>
 
 <?php
         }

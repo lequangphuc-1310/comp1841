@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$result = $conn->query($query);
 
 		if ($result) {
-			$invalidValue = '';
 			$checkRow = $conn->prepare("SELECT COUNT(`name`) FROM `user` WHERE `name` = ?");
 			$checkRow->execute(array($name));
 			$countRow = $checkRow->fetchColumn();
@@ -40,25 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 					$_SESSION['user_id'] = $user_data['id'];
 					$userDataId = $user_data['id'];
 
-
-
-					$query2 = "SELECT id FROM `user`;";
-					$result2 = $conn->query($query2);
-					$d2 = $result2->fetchAll();
-					$user_data_history = [];
-					// foreach ($d2 as $row) {
-					// 	$user_2 = $row['id'];
-					// 	$query3 = "insert into `conversations` (user_1, user_2) values ($userDataId, $user_2)";
-					// 	$result3 = $conn->query($query3);
-					// 	$query4 = "delete from `conversations` where user_1 = user_2";
-					// 	$result4 = $conn->query($query4);
-					// }
-					// $result4=$conn->query("SELECT user_1, user_2 from `conversations` where ")
-					// 	// if ()
-					// 	// print_r($user_data_history);
-					// }
-
-
 					if ($user_data['email'] == 'admin@gmail.com') {
 						header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/crud/home/home.php');
 					} else {
@@ -66,15 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 					}
 
 					die;
-				} else {
-					echo "<script>alert('Wrong Username or Password')</script>";
 				}
 			}
-		} else {
-			echo "<script>alert('Wrong Username or Password')</script>";
 		}
+
+		echo "wrong username or password!";
 	} else {
-		echo "<script>alert('Wrong Username or Password')</script>";
+		echo "wrong username or password!";
 	}
 }
 
@@ -107,9 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <button class='signUp'><a href="signup.php">Click to
                         SignUp</a></button><br><br>
 
-            </form>
         </div>
-    </div>
 </body>
 
 </html>

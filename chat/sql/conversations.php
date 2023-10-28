@@ -8,7 +8,7 @@ function getConversation($id, $conn)
      **/
     $sql = "SELECT * FROM conversations
                 WHERE user_1=? OR user_2=?
-                ORDER BY conversation_id";
+                ORDER BY conversation_id DESC";
 
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id, $id]);
