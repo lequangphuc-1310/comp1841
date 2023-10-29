@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="/comp1841/crud/askPage/askPage.css?v=<?php echo time(); ?>" />
-    <!-- <link rel="stylesheet" type="text/css" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>" /> -->
     <title>Edit your Post</title>
 </head>
 
@@ -35,26 +34,28 @@
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
-    $postId = $_GET['postId'];
-    $result = $conn->query("SELECT * FROM `post` where id=$postId");
-    $data = $result->fetch();
-    $title = $data['title'];
-    $details = $data['details'];
+    if ($_GET['postId']) {
+        $postId = $_GET['postId'];
+        $result = $conn->query("SELECT * FROM `post` where id=$postId");
+        $data = $result->fetch();
+        $getTitle = $data['title'];
+        $getDetails = $data['details'];
+    }
     ?>
     <div class="ask-page-container ">
         <h1 class='title'>Edit Your Post</h1>
-        <form action="askPage.php" method='POST'>
+        <form method='POST'>
             <div class='row'>
                 <div class='content'>
                     <h4>Title</h4>
                     <label for="">Enter a title</label>
-                    <input value='<?php echo $title; ?>' name='title' class="form-control" name='name' />
+                    <input value='<?php echo $getTitle; ?>' name='title' class="form-control" />
                 </div>
                 <div class='content'>
                     <h4>What are the details of your problem</h4>
                     <label for="">Introduce the problem and expand on what you put in the title. Minimum 20
                         characters.</label>
-                    <textarea name='details' rows="10" cols="50" style="resize: none;"><?php echo $details; ?></textarea>
+                    <textarea name='details' rows="10" cols="50" style="resize: none;"><?php echo $getDetails; ?></textarea>
                 </div>
 
                 <div class='form-group col-8 content'>
@@ -85,6 +86,7 @@
                 <?php
                 include '/xampp/htdocs/comp1841/auth/connection.php';
 
+
                 if (isset($_POST["submitPost"])) {
                     $inputTitle =  $_POST["title"];
                     $title = mysql_escape_mimic($inputTitle);
@@ -96,18 +98,21 @@
 
                     $user_id = $_SESSION['user_id'];
                     try {
-                        $sql = "INSERT INTO `post` (`title`, `details`, `user_id`, `module`)
-                        values ('$title', '$details', '$user_id', '$module_id')";
-                        $result = $conn->exec($sql);
-                        $sql2 = "SELECT p.id, p.user_id from `post` as p inner join  `user` as u on p.user_id = u.id where p.user_id=u.id and u.id=$userId order by p.id desc limit 1 ;";
-                        $result2 = $conn->query($sql2);
-                        $d = $result2->fetch();
-                        $latestPostId = $d['id'];
-                        if ($result) {
-                            if ($result2) {
-                                echo "<script>window.location.href='/comp1841/crud/home/home.php?postId=$latestPostId';</script>";
-                            }
-                        }
+                        $sql = "update `post` set title='$title', details='$details' where id=$postId ";
+                        $result = $conn->query($sql);
+                        // $sql2 = "SELECT p.id, p.user_id from `post` as p inner join  `user` as u on p.user_id = u.id where p.user_id=u.id and u.id=$userId order by p.id desc limit 1 ;";
+                        // $result2 = $conn->query($sql2);
+                        // $d = $result2->fetch();
+                        // $latestPostId = $d['id'];
+                        // if ($result) {
+                        //     if ($result2) {
+                        //         echo "<script>window.location.href='/comp1841/crud/home/home.php?postId=$latestPostId';</script>";
+                        //     }
+                        // }
+                        echo "<script>window.location.href='/comp1841/crud/home/home.php?postId=$postId';</script>";
+                        //     }
+
+                        echo $title, $details, $postId;
                     } catch (PDOException $e) {
                         die("Error: " . $e->getMessage());
                     }
