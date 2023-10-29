@@ -112,10 +112,21 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                 echo $module_id . ' - ' .  $module_name;
                                 ?>
                             </div>
-                            <div class="question-title-extra-child viewed">
+                            <!-- <div class="question-title-extra-child viewed">
                                 Viewed 149 times
-                            </div>
+                            </div> -->
+                            <?php
+                            if ($_SESSION['user_id'] == $askerUserId) { ?>
 
+                                <div class="question-title-extra-child edit-delete">
+                                    <button class='edit-post'><a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>">Edit
+                                            your post</a></button>
+                                </div>
+                                <div class="question-title-extra-child edit-delete">
+                                    <button class='delete-post'><a href="/comp1841/crud/delete.php?postId=<?php echo $postId; ?>">Delete
+                                            your post</a></button>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="question-content">

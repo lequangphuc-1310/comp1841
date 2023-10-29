@@ -250,3 +250,28 @@ body {
     margin: 10px auto;
     border: 1px solid red;
 }
+
+button.edit-post {
+    border-radius: 5px;
+    padding      : 0.2em 0.5em;
+    margin       : 0 0.5em;
+    border       : 1px solid #222;
+}
+
+button.delete-post {
+    border-radius: 5px;
+    padding      : 0.2em 0.5em;
+    margin       : 0 0.5em;
+    border       : 1px solid #222;
+}
+
+button.edit-post:hover,
+button.delete-post:hover {
+    cursor          : pointer;
+    background-color: #000;
+}
+
+button.edit-post:hover a,
+button.delete-post:hover a {
+    color: #fff;
+}
