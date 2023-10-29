@@ -11,6 +11,12 @@
     box-shadow    : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px -8px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
 }
 
+ul {
+    padding: 0 !important;
+}
+
+
+
 .chatArea-body {
     background-color: #fff;
 }
@@ -61,6 +67,13 @@ input#searchText {
     flex-direction: column;
     gap           : 0.1em;
     height        : 100%;
+}
+
+.search-each-user-container a {
+    /* color: rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1)); */
+    text-decoration: underline;
+    color          : #000 !important;
+    font-family    : arial;
 }
 
 .each-user-search {
