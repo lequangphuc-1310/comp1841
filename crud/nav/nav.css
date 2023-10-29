@@ -126,13 +126,20 @@ a {
     cursor       : pointer;
 }
 
+
+
 .nav-child-search {
-    border       : 1px solid #fff;
-    /* padding   : 8px; */
+    /* border: 1px solid #fff; */
+    /* padding: 8px; */
     border-radius: 4px;
     cursor       : pointer;
 }
 
+button.btnChat-nav {
+    height       : 100%;
+    border-radius: 5px;
+    padding      : 0.2em 0.5em;
+}
 
 .nav-child-search .btnChat-nav:hover {
     background-color: #CDB3FA;

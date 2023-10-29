@@ -10,7 +10,7 @@ $conversations = getConversation($thisUserId, $conn);
 ?>
 
 <div class="chatArea-body">
-    <div class="chat-container">
+    <div class="chat-container-homeChat">
         <div class='exit' onclick='toggleOpenChat()'><i class="fas fa-times"></i></div>
         <div class="up-container">
             <div class="inputSearchUser">
@@ -31,7 +31,7 @@ $conversations = getConversation($thisUserId, $conn);
                                     <li class="each-user-search">
 
                                         <div class="each-user-search-child">
-                                            <div class='img-user-search' style="background: url(/comp1841/crud/user/uploads/<?php echo $conversation['image']; ?>) no-repeat center center; width: 50px; height: 50px; border-radius: 50%;">
+                                            <div class='img-user-search' style="background: url(/comp1841/crud/user/uploads/<?php echo $conversation['image']; ?>) no-repeat center center; width: 50px; height: 50px; border-radius: 50%; background-color: #ccc">
                                             </div>
                                             <div class="user-status">
                                                 <h3><?php echo $conversation['name']; ?></h3>

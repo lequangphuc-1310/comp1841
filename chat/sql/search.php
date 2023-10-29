@@ -35,8 +35,7 @@ if (isset($_SESSION['user_id'])) {
 </li>
 <?php }
         } else { ?>
-<div class="alert alert-info 
-    				 text-center">
+<div class="message-no-result">
     <i class="fa fa-user-times d-block fs-big"></i>
     The user "<?= htmlspecialchars($_POST['key']) ?>"
     is not found.

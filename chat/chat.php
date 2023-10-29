@@ -124,7 +124,7 @@
     let inputChat = document.querySelector('#message')
 
     function sendMessage() {
-        inputChat.value = '';
+        // inputChat.value = '';
     }
 
 
@@ -152,6 +152,7 @@
                 $('#message').val();
                 $("#chat-content").append(data);
                 scrollDown();
+                $('#message').val('');
             })
 
         });

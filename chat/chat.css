@@ -4,31 +4,16 @@ small {
     color  : #888;
 }
 
-#chat-content {
-    padding: 2em 0.8em;
-    margin : 1em 3em;
 
-    border : 1px solid green;
-    padding: 0.5em 0.8em;
-    margin : 1em 1.2em;
-
-    display       : flex;
-    align-items   : end;
-    max-height    : 400px;
-    flex-direction: column;
-    overflow-y    : auto;
-}
 
 .chat-user-info {
-    height : 4em;
-    display: flex;
-    border : 1px solid red;
-    width  : 100%;
+    height       : 4em;
+    display      : flex;
+    border-bottom: 1px solid #ccc;
+    width        : 100%;
 }
 
-.user-intro-details-img {
-    border: 1px solid red;
-}
+.user-intro-details-img {}
 
 .goBack {
     height         : 100%;
@@ -72,10 +57,6 @@ small {
 
 }
 
-.chat-user-info {
-    height: 4em;
-    border: 1px solid red;
-}
 
 .user-intro-details-text h4,
 .user-intro-details-text p {
@@ -91,7 +72,7 @@ small {
 }
 
 #chat-content {
-    padding       : 2em 0.8em;
+    padding       : 1em 0.8em;
     margin        : 1em 1.2em;
     display       : flex;
     align-items   : end;
@@ -110,8 +91,9 @@ small {
 }
 
 .chat-content-you {
-    width : 60%;
-    border: 1px solid blue;
+    width        : 60%;
+    border-radius: 0.5em;
+    background   : #dedede;
 }
 
 .chat-content-other-container {
@@ -128,6 +110,7 @@ small {
     width           : 60%;
     background-color: #e4e2fc;
     color           : #111;
+    border-radius   : 0.5em;
 }
 
 .chat-child p {
@@ -140,6 +123,9 @@ small {
     align-items    : center;
     justify-content: center;
     gap            : 0.5em;
+    /* margin      : 0.4em 0; */
+    padding        : 1em 0;
+    border-top     : 1px solid #ccc;
 }
 
 .typing-input {
@@ -167,6 +153,10 @@ small {
     cursor          : pointer;
 }
 
+.typing-send-btn:hover {
+    opacity: 0.8;
+}
+
 .no-message {
     width          : 100%;
     min-height     : 8em;
@@ -177,6 +167,7 @@ small {
     font-size      : 1.5em;
     background     : lightblue;
     border         : 1px solid brown;
+    border-radius  : 0.8em;
 }
 
 .chat-detail {
