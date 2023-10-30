@@ -35,3 +35,11 @@ if (isset($_GET['answerId'])) {
     $result = $conn->query("delete from `answer` where id=$answerId");
     header('location: /comp1841/crud/user/viewPosts.php');
 }
+
+
+if (isset($_GET['deleteid'])) {
+    include '/xampp/htdocs/comp1841/auth/connection.php';
+    $adminUserId = $_GET['deleteid'];
+    $result = $conn->query("delete from `admin_user` where id=$adminUserId");
+    header('location: /comp1841/admin/contactUser.php');
+}

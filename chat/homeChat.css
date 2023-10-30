@@ -146,6 +146,20 @@ input#searchText {
     width         : 80%;
 }
 
+.user-status h3 {
+    font-size: 18px !important;
+}
+
+.user-status h3,
+.user-status small {
+    color      : #222 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.user-status small {
+    margin-bottom: 0.2em;
+}
+
 .chatArea-body {
     height: 100%;
 }

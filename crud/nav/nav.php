@@ -97,8 +97,9 @@ $thisUserId = $_SESSION['user_id'];
 
             </div>
             <div class="nav-child-right">
-
-                <div class="admin-notification">Notifications</div>
+                <?php if ($_SESSION['user_id'] != $_SESSION['admin_id']) { ?>
+                    <div class="admin-notification"><a href='/comp1841/crud/user/adminReply.php' style='color: #fff'>Notifications</a></div>
+                <?php } ?>
                 <div class="nav-user-avt">
                     <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $thisUserId; ?>">
                         <?php

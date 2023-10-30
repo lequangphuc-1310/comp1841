@@ -38,48 +38,32 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
     ?>
     <div class="container">
 
-        <h1 class='title'>Display Users</h1>
-        <div>
-            <button class='btn btn-blue my-5'>
-                <a class='text-light text-decoration-none' href="/comp1841/admin/addUser.php">
-                    Add
-                    User
-                </a>
-            </button>
-        </div>
+        <h1 class='title'>Notifications</h1>
 
 
         <table class="w3-table-all">
             <thead>
                 <tr class="w3-light-grey w3-hover-red">
-                    <th>No.</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Operations</th>
+                    <th>Your message to admin</th>
+                    <th>Admin's respond</th>
                 </tr>
             </thead>
             <?php
-            $data = $conn->query("select id, name, password, email from `user`");
+            $userId = $_SESSION['user_id'];
+            $data = $conn->query("select * from `admin_user` where user_id=$userId");
             $d = $data->fetchAll();
 
             if ($d) {
                 foreach ($d as $row) {
                     $id = $row['id'];
-                    $name = $row['name'];
-                    $password = $row['password'];
-                    $email = $row['email'];
+                    $user_id = $row['user_id'];
+                    $user_send = $row['user_send'];
+                    $admin_send = $row['admin_send'];
                     echo
                     "
                     <tr class='w3-hover-green'>
-                        <td>$id</td>
-                        <td>$name</td>
-                        <td>$email</td>
-                        <td>$password</td>
-                        <td>
-                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='/comp1841/crud/edit.php?updateUserId=" . $id . "'>Edit</a></button>
-                            <button class='btn btn-warning'><a class='text-light text-decoration-none' href='/comp1841/crud/delete.php?deleteUserId=" . $id . "'>Delete</a></button>
-                        </td>
+                        <td>$user_send</td>
+                        <td>$admin_send</td>
                     </tr> ";
                 }
             }

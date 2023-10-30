@@ -34,17 +34,15 @@
                     <th>Email</th>
                     <th>User's section</th>
                     <th>Admin's section</th>
-                    <th></th>
                 </tr>
             </thead>
             <?php
-            $dataUserAdmin = $conn->query("select user.*,admin_user.user_id, admin_user.user_send, admin_user.admin_send from `user`, `admin_user` where user.id = admin_user.user_id;");
+            $dataUserAdmin = $conn->query("select admin_user.id, user.name, user.email, admin_user.user_send, admin_user.admin_send from `user`, `admin_user` where user.id = admin_user.user_id;");
             $d = $dataUserAdmin->fetchAll();
 
             if ($d) {
                 foreach ($d as $row) {
                     $id = $row['id'];
-                    $user_id = $row['user_id'];
                     $user_send = $row['user_send'];
                     $admin_send = $row['admin_send'];
                     $user_name = $row['name'];
@@ -55,10 +53,9 @@
                 <td>$user_name</td>
                 <td>$user_email</td>
                 <td>$user_send</td>
-                <td>$admin_send</td>
                 <td>
-                    <button class='btn btn-danger'><a class='text-light text-decoration-none' href='edit.php?updateid=" . $id . "'>Edit</a></button>
-                    <button class='btn btn-warning'><a class='text-light text-decoration-none' href='delete.php?deleteid=" . $id . "'>Delete</a></button>
+                    <button class='btn btn-danger'><a class='text-light text-decoration-none' href='/comp1841/admin/replyUser.php?updateid=" . $id . "'>Reply this user</a></button>
+                    <button class='btn btn-warning'><a class='text-light text-decoration-none' href='/comp1841/crud/delete.php?deleteid=" . $id . "'>Delete</a></button>
                 </td>
             </tr> ";
                 }

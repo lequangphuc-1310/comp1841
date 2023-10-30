@@ -7,47 +7,47 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/comp1841/crud/askPage/askPage.css" />
     <link rel="stylesheet" type="text/css" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>" />
-    <title>Contact Admin</title>
+    <title>Reply to User</title>
 </head>
 
 <body>
     <style type="text/css">
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    .btn-blue:hover {
-        background-color: #FC5252;
-    }
+        .btn-blue:hover {
+            background-color: #FC5252;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
 
     ?>
     <div class="ask-page-container ">
-        <h1 class='title'>Ask a Question to Admin</h1>
-        <form action="contactAdmin.php" method='POST'>
+        <h1 class='title'>Reply User</h1>
+        <form method='POST'>
             <div class='row'>
                 <div class='form-group col-8 label content'>
-                    <h4>Write anything you would like to ask to Admin</h4>
-                    <textarea name='user_send' rows="10" cols="50" style="resize: none;"></textarea>
+                    <h4>Write something to reply the user</h4>
+                    <textarea name='admin_send' rows="10" cols="50" style="resize: none;"></textarea>
                 </div>
                 <div class='form-group col-12 label'>
                     <input type='submit' name='submitPost' value='Submit' class="btn btn-blue" />
@@ -57,16 +57,16 @@
 
 
                 if (isset($_POST["submitPost"])) {
-                    $input_user_send = ($_POST["user_send"]);
-                    $user_send = mysql_escape_mimic($input_user_send);
+                    $input_admin_send = ($_POST["admin_send"]);
+                    $admin_send = mysql_escape_mimic($input_admin_send);
+                    $updateId = $_GET['updateid'];
                     $user_id = $_SESSION['user_id'];
                     try {
-                        $sql = "INSERT INTO `admin_user` (`user_send`, `user_id`)
-                        values ('$user_send', '$user_id')";
+                        $sql = "update `admin_user` set `admin_send`='$admin_send' where id=$updateId";
                         $result = $conn->exec($sql);
                         if ($result) {
-                            echo "<script>window.location.href='/comp1841/crud/user/home.php';</script>";
-
+                            // echo "<script>window.location.href='/comp1841/crud/admin/contactUser.php';</script>";
+                            echo $admin_send, $updateId;
                             // echo 'success ask admin';
                         }
                     } catch (PDOException $e) {

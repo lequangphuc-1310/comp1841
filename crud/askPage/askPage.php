@@ -12,26 +12,26 @@
 
 <body>
     <style type="text/css">
-        .btn-blue {
-            background-color: #381DDB !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            cursor: pointer;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
 
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -70,7 +70,7 @@
                         $module_id = $row['module_id'];
                         $module_name = $row['module_name'];
                         $module_id_PK = $row['id'];
-                        echo '<option value="' . htmlspecialchars($module_id_PK) . '">' . htmlspecialchars($module_id) . '-' . htmlspecialchars($module_name) . '</option>';
+                        echo '<option value="' . htmlspecialchars($module_id_PK) . '">' . htmlspecialchars($module_id) . ' -' . htmlspecialchars($module_name) . '</option>';
                     }
                     echo "</select>";
                     ?>
