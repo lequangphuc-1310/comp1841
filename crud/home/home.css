@@ -275,3 +275,25 @@ button.edit-post:hover a,
 button.delete-post:hover a {
     color: #fff;
 }
+
+span.answerAuthorEditDelete {
+    margin-left: 0.2em;
+}
+
+span.answerAuthorEditDelete button {
+    padding      : 0.2em 0.4em;
+    border       : 1px solid #333;
+    outline      : none;
+    border-radius: 0.3em;
+    margin-right : 0.5em;
+}
+
+span.answerAuthorEditDelete button:hover {
+    background-color: #000;
+    color           : #fff;
+}
+
+
+span.answerAuthorEditDelete button:hover a {
+    color: #fff;
+}
