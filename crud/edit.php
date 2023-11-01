@@ -53,6 +53,10 @@ if (isset($_GET['updateUserId'])) {
         cursor: pointer;
     }
 
+    .btn-blue:hover {
+        opacity: 0.8;
+    }
+
     input {
         border: 1px solid black !important;
     }

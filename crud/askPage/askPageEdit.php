@@ -48,7 +48,7 @@
     ?>
     <div class="ask-page-container ">
         <h1 class='title'>Edit Your Post</h1>
-        <form method='POST'>
+        <form method='POST' enctype="multipart/form-data">
             <div class='row'>
                 <div class='content'>
                     <h4>Title</h4>
@@ -84,6 +84,10 @@
                     echo "</select>";
                     ?>
                 </div>
+                <div class='content'>
+                    <h4>Image (Optional)</h4>
+                    <input type='file' name='imagePost' class="form-control" />
+                </div>
                 <div class='form-group col-12 label'>
                     <input type='submit' name='submitPost' value='Submit' class="btn btn-blue" />
                 </div>
@@ -97,12 +101,30 @@
                     $inputDetails = $_POST["details"];
                     $details = mysql_escape_mimic($inputDetails);
                     $module_id = $_POST['module_id'];
+                    if (isset($_FILES['imagePost'])) {
+                        $img_name = $_FILES['imagePost']['name'];
+                        $img_size = $_FILES['imagePost']['size'];
+                        $tmp_name = $_FILES['imagePost']['tmp_name'];
+                        $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+                        $img_ex_lc = strtolower($img_ex);
+
+                        $allowed_exs = array("jpg", "jpeg", "png");
+
+                        if (in_array($img_ex_lc, $allowed_exs)) {
+                            $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
+                            $img_upload_path = 'uploads/' . $new_img_name;
+                            move_uploaded_file($tmp_name, $img_upload_path);
+                            $id = $_SESSION['user_id'];
+                            if (move_uploaded_file($tmp_name, $img_upload_path)) {
+                                echo "<script>alert('moved')</script>";
+                            }
+                        }
+                    }
                     $userId = $_SESSION['user_id'];
-                    // echo $module_id;
 
                     $user_id = $_SESSION['user_id'];
                     try {
-                        $sql = "update `post` set title='$title', details='$details' where id=$postId ";
+                        $sql = "update `post` set title='$title', details='$details', imagePost='$new_img_name' where id=$postId ";
                         $result = $conn->query($sql);
                         echo "<script>window.location.href='/comp1841/crud/home/home.php?postId=$postId';</script>";
                         //     }

@@ -125,14 +125,13 @@
                                     $published_at = $row['published_at'];
                                     $post_id = $row['id'];
                                     echo
-                                    " <div class='each-user-details-existed-content'>";
-                                    if (!$post_id) {
-                                        echo "<div>No post yet.</div>";
-                                    }
-                                    echo "<a href='/comp1841/crud/home?postId=$post_id'>$title - <span class='published_at'>$published_at</span>
+                                    "<div class='each-user-details-existed-content'>";
+                                    echo "<a href='/comp1841/crud/home?postId=$post_id'><span>$title</span> - <span class='published_at'>$published_at</span>
                         </a>
                         </div>";
                                 }
+                            } else {
+                                echo '<div class="each-user-details-existed-content">No post available.</div>';
                             }
                             ?>
                         </div>
@@ -152,15 +151,18 @@
                                     $post_id = $row['post_id'];
                                     echo
                                     "
-                        <div class='each-user-details-existed-content'><a href='/comp1841/crud/home?postId=$post_id'>$answer - <span class='published_at'>$published_at</span></a></div>
+                        <div class='each-user-details-existed-content'><a href='/comp1841/crud/home?postId=$post_id'><span>$answer</span> - <span class='published_at'>$published_at</span></a></div>
                                 ";
                                 }
+                            } else {
+                                echo '<div class="each-user-details-existed-content">No answer available.</div>';
                             }
                             ?>
                         </div>
                     </div>
                     <div class="user-details-right-child user-details-modules">
                         <h3>Modules</h3>
+                        <div class="each-user-details-existed-content"><small>Developing...</small></div>
                     </div>
                 </div>
             </div>

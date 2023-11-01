@@ -162,6 +162,14 @@
     color: #000;
 }
 
+.each-user-details-existed-content a span {
+    overflow          : hidden;
+    width             : 100%;
+    display           : -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
 .each-user-details-existed-content:hover {
     /* opacity: 0.8; */
     background-color: #fc525287;
@@ -182,7 +190,7 @@
 }
 
 * {
-    background-size: cover !important;
+    background-size: cover;
 }
 
 .your-avt {

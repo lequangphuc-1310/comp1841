@@ -231,3 +231,7 @@ input#searchText {
 .message-no-result {
     color: #999;
 }
+
+.img-user-search {
+    background-size: contain !important;
+}

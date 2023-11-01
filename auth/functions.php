@@ -93,7 +93,7 @@ function importImage($fileName)
 					// Insert into Database
 					$sql = "update `user` set image='$new_img_name' where id=$id";
 					$result = $conn->query($sql);
-					header("Location: /comp1841/crud/user/userInfo.php?userId=$userId");
+					echo "<script>window.location.href='/comp1841/crud/user/userInfo.php?userId=$userId';</script>";
 				} else {
 					$messageInvalidType = "You can't upload files of this type";
 					header("Location: importImage.php?error=$messageInvalidType");
@@ -107,6 +107,10 @@ function importImage($fileName)
 		// header("Location: importImage.php");
 	}
 }
+
+
+
+
 // setting up the time Zone
 // It Depends on your location or your P.c settings
 define('TIMEZONE', 'Asia/Ho_Chi_Minh');
