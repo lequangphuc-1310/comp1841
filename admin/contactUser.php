@@ -37,7 +37,7 @@
                 </tr>
             </thead>
             <?php
-            $dataUserAdmin = $conn->query("select admin_user.id, user.name, user.email, admin_user.user_send, admin_user.admin_send from `user`, `admin_user` where user.id = admin_user.user_id;");
+            $dataUserAdmin = $conn->query("select admin_user.id, user.name, user.email, admin_user.user_send, admin_user.admin_send from `user`, `admin_user` where user.id = admin_user.user_id and admin_user.admin_send = '';");
             $d = $dataUserAdmin->fetchAll();
 
             if ($d) {

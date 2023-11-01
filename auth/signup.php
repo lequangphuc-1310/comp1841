@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         header("Location: login.php");
         die;
     } else {
-        echo "Please enter some valid information!";
+        // echo "Please enter some valid information!";
     }
 }
 ?>
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="csslogin.css" rel="stylesheet">
+    <link href="csslogin.css?v=<?php echo time(); ?>" rel="stylesheet">
 </head>
 
 <body>

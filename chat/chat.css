@@ -4,6 +4,9 @@ small {
     color  : #888;
 }
 
+.chat-child-child {
+    padding: 0.2em 0.1em;
+}
 
 
 .chat-user-info {

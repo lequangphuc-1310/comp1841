@@ -72,14 +72,16 @@
 
                 <div id="chat-content">
                     <?php if (!empty($chats)) {
-                    foreach ($chats as $chat) {
-                        if ($chat['from_id'] == $_SESSION['user_id']) { ?>
+                        foreach ($chats as $chat) {
+                            if ($chat['from_id'] == $_SESSION['user_id']) { ?>
                     <div class="chat-content-you-container">
                         <div class="chat-content-you">
                             <div class="chat-child">
-                                <p><?php echo $chat['message']; ?>
-                                </p>
-                                <small class=''><?php echo $chat['created_at']; ?></small>
+                                <div class="chat-child-child">
+                                    <p><?php echo $chat['message']; ?>
+                                    </p>
+                                    <small class=''><?php echo $chat['created_at']; ?></small>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,15 +89,17 @@
                     <div class="chat-content-other-container">
                         <div class="chat-content-other">
                             <div class="chat-child">
-                                <p><?php echo $chat['message']; ?>
-                                </p>
-                                <small class=''><?php echo $chat['created_at']; ?></small>
+                                <div class="chat-child-child">
+                                    <p><?php echo $chat['message']; ?>
+                                    </p>
+                                    <small class=''><?php echo $chat['created_at']; ?></small>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <?php }
-                    }
-                } else { ?>
+                        }
+                    } else { ?>
                     <div class="no-message">
                         <div class="no-message-text">
                             No message yet, Start a conversation...

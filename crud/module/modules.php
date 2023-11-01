@@ -28,6 +28,10 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
         color: #fff;
         cursor: pointer;
     }
+
+    .btn-blue:hover {
+        opacity: 0.8;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";

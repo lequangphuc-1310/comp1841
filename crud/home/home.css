@@ -230,6 +230,9 @@ input.btn-submit {
     cursor          : pointer;
 }
 
+input.btn-submit:hover {
+    opacity: 0.8;
+}
 
 
 input.btn.btn-blue {

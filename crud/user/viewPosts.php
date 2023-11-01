@@ -11,7 +11,7 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Display Posts</title>
-    <link rel="stylesheet" href="/comp1841/crud/home/home.css">
+    <link rel="stylesheet" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>">
 
 </head>
 

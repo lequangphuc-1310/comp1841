@@ -65,7 +65,7 @@
                         values ('$user_send', '$user_id')";
                         $result = $conn->exec($sql);
                         if ($result) {
-                            echo "<script>window.location.href='/comp1841/crud/user/home.php';</script>";
+                            echo "<script>window.location.href='/comp1841/crud/home/home.php';</script>";
 
                             // echo 'success ask admin';
                         }
