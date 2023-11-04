@@ -59,12 +59,15 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
                     $user_id = $row['user_id'];
                     $user_send = $row['user_send'];
                     $admin_send = $row['admin_send'];
-                    echo
-                    "
-                    <tr class='w3-hover-green'>
-                        <td>$user_send</td>
-                        <td>$admin_send</td>
-                    </tr> ";
+                    if ($admin_send != '') {
+                        $_SESSION['admin_seen'] = 'unread';
+                    }
+            ?>
+            <tr class='w3-hover-green'>
+                <td><?php echo $user_send; ?></td>
+                <td><?php echo $admin_send; ?></td>
+            </tr>
+            <?php
                 }
             }
             ?>

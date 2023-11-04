@@ -13,28 +13,27 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
     <link rel="stylesheet" type="text/css" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>" />
 
     <title>Display Users</title>
-    <link rel="stylesheet" href="./home.css">
 
 </head>
 
 <body>
     <style>
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    .btn-blue:hover {
-        opacity: 0.8;
-    }
+        .btn-blue:hover {
+            opacity: 0.8;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
