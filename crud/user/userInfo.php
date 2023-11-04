@@ -84,12 +84,12 @@
                 <div class="user-intro-detail-extra"><?php echo $userEmail ?></div>
                 <div class="chatBtn">
                     <?php if ($_SESSION['user_id'] != $userInfoId) { ?>
-                    <button class="btnChat">
-                        <a href='/comp1841/chat/chat.php?user=<?php echo $userInfoId; ?>'>Chat</a>
-                    </button>
+                        <button class="btnChat">
+                            <a href='/comp1841/chat/chat.php?user=<?php echo $userInfoId; ?>'>Chat</a>
+                        </button>
                     <?php } else { ?>
-                    <button class="btnChat" onclick="openChat()">Chat
-                    </button>
+                        <button class="btnChat" onclick="openChat()">Chat
+                        </button>
                     <?php } ?>
                 </div>
 
@@ -162,7 +162,7 @@
                     </div>
                     <div class="user-details-right-child user-details-modules">
                         <h3>Modules</h3>
-                        <div class="each-user-details-existed-content"><small>Developing...</small></div>
+                        <div class="each-user-details-existed-content disabled"><small>Developing...</small></div>
                     </div>
                 </div>
             </div>
@@ -171,13 +171,13 @@
             <?php include '/xampp/htdocs/comp1841/chat/homeChat.php'; ?>
         </div>
         <script>
-        function openChat() {
-            let areaText = document.getElementById('chatArea');
-            let btnChat = document.getElementsByClassName('btnChat');
-            if (areaText.style.display === "none") {
-                areaText.style.display = "block";
+            function openChat() {
+                let areaText = document.getElementById('chatArea');
+                let btnChat = document.getElementsByClassName('btnChat');
+                if (areaText.style.display === "none") {
+                    areaText.style.display = "block";
+                }
             }
-        }
         </script>
 </body>
 

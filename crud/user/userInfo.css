@@ -189,6 +189,17 @@
 
 }
 
+.disabled {
+    background-color: #ddd;
+    color           : #333;
+    cursor          : not-allowed;
+}
+
+.disabled:hover {
+    background-color: #ddd;
+    color           : #333;
+}
+
 * {
     background-size: cover;
 }
