@@ -1,0 +1,366 @@
+.search-container-homeSearch {
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+    height        : 100%;
+    z-index       : 10;
+    width         : 75%;
+    gap           : 15px;
+    /* margin     : 2em 6em; */
+    border        : 1px solid #ddd;
+    border-radius : 0.5em;
+    box-shadow    : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px -8px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+.searchArea-body {
+    background-color: #fff;
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+    align-items     : center;
+    height          : 100%;
+    margin-top      : 1em;
+}
+
+.searchArea-body a {
+    color: #333 !important;
+}
+
+.up-container {
+    width          : 90%;
+    display        : flex;
+    align-items    : center;
+    margin-top     : 25px;
+    justify-content: center;
+}
+
+.down-container {
+    width : 90%;
+    height: 100%;
+}
+
+.inputSearchUser {
+    width    : 100%;
+    display  : flex;
+    flex-grow: 1;
+    gap      : 0.1em;
+}
+
+.searchBtn {
+    width           : 20%;
+    padding         : 0.8em;
+    border-radius   : 5px;
+    background-color: #381DDB;
+    color           : #fff;
+    cursor          : pointer;
+}
+
+.searchBtn:hover {
+    opacity: 0.8;
+}
+
+input#searchTextInput {
+    width        : 100% !important;
+    padding      : 0.6em 0.8em;
+    border-radius: 0.4em;
+    border       : 1px solid #888;
+}
+
+
+.search-each-user-container {
+    display       : flex;
+    flex-direction: column;
+    gap           : 0.1em;
+    height        : 100%;
+}
+
+.search-each-user-container a {
+    /* color: rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1)); */
+    text-decoration: underline;
+    color          : #000 !important;
+    font-family    : arial;
+}
+
+.each-user-search {
+    border            : 1px solid #ddd;
+    /* display        : flex; */
+    justify-content   : space-between;
+    background-color  : #fff;
+    border-radius     : 8px;
+    box-shadow        : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px -8px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
+.each-user-search-child {
+    display        : flex;
+    align-items    : center;
+    justify-content: start;
+    gap            : 1em;
+}
+
+.each-user-search-child h3 {
+    font-size: 1.2em !important;
+}
+
+.img-user-search {
+    border-radius: 50%;
+    margin-left  : 0.5em;
+    border       : 1px solid #777;
+}
+
+.down {
+    width         : 100%;
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+    gap           : 15px;
+    height        : 100%;
+}
+
+.content {
+    width        : 100%;
+    height       : 100%;
+    margin-bottom: 1em;
+    overflow-y   : auto;
+    overflow-x   : hidden;
+    background   : #fff !important;
+}
+
+.content #search-option {
+    display        : flex;
+    flex-direction : row;
+    gap            : 0.1em;
+    width          : 100%;
+    text-align     : center;
+    justify-content: space-between;
+    padding        : 0.2em 0.3em;
+}
+
+.online {
+    width           : 10px;
+    height          : 10px;
+    border-radius   : 50%;
+    background-color: green;
+}
+
+.online-container {
+    display        : flex;
+    align-items    : center;
+    justify-content: end;
+    margin-right   : 0.5em;
+}
+
+.no-message {
+    width          : 100%;
+    height         : 100%;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    font-size      : 1.5em;
+}
+
+.user-status {
+    display       : flex;
+    flex-direction: column;
+    width         : 80%;
+}
+
+.user-status h3 {
+    font-size: 18px !important;
+}
+
+.user-status h3,
+.user-status small {
+    color      : #222 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.user-status small {
+    margin-bottom     : 0.2em;
+    overflow          : hidden;
+    width             : 100%;
+    display           : -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.exit {
+    position: absolute;
+    top     : 0;
+    right   : 0;
+    padding : 0.4em;
+    cursor  : pointer
+}
+
+.exit i {
+    font-size: 15px;
+    color    : #666;
+}
+
+.typing {
+    width          : 100%;
+    height         : 25%;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    gap            : 0.5em;
+}
+
+.typing-input {
+    width      : 100%;
+    margin-left: 0.5em;
+}
+
+.typing-input input {
+    padding      : 1em 0.5em;
+    width        : 100%;
+    border-radius: 5px;
+
+}
+
+.typing-send {
+    width       : 20%;
+    margin-right: 0.2em;
+}
+
+.typing-send-btn {
+    padding         : 1em 0;
+    width           : 100%;
+    border-radius   : 5px;
+    background-color: #381DDB;
+    color           : #fff;
+    cursor          : pointer;
+}
+
+.message-no-result {
+    color: #999;
+}
+
+.img-user-search {
+    background-size: contain !important;
+}
+
+.btn-option {
+    padding         : 1.2em 1.5em;
+    cursor          : pointer;
+    border          : none;
+    background-color: #000;
+    color           : #fff;
+    border-radius   : 0.5em;
+}
+
+.btn-option:hover {
+    opacity: 0.8;
+}
+
+.result-search {
+    height          : 20em;
+    width           : 75%;
+    background-color: #ddd;
+    margin-top      : 1em;
+    display         : flex;
+    flex-direction  : column;
+    gap             : 0.1em;
+    overflow-y      : auto;
+    border-radius   : 0.2em;
+}
+
+.each-user-found {
+    display      : flex;
+    margin       : 0.3em 0.2em;
+    background   : #fff;
+    align-items  : center;
+    gap          : 4em;
+    border-radius: 0.3em;
+    box-shadow   : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px -8px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
+.each-user-found:hover {
+    opacity: 0.8;
+}
+
+.each-post-found:hover {
+    opacity: 0.8;
+}
+
+.each-module-found:hover {
+    opacity: 0.8;
+}
+
+
+.user-avt {
+    width      : 100%;
+    height     : 50px;
+    margin-left: 0.2em;
+}
+
+.user-name {
+    width : 100%;
+    height: 20px;
+}
+
+.user-email {
+    width       : 100%;
+    height      : 20px;
+    margin-right: 0.2em;
+}
+
+.post-title {
+    width          : 100%;
+    height         : 50px;
+    margin-left    : 0.2em;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    overflow       : hidden;
+}
+
+.post-details {
+    width             : 100%;
+    height            : 20px;
+    overflow          : hidden;
+    width             : 100%;
+    display           : -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.post-module-id {
+    width       : 100%;
+    height      : 20px;
+    margin-right: 0.2em;
+}
+
+.each-post-found {
+    display      : flex;
+    margin       : 0.3em 0.2em;
+    background   : #fff;
+    align-items  : center;
+    gap          : 4em;
+    border-radius: 0.3em;
+    box-shadow   : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px -8px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
+.each-module-found {
+    display        : flex;
+    margin         : 0.3em 0.2em;
+    justify-content: center;
+    background     : #fff;
+    align-items    : center;
+    gap            : 4em;
+    border-radius  : 0.3em;
+    box-shadow     : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px -8px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
+.module_id {
+    height      : 20px;
+    margin-right: 2em;
+}
+
+.module_name {
+    width      : 100%;
+    height     : 50px;
+    margin-left: 2em;
+    display    : flex;
+    align-items: center;
+}
