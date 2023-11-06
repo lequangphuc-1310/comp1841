@@ -15,12 +15,6 @@ ul {
     padding: 0 !important;
 }
 
-
-
-.chatArea-body {
-    background-color: #fff;
-}
-
 .up-container {
     width          : 90%;
     display        : flex;
@@ -83,6 +77,10 @@ input#searchText {
     background-color  : #fff;
     border-radius     : 8px;
     box-shadow        : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px -8px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
+.each-user-search a {
+    color: #000 !important;
 }
 
 .each-user-search-child {
@@ -151,6 +149,10 @@ input#searchText {
     font-size      : 1.5em;
 }
 
+.no-message-text {
+    color: #555;
+}
+
 .user-status {
     display       : flex;
     flex-direction: column;
@@ -177,7 +179,9 @@ input#searchText {
 }
 
 .chatArea-body {
-    height: 100%;
+    height          : 100%;
+    border-radius   : 0.5em;
+    background-color: #fff;
 }
 
 .exit {

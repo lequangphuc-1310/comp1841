@@ -78,14 +78,15 @@
                     $d = $result->fetch();
                     $userName = $d['name'];
                     $userEmail = $d['email'];
-                    echo $userName;
+                    // echo $userName;
                     ?>
                 </div>
                 <div class="user-intro-detail-extra"><?php echo $userEmail ?></div>
                 <div class="chatBtn">
                     <?php if ($_SESSION['user_id'] != $userInfoId) { ?>
                         <button class="btnChat">
-                            <a href='/comp1841/chat/chat.php?user=<?php echo $userInfoId; ?>'>Chat</a>
+                            <a href='/comp1841/chat/chat.php?user=<?php echo $userInfoId; ?>'>Chat with
+                                <?php echo $userName; ?></a>
                         </button>
                     <?php } else { ?>
                         <button class="btnChat" onclick="openChat()">Chat

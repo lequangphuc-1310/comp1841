@@ -32,67 +32,86 @@ $thisUserId = $_SESSION['user_id'];
                     <i class="fas fa-bars"></i>
                     <div class="bridge"></div>
                     <div class="category">
-                        <div class="category-item category-item-1"><a href='/comp1841/crud/askPage/askPage.php'>Post a
+                        <a href='/comp1841/crud/askPage/askPage.php'>
+                            <div class="category-item category-item-1">Post a
                                 question
-                                to community</a>
-                        </div>
-                        <div class="category-item category-item-2">
-                            <a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $thisUserId; ?>'>View your
-                                account's information</a>
-                        </div>
+                                to community
+                            </div>
+                        </a>
+                        <a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $thisUserId; ?>'>
+                            <div class="category-item category-item-2">
+                                View your
+                                account's information
+                            </div>
+                        </a>
 
                         <?php
                         // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
                         if ($_SESSION['user_id'] != $_SESSION['admin_id']) { ?>
-                        <div class='category-item category-item-3'>
-                            <a href='/comp1841/crud/user/contactAdmin.php'>
+                        <a href='/comp1841/crud/user/contactAdmin.php'>
+                            <div class='category-item category-item-3'>
                                 Contact Administrator
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                         <?php } else { ?>
-                        <div class='category-item category-item-3'>
-                            <a href='/comp1841/admin/contactUser.php'>
+                        <a href='/comp1841/admin/contactUser.php'>
+                            <div class='category-item category-item-3'>
                                 Manage Users' Request
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                         <?php }
                         ?>
                     </div>
                 </div>
-                <div class="nav-child"><a class='text-decoration-none' href='/comp1841/crud/home/home.php'>
-                        <div class='icon'>
-
-                            <i class="fas fa-home "></i>
+                <div class="nav-child-container">
+                    <a class='text-decoration-none' href='/comp1841/crud/home/home.php'>
+                        <div class="nav-child">
+                            <div class='icon'>
+                                <i class="fas fa-home "></i>
+                            </div>
                         </div>
                     </a>
                 </div>
 
+
                 <?php
                 if ($_SESSION['user_id'] == $_SESSION['admin_id']) { ?>
-                <div class='nav-child'><a class='text-decoration-none' href='/comp1841/admin/displayUser.php'>View List
-                        Users</a>
+                <div class="nav-child-container">
+                    <a class='text-decoration-none' href='/comp1841/admin/displayUser.php'>
+                        <div class='nav-child'>View List
+                            Users
+                        </div>
+                    </a>
                 </div>
                 <?php    }
                 ?>
 
-
-                <div class="nav-child"><a class=' text-decoration-none' href='/comp1841/crud/user/viewPosts.php'>View
-                        List
-                        Posts
+                <div class="nav-child-container">
+                    <a class=' text-decoration-none' href='/comp1841/crud/user/viewPosts.php'>
+                        <div class="nav-child">View
+                            List
+                            Posts
+                        </div>
                     </a>
                 </div>
-                <div class='nav-child'><a class='text-decoration-none' href='/comp1841/crud/module/modules.php'>View
-                        List
-                        Modules</a>
+
+                <div class='nav-child-container'>
+                    <a class='text-decoration-none' href='/comp1841/crud/module/modules.php'>
+                        <div class="nav-child">View
+                            List
+                            Modules
+                        </div>
+                    </a>
                 </div>
                 <div class="nav-child-chat">
                     <button class="btnChat-nav" onclick="openChat()"><i class="far fa-comment"></i>
                     </button>
                 </div>
                 <div class="nav-child-search">
-                    <button class="btnSearch-nav"><a href='/comp1841/crud/search/search.php'><i
-                                class="fas fa-search"></i></a>
-                    </button>
+                    <a href='/comp1841/crud/search/search.php'><button class="btnSearch-nav"><i
+                                class="fas fa-search"></i>
+                        </button>
+                    </a>
                 </div>
 
             </div>
@@ -127,10 +146,11 @@ $thisUserId = $_SESSION['user_id'];
                     </a>
                 </div>
                 <span>Hello, <?php echo $user_data['name']; ?></span>
-                <div class="logout">
-                    <a class='logout-a' href="/comp1841/auth/login.php">Logout &nbsp;<i
-                            class="fas fa-sign-out-alt"></i></a>
-                </div>
+                <a class='logout-a' href="/comp1841/auth/login.php">
+                    <div class="logout">
+                        Logout &nbsp;<i class="fas fa-sign-out-alt"></i>
+                    </div>
+                </a>
 
             </div>
             <div id="chatArea" style='display:none'>
@@ -142,7 +162,7 @@ $thisUserId = $_SESSION['user_id'];
     </div>
 
     </div>
-    <script src='/comp1841/crud/nav/nav.js'></script>
+    <script src='/comp1841/crud/nav/nav.js?v=<?php echo time(); ?>'></script>
     <script>
     function openChat() {
         let areaText = document.getElementById('chatArea');

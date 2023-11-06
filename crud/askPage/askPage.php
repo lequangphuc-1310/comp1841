@@ -43,14 +43,14 @@
             <div class='row'>
                 <div class='content'>
                     <h4>Title</h4>
-                    <label for="">Enter a title</label>
-                    <input name='title' class="form-control" name='name' />
+                    <label for="title">Enter a title</label>
+                    <input name='title' id='title' class="form-control" name='name' />
                 </div>
                 <div class='content'>
                     <h4>What are the details of your problem</h4>
-                    <label for="">Introduce the problem and expand on what you put in the title. Minimum 20
+                    <label for='details'>Introduce the problem and expand on what you put in the title. Minimum 20
                         characters.</label>
-                    <textarea name='details' rows="10" cols="50" style="resize: none;"></textarea>
+                    <textarea name='details' id='details' rows="10" cols="50" style="resize: none;"></textarea>
                 </div>
 
                 <div class='form-group col-8 content'>

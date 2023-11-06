@@ -37,15 +37,21 @@ if (isset($_POST['submit'])) {
 					$_SESSION['user_id'] = $user_data['id'];
 
 					header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/crud/home/home.php');
+				} else {
+					$wrongPassword = "Incorrect password!";
+					header("Location: /comp1841/auth/login.php?error=$wrongPassword");
 				}
 			} else {
-				echo  '<script>alert("User not found!")</script>';
+				$userNotFound = "User not found!";
+				header("Location: /comp1841/auth/login.php?error=$userNotFound");
 			}
 		} else {
-			echo  '<script>alert("User not found!")</script>';
+			$userNotFound = "User not found!";
+			header("Location: /comp1841/auth/login.php?error=$userNotFound");
 		}
 	} else {
-		echo "<script>alert('Please enter name and password')</script>";
+		$missingParam = 'Please enter name and password';
+		header("Location: /comp1841/auth/login.php?error=$missingParam");
 	}
 }
 ?>
@@ -55,31 +61,40 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-	<title>Login</title>
-	<link href="csslogin.css?v=<?php echo time(); ?>" rel="stylesheet">
+    <title>Login</title>
+    <link href="csslogin.css?v=<?php echo time(); ?>" rel="stylesheet">
 </head>
 
 <body>
 
-	<div class="login-container">
-		<div class="box box-login">
-			<!-- <div>
+    <div class="login-container">
+        <div class="box box-login">
+            <!-- <div>
                 <h4>Sign Up</h4>
             </div> -->
-			<form method="post" action='login.php'>
-				<div class='signup-title'><span class="signup-title-red">L</span>og<span class='signup-title-red'>I</span>n</div>
-				<!-- <div class="invalid-value">Invalid value</div> -->
-				<input type="text" name="name" placeholder="Enter your name"><br><br>
-				<input type="password" name="password" placeholder="Enter your password"><br><br>
+            <form method="post" action='login.php'>
+                <div class='signup-title'><span class="signup-title-red">L</span>og<span
+                        class='signup-title-red'>I</span>n</div>
+                <?php if (array_key_exists('error', $_GET)) { ?>
+                <div class="error-area">
+                    <div class="error-text">
+                        <?php if (array_key_exists('error', $_GET)) {
+							echo $_GET['error'];
+						} ?></div>
+                </div>
+                <?php } ?>
+                <input type="text" name="name" placeholder="Enter your name"><br><br>
+                <input type="password" name="password" placeholder="Enter your password"><br><br>
 
-				<button class='logIn' type="submit" name='submit'>Click to Login</button><br><br>
-				<div class="or">Or</div>
-				<button class='signUp'><a href="signup.php">Click to
-						SignUp</a></button><br><br>
+                <button class='logIn' type="submit" name='submit'>Click to Login</button><br><br>
+                <div class="or">Or</div>
+                <button class='signUp'><a href="signup.php">Click to
+                        SignUp</a></button><br><br>
 
-			</form>
-		</div>
-	</div>
+            </form>
+
+        </div>
+    </div>
 </body>
 
 </html>

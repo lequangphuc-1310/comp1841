@@ -50,7 +50,6 @@ body {
 
 .box-login {
     top: 7em !important;
-
 }
 
 input[type='text'],
@@ -105,4 +104,19 @@ input[type='email']:focus {
 .logIn a {
     color          : #fff;
     text-decoration: none;
+}
+
+.error-text {
+    color      : #fd0000;
+    padding    : 1em;
+    font-family: sans-serif;
+}
+
+.error-area {
+    background-color: #353434;
+    margin-bottom   : 1em;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    max-width       : 12em;
 }

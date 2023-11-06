@@ -15,10 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         //save to database
         $user_id = random_num(20);
-        $checkExistedAccount = $conn->query("select * from `user` where `name` = '$name'");
+        $checkExistedAccount = $conn->query("select * from `user` where `name` = '$name' or `email` = '$email'");
         $dExistedAccount = $checkExistedAccount->fetch();
         if ($dExistedAccount) {
-            echo '<script>alert("This username/email has already taken")</script>';
+            $existedAccount = "This username/email has already taken by another user";
+            header("Location: /comp1841/auth/signup.php?error=$existedAccount");
         } else {
 
             $query = "insert into `user` (name,password,email, image) values ('$name','$password', '$email', 'IMG-653751dd87d0c4.57015077.png')";
@@ -28,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             header("Location: login.php");
         }
     } else {
-        echo "<script>alert('Please enter name and password')</script>";
+        $missingParam = 'Please enter name and password';
+        header("Location: /comp1841/auth/signup.php?error=$missingParam");
     }
 }
 ?>
@@ -46,20 +48,31 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
     <div class="signup-container">
         <div class="box">
-            <!-- <div>
-                <h4>Sign Up</h4>
-            </div> -->
             <form method="post">
                 <div class='signup-title'><span class="signup-title-red">S</span>ign<span class='signup-title-red'>U</span>p
                 </div>
-
-                <input id="text" type="email" name="email" placeholder="Enter your email"><br><br>
-                <input id="text" type="text" name="name" placeholder="Enter your name"><br><br>
-                <input id="text" type="password" name="password" placeholder="Enter your password"><br><br>
-
-                <input id="button" class='signUp' type="submit" value="Sign Up"><br><br>
-
-                <button id="button" class='logIn' type="submit"><a href="login.php">Click to Login</a></button><br><br>
+                <?php if (array_key_exists('error', $_GET)) { ?>
+                    <div class="error-area">
+                        <div class="error-text">
+                            <?php if (array_key_exists('error', $_GET)) {
+                                echo $_GET['error'];
+                            } ?></div>
+                    </div>
+                <?php } ?>
+                <div class="inputUser">
+                    <input id="text" type="email" name="email" placeholder="Enter your email"><br><br>
+                </div>
+                <div class="inputUser">
+                    <input id="text" type="text" name="name" placeholder="Enter your name"><br><br>
+                </div>
+                <div class="inputUser">
+                    <input id="text" type="password" name="password" placeholder="Enter your password"><br><br>
+                </div>
+                <div class="inputUser">
+                    <input id="button" class='signUp' type="submit" value="Sign Up"><br><br>
+                </div>
+                <button id="button" class='logIn' type="submit"><a href="login.php">Go Back
+                        Login</a></button><br><br>
 
             </form>
         </div>

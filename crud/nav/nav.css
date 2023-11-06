@@ -95,7 +95,7 @@ a {
 }
 
 
-.category-item a {
+.category a {
     color: #fff;
 }
 
@@ -118,7 +118,6 @@ a {
 
 
 .nav-child {
-    border       : 1px solid #fff;
     padding      : 8px;
     border-radius: 4px;
     display      : flex;
@@ -126,7 +125,7 @@ a {
     cursor       : pointer;
 }
 
-.nav-child.active {
+.nav-child-container.active {
     animation-name           : navActive;
     animation-duration       : 6s;
     animation-iteration-count: infinite;
@@ -252,4 +251,13 @@ button.btnSearch-nav {
 
 .nav-child-search a {
     color: #000 !important;
+}
+
+.nav-child-container {
+    border-radius: 4px;
+    border       : 1px solid #fff;
+}
+
+.nav-child-container a {
+    color: #fff;
 }
