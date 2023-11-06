@@ -7,7 +7,7 @@ if (isset($_POST["submit"])) {
     $password = $_POST["password"];
     $email = $_POST["email"];
     try {
-        $sql = "INSERT INTO `user` (`name`, `password`, `email`) values ('$name', '$password', '$email')";
+        $sql = "INSERT INTO `user` (`name`, `password`, `email`, `image`) values ('$name', '$password', '$email', 'IMG-653751dd87d0c4.57015077.png')";
         $result = $conn->exec($sql);
         if ($result) {
             header('location: /comp1841/admin/displayUser.php');
@@ -33,29 +33,29 @@ if (isset($_POST["submit"])) {
 
 <body>
     <style type="text/css">
-    /* .container {
+        /* .container {
             margin: 20px auto;
         } */
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";

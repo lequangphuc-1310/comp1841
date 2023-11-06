@@ -11,20 +11,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $password = $_POST['password'];
     $email = $_POST['email'];
 
-    if (!empty($name) && !empty($password) && !is_numeric($name) && !is_numeric($email)) {
+    if (!empty($name) && !empty($password)) {
 
         //save to database
         $user_id = random_num(20);
-        $user_image = '';
+        $checkExistedAccount = $conn->query("select * from `user` where `name` = '$name'");
+        $dExistedAccount = $checkExistedAccount->fetch();
+        if ($dExistedAccount) {
+            echo '<script>alert("This username/email has already taken")</script>';
+        } else {
 
-        $query = "insert into `user` (name,password,email, image) values ('$name','$password', '$email', 'IMG-653751dd87d0c4.57015077.png')";
+            $query = "insert into `user` (name,password,email, image) values ('$name','$password', '$email', 'IMG-653751dd87d0c4.57015077.png')";
 
-        $result = $conn->query($query);
+            $result = $conn->query($query);
 
-        header("Location: login.php");
-        die;
+            header("Location: login.php");
+        }
     } else {
-        // echo "Please enter some valid information!";
+        echo "<script>alert('Please enter name and password')</script>";
     }
 }
 ?>
@@ -35,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SignUp</title>
     <link href="csslogin.css?v=<?php echo time(); ?>" rel="stylesheet">
 </head>
 

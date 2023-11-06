@@ -256,7 +256,7 @@ input#searchTextInput {
 .result-search {
     height          : 20em;
     width           : 75%;
-    background-color: #ddd;
+    background-color: #e8fffa;
     margin-top      : 1em;
     display         : flex;
     flex-direction  : column;

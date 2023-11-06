@@ -7,13 +7,13 @@
 
 <body>
     <style>
-        .btn-blue {
-            background-color: #381DDB !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            cursor: pointer;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -80,7 +80,8 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                 <div class="question">
                     <div class="question-title">
                         <div class='question-title-content'>
-                            <div class="akser-avt"><a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
+                            <div class="akser-avt"><a
+                                    href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
                                     <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/<?php echo $askerImage; ?>)
                     center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
                                     </div>
@@ -92,7 +93,8 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                     echo $title
                                     ?>
                                 </div>
-                                <div class='question-title-content-down-name'><a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
+                                <div class='question-title-content-down-name'><a
+                                        href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
                                         <?php
                                         echo $name;
                                         ?></a><span> - </span>
@@ -120,12 +122,16 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                             <?php
                             if ($_SESSION['user_id'] == $askerUserId) { ?>
 
-                                <div class="question-title-extra-child edit-delete">
-                                    <button class='edit-post'><a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>"><i class="far fa-edit"></i></a></button>
-                                </div>
-                                <div class="question-title-extra-child edit-delete">
-                                    <button class='delete-post'><a href="/comp1841/crud/delete.php?postId=<?php echo $postId; ?>"><i class="fas fa-trash"></i></a></button>
-                                </div>
+                            <div class="question-title-extra-child edit-delete">
+                                <button class='edit-post'><a
+                                        href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>"><i
+                                            class="far fa-edit"></i></a></button>
+                            </div>
+                            <div class="question-title-extra-child edit-delete">
+                                <button class='delete-post'><a
+                                        href="/comp1841/crud/delete.php?postId=<?php echo $postId; ?>"><i
+                                            class="fas fa-trash"></i></a></button>
+                            </div>
                             <?php } ?>
                         </div>
                     </div>
@@ -137,11 +143,12 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                         </div>
 
                         <?php if ($imagePost) { ?>
-                            <hr>
-                            <div class="question-content-img">
-                                <div class='question-content-img-content' style="background: url(/comp1841/crud/askPage/uploads/<?php echo $imagePost; ?>) center center no-repeat; background-size: contain">
-                                </div>
+                        <hr>
+                        <div class="question-content-img">
+                            <div class='question-content-img-content'
+                                style="background: url(/comp1841/crud/askPage/uploads/<?php echo $imagePost; ?>) center center no-repeat; background-size: contain">
                             </div>
+                        </div>
                         <?php } ?>
                     </div>
                     <div class="existed-answer">
@@ -164,27 +171,34 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                             }
 
                         ?>
-                            <div class="each-existed-answer">
-                                <div class="answer-avt">
-                                    <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $answererId; ?>">
-                                        <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/<?php echo $answerAuthorImage; ?>)
+                        <div class="each-existed-answer">
+                            <div class="answer-avt">
+                                <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $answererId; ?>">
+                                    <div class="nav-user-avt-img"
+                                        style="background: url(/comp1841/crud/user/uploads/<?php echo $answerAuthorImage; ?>)
                                             center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="answer-text"><span class="answerAuthorName"><a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $answererId; ?>">
-                                            <?php echo $answerAuthorName; ?></a></span> &nbsp;-&nbsp;
-                                    <span class="existedAnswer"><?php echo $existedAnswer; ?></span>&nbsp;-&nbsp;<span class="answerAuthorEmail"><?php echo $answerAuthorEmail; ?></span>&nbsp;-&nbsp;
-                                    <span class="answerAuthorPublished"><?php echo $answerAuthorPublished; ?></span>
-                                    <?php
-                                    if ($_SESSION['user_id'] == $answererId) { ?>
-                                        <span class="answerAuthorEditDelete">
-                                            <button><a href="/comp1841/crud/home/answerEdit.php?answerId=<?php echo $answerAuthorId; ?>"><i class="far fa-edit"></i></button>
-                                            <button><a href="/comp1841/crud/delete.php?answerId=<?php echo $answerAuthorId; ?>"><i class="fas fa-trash"></i></a></button>
-                                        </span>
-                                    <?php } ?>
-                                </div>
+                                    </div>
+                                </a>
                             </div>
+                            <div class="answer-text"><span class="answerAuthorName"><a
+                                        href="/comp1841/crud/user/userInfo.php?userId=<?php echo $answererId; ?>">
+                                        <?php echo $answerAuthorName; ?></a></span> &nbsp;-&nbsp;
+                                <span class="existedAnswer"><?php echo $existedAnswer; ?></span>&nbsp;-&nbsp;<span
+                                    class="answerAuthorEmail"><?php echo $answerAuthorEmail; ?></span>&nbsp;-&nbsp;
+                                <span class="answerAuthorPublished"><?php echo $answerAuthorPublished; ?></span>
+                                <?php
+                                    if ($_SESSION['user_id'] == $answererId) { ?>
+                                <span class="answerAuthorEditDelete">
+                                    <button><a
+                                            href="/comp1841/crud/home/answerEdit.php?answerId=<?php echo $answerAuthorId; ?>"><i
+                                                class="far fa-edit"></i></button>
+                                    <button><a
+                                            href="/comp1841/crud/delete.php?answerId=<?php echo $answerAuthorId; ?>"><i
+                                                class="fas fa-trash"></i></a></button>
+                                </span>
+                                <?php } ?>
+                            </div>
+                        </div>
                         <?php
                         }
                         ?>
@@ -217,7 +231,8 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                 }
                             }
                             ?>
-                            <textarea placeholder='Type something...' class='textArea' name='answer' rows="10" cols="100" style="resize: none;"></textarea>
+                            <textarea placeholder='Type something...' class='textArea' name='answer' rows="10"
+                                cols="100" style="resize: none;"></textarea>
                             <div class="submit-answer">
                                 <input class="btn-submit" value='Submit Answer' type='submit' name='submitAnswer' />
                             </div>
@@ -231,9 +246,9 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
     </div>
 
     <script type='text/javascript'>
-        document.querySelector('.question-content-img').addEventListener('click', function() {
-            document.querySelector('.question-content-img-content').classList.toggle('large')
-        })
+    document.querySelector('.question-content-img').addEventListener('click', function() {
+        document.querySelector('.question-content-img-content').classList.toggle('large')
+    })
     </script>
 
 </body>

@@ -249,3 +249,7 @@ button.btnSearch-nav {
 .logout:hover {
     background-color: #FC5252;
 }
+
+.nav-child-search a {
+    color: #000 !important;
+}
