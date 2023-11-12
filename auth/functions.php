@@ -57,6 +57,7 @@ function mysql_escape_mimic($inp)
 function importImage($fileName)
 {
 	include '/xampp/htdocs/comp1841/auth/connection.php';
+	include("/xampp/htdocs/comp1841/toast/toast.php");
 	if (isset($fileName)) {
 
 		// echo "<pre>";
@@ -71,10 +72,13 @@ function importImage($fileName)
 
 
 		if ($error === 0) {
-			if ($img_size / 1024 > 100000) {
+			if ($img_size / 1024 > 10000) {
 				$messageTooLarge = "Sorry, your file is too large.";
-				// header("Location: importImage.php?error=$messageTooLarge");
-				echo "<script>window.location.href='/comp1841/crud/user/importImage.php?error=$messageTooLarge';</script>";
+?>
+				<script>
+					showError('<?php echo $messageTooLarge; ?>')
+				</script>
+				<?php
 			} else {
 				$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
 				$img_ex_lc = strtolower($img_ex);
@@ -106,8 +110,11 @@ function importImage($fileName)
 
 
 					$messageInvalidType = "You can\'t upload files of this type";
-					// // // // header("Location: importImage.php?error=$messageInvalidType");
-					echo "<script>window.location.href='/comp1841/crud/user/importImage.php?error=$messageInvalidType';</script>";
+				?>
+					<script>
+						showError('<?php echo $messageInvalidType; ?>')
+					</script>
+<?php
 				}
 			}
 		} else {

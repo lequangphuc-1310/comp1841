@@ -17,18 +17,18 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
 
 <body>
     <style>
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
 
-        .btn.btn-primary.my-3 a {
-            color: #fff;
-        }
+    .btn.btn-primary.my-3 a {
+        color: #fff;
+    }
 
-        .btn.btn-primary.my-3 a:hover {
-            opacity: 0.8;
-        }
+    .btn.btn-primary.my-3 a:hover {
+        opacity: 0.8;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -37,9 +37,11 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
     <div class="container">
         <h1 class='title'>Display Posts</h1>
         <div class="col-12">
-            <div class="btn btn-primary my-3"><a href='/comp1841/crud/askPage/askPage.php'>Create
+            <a href='/comp1841/crud/askPage/askPage.php'>
+                <div class="btn btn-primary my-3">Create
                     new
-                    post</a></div>
+                    post</div>
+            </a>
         </div>
         <table class="w3-table-all">
             <thead>

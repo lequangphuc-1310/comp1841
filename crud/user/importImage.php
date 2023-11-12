@@ -130,9 +130,6 @@
     include '/xampp/htdocs/comp1841/crud/nav/nav.php';
     ?>
     <div class="import-img-container">
-        <?php if (isset($_GET['error'])) : ?>
-            <p><?php echo $_GET['error']; ?></p>
-        <?php endif ?>
         <div class="import-img-content">
             <h2>Edit Avatar</h2>
             <form method="post" enctype="multipart/form-data">
@@ -149,7 +146,7 @@
                             Change
                             Image</label>
                         <input type="file" name="inputImage" id='changeImage'>
-                        <input type="submit" name="submit" value="Change Image" class='changeImageBtn'>
+                        <input type="submit" name="submit" value="Check Image" class='changeImageBtn'>
                     </div>
                     <div class="image-btn-options-right">
                         <input type='submit' name="submitSave" value='Save Changes' class='confirmChanges'>
@@ -190,5 +187,5 @@ if (isset($_POST['submit']) && isset($_FILES['inputImage'])) {
 
 if (isset($_POST['submitSave'])) {
     $_SESSION['user_image'] = $_SESSION['new_user_image'];
-    echo '<script>window.location.href="/comp1841/crud/user/userInfo.php?userId=' . $_SESSION['user_id'] . '"</script>';
+    echo '<script>window.location.href="/comp1841/crud/user/userInfo.php?userId=' . $_SESSION['user_id'] . '&success"</script>';
 }

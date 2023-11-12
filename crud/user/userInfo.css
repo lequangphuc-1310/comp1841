@@ -16,9 +16,9 @@
 }
 
 .user-intro-img {
-    height         : 120px;
+    height         : 110px;
     border         : 1px solid green;
-    width          : 120px;
+    width          : 110px;
     margin         : 10px 15px;
     /* margin-left : 4em; */
     display        : flex;

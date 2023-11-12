@@ -13,20 +13,19 @@
 <body>
     <?php
     include '/xampp/htdocs/comp1841/crud/nav/nav.php';
-    ?>
-    <?php
     $userInfoId = $_GET['userId'];
-    ?>
-
-    <style>
-
-
-    </style>
-    <?php
     $userId = $_SESSION['user_id'];
     ?>
+    <?php
+    include("/xampp/htdocs/comp1841/toast/toast.php");
 
-
+    if (array_key_exists('success', $_GET)) {
+        $updateImageSuccess = 'Successfully updated your avatar';
+    ?>
+    <script>
+    showSuccess('<?php echo $updateImageSuccess; ?>')
+    </script>
+    <?php } ?>
 
     <div class="user-info-container">
         <div class="user-intro">
@@ -44,11 +43,11 @@
                         <?php
                         if (!$img) {
                             echo '<div class="your-avt-img" style="background: url(/comp1841/crud/user/uploads/IMG-653751dd87d0c4.57015077.png)
-                            center center no-repeat; height: 110px; width: 110px; padding: 3px;background-size: contain">
+                            center center no-repeat; height: 110px; width: 110px; padding: 1px;background-size: contain; border-radius: 8px">
                         </div>';
                         } else {
                             echo '
-                            <div class="your-avt-img" style="background: transparent url(/comp1841/crud/user/uploads/' .  $img . ') center center no-repeat; height: 110px; width: 110px; padding: 3px;background-size: contain">
+                            <div class="your-avt-img" style="background: transparent url(/comp1841/crud/user/uploads/' .  $img . ') center center no-repeat; height: 110px; width: 110px; padding: 1px;background-size: contain; border-radius: 8px">
                                 </div>
                                 ';
                         }
@@ -59,13 +58,14 @@
                 $userInfoId = $_GET['userId'];
                 if ($userInfoId == $_SESSION['user_id']) {
                     echo '
+                    <a class="changeImage" href="/comp1841/crud/user/importImage.php">
                     <div class="user-intro-edit-img">
                         <div class="user-intro-edit-img-changeImage">
-                            <a class="changeImage" href="/comp1841/crud/user/importImage.php"><i class="far fa-edit">
-                            Edit Your Avatar</i>
+                            <i class="far fa-edit"></i>
+                            Edit Your Avatar
+                            </div>
+                            </div>
                             </a>
-                        </div>
-                    </div>
                     ';
                 }
                 ?>
@@ -143,7 +143,7 @@
                         <h3>Answers</h3>
                         <div class="user-details-existed-content">
                             <?php
-                            $sql = "select user.name,user.id,user.email,answer.* from user, answer where user.id=answer.user_id and user.id=$userId;";
+                            $sql = "select user.name,user.id,user.email,answer.* from user, answer where user.id=answer.user_id and user.id=$userInfoId;";
                             $result = $conn->query($sql);
                             $d = $result->fetchAll();
 
@@ -182,6 +182,7 @@
             }
         }
         </script>
+
 </body>
 
 </html>

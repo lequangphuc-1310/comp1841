@@ -72,6 +72,16 @@ function showSuccessLogin() {
     )
 }
 
+function showSuccess(data) {
+    toast({
+        title: 'Success',
+        message: data,
+        type: 'success',
+        duration: 2000
+    }
+    )
+}
+
 function showSuccessSignUp() {
     toast({
         title: 'Success!',
