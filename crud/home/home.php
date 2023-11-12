@@ -17,11 +17,17 @@
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+    include("/xampp/htdocs/comp1841/toast/toast.php");
+    if (array_key_exists('success', $_GET)) {
     ?>
-    <?php
+    <script>
+    showSuccessLogin()
+    </script>
+    <?php }
     // $postId = $_GET['postId'];
     if (array_key_exists('postId', $_GET)) {
         $postId = $_GET['postId'];
+        $_SESSION['post_id'] = $postId;
         $sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module, post.imagePost from `user`, `post` where post.user_id=user.id and post.id=$postId;";
         $result = $conn->query($sql);
         $d = $result->fetch();
@@ -130,7 +136,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                             <div class="question-title-extra-child edit-delete">
                                 <button class='delete-post'><a
                                         href="/comp1841/crud/delete.php?postId=<?php echo $postId; ?>"><i
-                                            class="fas fa-trash"></i></a></button>
+                                            class="fas fa-trash"></i></i></button>
                             </div>
                             <?php } ?>
                         </div>
@@ -153,7 +159,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                     </div>
                     <div class="existed-answer">
                         <?php
-                        $sqlExistedAnswer = "select user.image, user.name, user.email,answer.* from `user`, `answer` where answer.user_id=user.id and post_id=$postId;";
+                        $sqlExistedAnswer = "select user.image, user.name, user.email,answer.* from `user`, `answer` where answer.user_id=user.id and post_id=$postId order by count_ans desc;";
                         $resultExistedAnswer = $conn->query($sqlExistedAnswer);
                         $datasqlExistedAnswer = $resultExistedAnswer->fetchAll();
                         foreach ($datasqlExistedAnswer as $row) {
@@ -197,6 +203,9 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                                 class="fas fa-trash"></i></a></button>
                                 </span>
                                 <?php } ?>
+                            </div>
+                            <div class="answer-like" onclick='incrementCountAns()'>
+                                <i class="fas fa-thumbs-up like-icon"></i>
                             </div>
                         </div>
                         <?php

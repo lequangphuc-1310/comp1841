@@ -19,6 +19,10 @@
             cursor: pointer;
         }
 
+        .btn-blue:hover {
+            opacity: 0.8;
+        }
+
         input {
             border: 1px solid black !important;
         }
@@ -66,7 +70,8 @@
                     try {
                         $sql = "update `answer` set answer='$answer' where id=$answerId";
                         $result = $conn->query($sql);
-                        echo "<script>window.location.href='/comp1841/crud/user/viewPosts.php';</script>";
+                        echo "<script>window.location.href='/comp1841/crud/home/home.php?postId=" . $_SESSION['post_id'] . "';</script>";
+                        unset($_SESSION['post_id']);
                         //     }
 
                         echo $answer;

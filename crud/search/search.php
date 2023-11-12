@@ -26,8 +26,7 @@
             <div class="search-container-homeSearch">
                 <div class="up-container">
                     <div class="inputSearchUser">
-                        <input type="text" placeholder="Search..." name='user-input' id="searchTextInput"
-                            value='<?php echo $user_input; ?>' class="form-control">
+                        <input type="text" placeholder="Search..." name='user-input' id="searchTextInput" value='<?php echo $user_input; ?>' class="form-control">
                     </div>
                 </div>
                 <div class="down-container">
@@ -60,16 +59,17 @@
                             $email = $row['email'];
                             $image = $row['image'];
                 ?>
-                <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $id; ?>">
-                    <div class="each-user-found">
-                        <div class="user-avt"
-                            style='background: url(/comp1841/crud/user/uploads/<?php echo $image; ?>) center center no-repeat; background-size: contain; border-radius: 50%;'>
-                        </div>
-                        <div class="user-name"><?php echo $name; ?></div>
-                        <div class="user-email"><?php echo $email; ?></div>
-                    </div>
-                </a>
-                <?php
+                            <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $id; ?>">
+                                <div class="each-user-found">
+                                    <div class="user-avt">
+                                        <div style='border: 1px solid green; width: 40px; height: 40px; background: url(/comp1841/crud/user/uploads/<?php echo $image; ?>) center center no-repeat; background-size: contain; border-radius: 50%;'>
+                                        </div>
+                                    </div>
+                                    <div class="user-name"><?php echo $name; ?></div>
+                                    <div class="user-email"><?php echo $email; ?></div>
+                                </div>
+                            </a>
+                        <?php
                         }
                     }
                 } elseif (isset($_POST['post'])) {
@@ -86,16 +86,16 @@
                             $module_name = $dataResultGetModule['module_name'];
                             $module_id = $dataResultGetModule['module_id'];
                         ?>
-                <a href="/comp1841/crud/home/home.php?postId=<?php echo $id; ?>">
-                    <div class="each-post-found">
-                        <div class="post-title">
-                            <?php echo $title; ?>
-                        </div>
-                        <div class="post-details"><?php echo $details; ?></div>
-                        <div class="post-module-id"><?php echo $module_id; ?></div>
-                    </div>
-                </a>
-                <?php
+                            <a href="/comp1841/crud/home/home.php?postId=<?php echo $id; ?>">
+                                <div class="each-post-found">
+                                    <div class="post-title">
+                                        <?php echo $title; ?>
+                                    </div>
+                                    <div class="post-details"><?php echo $details; ?></div>
+                                    <div class="post-module-id"><?php echo $module_id; ?></div>
+                                </div>
+                            </a>
+                        <?php
                         }
                     }
                 } elseif (isset($_POST['module'])) {
@@ -106,10 +106,10 @@
                             $module_name = $row['module_name'];
                             $module_id = $row['module_id'];
                         ?>
-                <div class="each-module-found">
-                    <div class="module_name"><?php echo $module_name; ?></div>
-                    <div class="module_id"><?php echo $module_id; ?></div>
-                </div>
+                            <div class="each-module-found">
+                                <div class="module_name"><?php echo $module_name; ?></div>
+                                <div class="module_id"><?php echo $module_id; ?></div>
+                            </div>
                 <?php
                         }
                     }

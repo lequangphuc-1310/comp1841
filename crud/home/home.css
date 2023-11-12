@@ -170,7 +170,6 @@ a {
     display         : flex;
     flex-wrap       : wrap;
     flex-direction  : row;
-    width           : 100%;
     /* gap          : 0.5em; */
     background-color: #EFECFC;
     align-items     : start;
@@ -188,7 +187,27 @@ a {
 }
 
 .answer-text {
-    width: 90%;
+    width: 80%;
+}
+
+.answer-like {
+    width          : 10%;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+}
+
+.answer-like i {
+    font-size: 1.6em;
+    cursor   : pointer;
+}
+
+.answer-like i:hover {
+    color: #381DDB;
+}
+
+.like-i.active {
+    color: #381DDB !important;
 }
 
 .answer-avt-img {

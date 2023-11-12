@@ -38,18 +38,19 @@
             <div class="chat-user-info">
                 <div class="goBack">
                     <a href="/comp1841/crud/home/home.php">
-                        <i class="fas fa-chevron-left"></i>
                         <span>Back</span>
                     </a>
                 </div>
                 <div class="user-intro-details">
                     <div class="user-intro-details-img">
-                        <div class='user-intro-details-img-avt' style='    width: 50px;
+                        <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $chatWith['id']; ?>">
+                            <div class='user-intro-details-img-avt' style='width: 50px;
                         height: 50px;
                         background: url(/comp1841/crud/user/uploads/<?php echo $chatWith['image']; ?>)center center no-repeat;
                         border-radius: 50%;
                         background-size: contain;'>
-                        </div>
+                            </div>
+                        </a>
                     </div>
                     <div class="user-intro-details-text">
                         <h4><?php echo $chatWith['name']; ?></h4>

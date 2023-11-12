@@ -135,7 +135,7 @@ $thisUserId = $_SESSION['user_id'];
                         $img = $d['image'];
                         if ($img) { ?>
                         <div class="nav-user-avt-img"
-                            style="background: transparent url(/comp1841/crud/user/uploads/<?php echo $img; ?>) center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
+                            style="background: transparent url(/comp1841/crud/user/uploads/<?php echo $_SESSION['user_image']; ?>) center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
                         </div>
                         <?php } else { ?>
                         <div class="nav-user-avt-img"

@@ -84,13 +84,15 @@
                 <div class="user-intro-detail-extra"><?php echo $userEmail ?></div>
                 <div class="chatBtn">
                     <?php if ($_SESSION['user_id'] != $userInfoId) { ?>
+                    <a href='/comp1841/chat/chat.php?user=<?php echo $userInfoId; ?>'>
                         <button class="btnChat">
-                            <a href='/comp1841/chat/chat.php?user=<?php echo $userInfoId; ?>'>Chat with
-                                <?php echo $userName; ?></a>
+                            Chat with
+                            <?php echo $userName; ?>
                         </button>
+                    </a>
                     <?php } else { ?>
-                        <button class="btnChat" onclick="openChat()">Chat
-                        </button>
+                    <button class="btnChat" onclick="openChat()">Chat
+                    </button>
                     <?php } ?>
                 </div>
 
@@ -172,13 +174,13 @@
             <?php include '/xampp/htdocs/comp1841/chat/homeChat.php'; ?>
         </div>
         <script>
-            function openChat() {
-                let areaText = document.getElementById('chatArea');
-                let btnChat = document.getElementsByClassName('btnChat');
-                if (areaText.style.display === "none") {
-                    areaText.style.display = "block";
-                }
+        function openChat() {
+            let areaText = document.getElementById('chatArea');
+            let btnChat = document.getElementsByClassName('btnChat');
+            if (areaText.style.display === "none") {
+                areaText.style.display = "block";
             }
+        }
         </script>
 </body>
 

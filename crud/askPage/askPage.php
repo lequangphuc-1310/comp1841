@@ -12,26 +12,30 @@
 
 <body>
     <style type="text/css">
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    input {
-        border: 1px solid black !important;
-    }
+        .btn-blue:hover {
+            opacity: 0.8;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
+
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";

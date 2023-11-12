@@ -21,14 +21,26 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
             text-align: center;
             margin-top: 20px;
         }
+
+        .btn.btn-primary.my-3 a {
+            color: #fff;
+        }
+
+        .btn.btn-primary.my-3 a:hover {
+            opacity: 0.8;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
 
     ?>
     <div class="container">
-
         <h1 class='title'>Display Posts</h1>
+        <div class="col-12">
+            <div class="btn btn-primary my-3"><a href='/comp1841/crud/askPage/askPage.php'>Create
+                    new
+                    post</a></div>
+        </div>
         <table class="w3-table-all">
             <thead>
                 <tr class="w3-light-grey w3-hover-red">
@@ -61,7 +73,7 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
                         <td>$email</td>
                         <td>$title</td>
                         <td>
-                            <button class='btn btn-danger'><a class='text-light text-decoration-none' href='/comp1841/crud/home/home.php?postId=" . $id . "'>Go to this post</a></button>
+                        <a class='text-light text-decoration-none' href='/comp1841/crud/home/home.php?postId=" . $id . "'><button class='btn btn-danger'>Go to this post</button></a>
                         </td>
                     </tr> ";
                 }

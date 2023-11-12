@@ -59,19 +59,22 @@ function importImage($fileName)
 	include '/xampp/htdocs/comp1841/auth/connection.php';
 	if (isset($fileName)) {
 
-		echo "<pre>";
-		print_r($fileName);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($fileName);
+		// echo "</pre>";
 
 		$img_name = $fileName['name'];
 		$img_size = $fileName['size'];
 		$tmp_name = $fileName['tmp_name'];
 		$error = $fileName['error'];
+		// print_r($img_size);
+
 
 		if ($error === 0) {
-			if ($img_size > 1250000) {
+			if ($img_size / 1024 > 100000) {
 				$messageTooLarge = "Sorry, your file is too large.";
-				header("Location: importImage.php?error=$messageTooLarge");
+				// header("Location: importImage.php?error=$messageTooLarge");
+				echo "<script>window.location.href='/comp1841/crud/user/importImage.php?error=$messageTooLarge';</script>";
 			} else {
 				$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
 				$img_ex_lc = strtolower($img_ex);
@@ -79,6 +82,7 @@ function importImage($fileName)
 				$allowed_exs = array("jpg", "jpeg", "png");
 
 				if (in_array($img_ex_lc, $allowed_exs)) {
+
 					$new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
 					$img_upload_path = 'uploads/' . $new_img_name;
 					move_uploaded_file($tmp_name, $img_upload_path);
@@ -91,15 +95,25 @@ function importImage($fileName)
 					// Insert into Database
 					$sql = "update `user` set image='$new_img_name' where id=$id";
 					$result = $conn->query($sql);
-					echo "<script>window.location.href='/comp1841/crud/user/userInfo.php?userId=$userId';</script>";
+					$sql2 = "select * from `user` where image='$new_img_name' and id=$id";
+					$result2 = $conn->query($sql2);
+					$result2fetch = $result2->fetch();
+					$dResult2 = $result2fetch['image'];
+					$_SESSION['new_user_image'] = $dResult2;
+					echo "<script>window.location.href='/comp1841/crud/user/importImage.php?userId=$userId';</script>";
 				} else {
-					$messageInvalidType = "You can't upload files of this type";
-					header("Location: importImage.php?error=$messageInvalidType");
+
+
+
+					$messageInvalidType = "You can\'t upload files of this type";
+					// // // // header("Location: importImage.php?error=$messageInvalidType");
+					echo "<script>window.location.href='/comp1841/crud/user/importImage.php?error=$messageInvalidType';</script>";
 				}
 			}
 		} else {
 			$unknownError = "unknown error occurred!";
-			header("Location: importImage.php?error=$unknownError");
+			// header("Location: importImage.php?error=$unknownError");
+			echo "<script>window.location.href='/xampp/htdocs/comp1841/crud/user/importImage.php?error=$unknownError;</script>";
 		}
 	} else {
 		// header("Location: importImage.php");

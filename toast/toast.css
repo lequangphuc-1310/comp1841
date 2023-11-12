@@ -1,0 +1,159 @@
+.btnOptions {
+    height        : 226px;
+    width         : 60%;
+    border        : 2px green solid;
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+}
+
+.btnOptions>div {
+    font-size  : 20px;
+    font-weight: 400;
+    padding    : 16px 0;
+    line-height: 30px;
+}
+
+.btnOptions>div:hover {
+    opacity: 0.6;
+    cursor : pointer;
+}
+
+.btn--success {
+    background-color: #47d864;
+    width           : 300px;
+    text-align      : center;
+    border-radius   : 15px;
+    margin-bottom   : 20px;
+    height          : 30px;
+}
+
+.btn--error {
+    background-color: red;
+    color           : #fff;
+    width           : 300px;
+    text-align      : center;
+    border-radius   : 15px;
+    margin-bottom   : 20px;
+    height          : 30px;
+}
+
+.btn--info {
+    background-color: blue;
+    color           : #fff;
+    width           : 300px;
+    text-align      : center;
+    border-radius   : 15px;
+    margin-bottom   : 20px;
+    height          : 30px;
+}
+
+
+#toast_container {
+    position: fixed;
+    top     : 32px;
+    right   : 32px;
+    z-index : 10000;
+}
+
+.toast {
+    display         : flex;
+    align-items     : center;
+    padding         : 20px 0;
+    background-color: #fff;
+    border-left     : 5px solid;
+    border-radius   : 2px;
+    box-shadow      : 0 5px 8px rgba(0, 0, 0, 0.08);
+    min-width       : 400px;
+    max-width       : 450px;
+    transition      : all linear 0.3s;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(calc(100% + 32px));
+        opacity  : 0;
+    }
+
+    to {
+        opacity  : 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.toast+.toast {
+    margin-top: 12px;
+}
+
+.toast_icon {
+    font-size: 20px;
+}
+
+.toast_icon,
+.toast_close {
+    padding: 0 16px;
+}
+
+.toast_body {
+    flex-grow: 1;
+}
+
+.toast_title {
+    font-size  : 16px;
+    font-weight: 600;
+    color      : #333;
+}
+
+.toast_msg {
+    font-size  : 14px;
+    margin-top : 4px;
+    color      : #555;
+    line-height: 1.6;
+    margin-top : 4px;
+}
+
+.toast_close {
+    font-size: 20px;
+    cursor   : pointer;
+    color    : #999;
+}
+
+.toast_close:hover {
+    opacity: 0.7;
+}
+
+.toast--success {
+    border-color: #47d864;
+}
+
+.toast--success .toast_icon {
+    color: #47d864;
+}
+
+.toast--error {
+    border-color: red;
+}
+
+.toast--error .toast_icon {
+    color: red;
+
+}
+
+.toast--info {
+    border-color: blue;
+
+}
+
+.toast--info .toast_icon {
+    color: blue;
+}
