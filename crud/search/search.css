@@ -1,26 +1,27 @@
 .search-container-homeSearch {
-    display       : flex;
-    flex-direction: column;
-    align-items   : center;
-    height        : 100%;
-    z-index       : 10;
-    width         : 75%;
-    gap           : 15px;
-    /* margin     : 2em 6em; */
-    border        : 1px solid #ddd;
-    border-radius : 0.5em;
-    box-shadow    : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px -8px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
+    height          : 100%;
+    z-index         : 10;
+    width           : 75%;
+    background-color: #fff;
+    gap             : 15px;
+    /* margin       : 2em 6em; */
+    border          : 1px solid #ddd;
+    border-radius   : 0.5em;
+    box-shadow      : 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px -8px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.15), 0px 8px 8px 0px rgba(0, 0, 0, 0.15);
 }
 
 
 .searchArea-body {
-    background-color: #fff;
-    display         : flex;
-    flex-direction  : column;
-    justify-content : center;
-    align-items     : center;
-    height          : 100%;
-    margin-top      : 1em;
+    /* background-color: #fff; */
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items    : center;
+    height         : 100%;
+    margin-top     : 1em;
 }
 
 .searchArea-body a {
@@ -261,6 +262,7 @@ input#searchTextInput {
     display         : flex;
     flex-direction  : column;
     gap             : 0.1em;
+    border-radius   : 0.5em;
     overflow-y      : auto;
     border-radius   : 0.2em;
 }
