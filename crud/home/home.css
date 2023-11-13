@@ -319,8 +319,7 @@ button.delete-post:hover {
     background-color: #000;
 }
 
-button.edit-post:hover a,
-button.delete-post:hover a {
+.edit-delete a:hover i {
     color: #fff;
 }
 
