@@ -7,7 +7,7 @@ include("/xampp/htdocs/comp1841/toast/toast.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    //something was posted
+
     $name = $_POST['name'];
     $password = $_POST['password'];
     $email = $_POST['email'];
@@ -15,24 +15,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (!empty($name) && !empty($password) && !empty($email) && !empty($confirm_password)) {
         //save to database
-        $user_id = random_num(20);
         $checkExistedAccount = $conn->query("select * from `user` where `name` = '$name' or `email` = '$email'");
         $dExistedAccount = $checkExistedAccount->fetch();
         if ($password != $confirm_password) {
             $NotMatchedConfirmPassword = 'Passwords do not match';
 ?>
-<script>
-showError('<?php echo $NotMatchedConfirmPassword; ?>');
-</script>
-<?php
+            <script>
+                showError('<?php echo $NotMatchedConfirmPassword; ?>');
+            </script>
+            <?php
         } else {
             if ($dExistedAccount) {
                 $ExistedNameOrEmail = 'This username/email has already taken by another user!'
             ?>
-<script>
-showError('<?php echo $ExistedNameOrEmail; ?>');
-</script>
-<?php
+                <script>
+                    showError('<?php echo $ExistedNameOrEmail; ?>');
+                </script>
+        <?php
             } else {
 
                 $query = "insert into `user` (name,password,email, image) values ('$name','$password', '$email', 'IMG-653751dd87d0c4.57015077.png')";
@@ -45,9 +44,9 @@ showError('<?php echo $ExistedNameOrEmail; ?>');
     } else {
         $notFillAll = 'Please fill all input to Signup!'
         ?>
-<script>
-showError('<?php echo $notFillAll; ?>');
-</script>
+        <script>
+            showError('<?php echo $notFillAll; ?>');
+        </script>
 <?php
     }
 }
@@ -95,13 +94,11 @@ showError('<?php echo $notFillAll; ?>');
                             </div>
                             <div class="form-login-content">
                                 <label for="name" class='login-label-signUp'>PASSWORD</label>
-                                <input class="login-input" type="text" id='password' name='password'
-                                    placeholder="Password" />
+                                <input class="login-input" type="text" id='password' name='password' placeholder="Password" />
                             </div>
                             <div class="form-login-content">
                                 <label for="confirm_password" class='login-label-signUp'>CONFIRM YOUR PASSWORD</label>
-                                <input class="login-input" type="text" id='confirm_password' name='confirm_password'
-                                    placeholder="Confirm Your Password" />
+                                <input class="login-input" type="text" id='confirm_password' name='confirm_password' placeholder="Confirm Your Password" />
                             </div>
                         </div>
                         <div class="btn-login-signUp"><input type='submit' class='login-submit-btn' value='Sign Up' />
@@ -114,9 +111,6 @@ showError('<?php echo $notFillAll; ?>');
     </div>
     <?php
     ?>
-    <!-- <script>
-        showError();
-    </script> -->
 </body>
 
 </html>

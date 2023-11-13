@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ChitChat</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" type="text/css" href="/comp1841/chat/chat.css?v=<?php echo time(); ?>" />
 </head>
@@ -133,11 +133,6 @@
         // inputChat.value = '';
     }
 
-
-    // let scrollDown = function() {
-    //     chatBox.scrollTop = chatBox.scrollHeight;
-    // }
-
     let scrollDown = function() {
         let chatBox = document.querySelector('#chat-content');
         chatBox.scrollTop = chatBox.scrollHeight;
@@ -181,10 +176,7 @@
         }
 
         fechData();
-        /** 
-        auto update last seen 
-        every 0.5 sec
-        **/
+        // auto update last seen every 0.5 sec
         setInterval(fechData, 500);
     });
 </script>

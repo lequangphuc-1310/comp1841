@@ -12,30 +12,30 @@
 
 <body>
     <style type="text/css">
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    .btn-blue:hover {
-        background-color: #FC5252;
-    }
+        .btn-blue:hover {
+            background-color: #FC5252;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -66,8 +66,6 @@
                         $result = $conn->exec($sql);
                         if ($result) {
                             echo "<script>window.location.href='/comp1841/crud/home/home.php';</script>";
-
-                            // echo 'success ask admin';
                         }
                     } catch (PDOException $e) {
                         die("Error: " . $e->getMessage());

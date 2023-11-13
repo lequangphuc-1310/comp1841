@@ -34,10 +34,7 @@ if (isset($_POST['submit'])) {
 
 
             if ($result && $countRow > 0) {
-
                 $user_data = $result->fetch();
-
-
 
                 if ($user_data['password'] === $password) {
                     $_SESSION['user_id'] = $user_data['id'];
@@ -68,7 +65,6 @@ if (isset($_POST['submit'])) {
             }
         } else {
             $userNotFound = "User not found!";
-            // header("Location: /comp1841/auth/login.php?error=$userNotFound");
             ?>
             <script>
                 showError('<?php echo $userNotFound; ?>');
@@ -77,7 +73,6 @@ if (isset($_POST['submit'])) {
         }
     } else {
         $missingParam = 'Please enter name and password';
-        // header("Location: /comp1841/auth/login.php?error=$missingParam");
         ?>
         <script>
             showError('<?php echo $missingParam; ?>');

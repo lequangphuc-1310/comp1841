@@ -145,7 +145,7 @@
                         <label for="changeImage" class="label-changeImage"><i class="fas fa-cloud-upload-alt"></i>
                             Change
                             Image</label>
-                        <input type="file" name="inputImage" id='changeImage'>
+                        <input type="file" name="inputImage" id='changeImage' onchange="changeImageBtn.submit()">
                         <input type="submit" name="submit" value="Check Image" class='changeImageBtn'>
                     </div>
                     <div class="image-btn-options-right">
@@ -157,7 +157,11 @@
             </form>
         </div>
     </div>
-
+    <script>
+        document.getElementsByClassName('changeImageBtn').onChange = function() {
+            document.querySelector('.changeImageBtn').submit();
+        }
+    </script>
 </body>
 
 </html>
@@ -166,17 +170,6 @@
 if (isset($_POST['submit']) && isset($_FILES['inputImage'])) {
 
     importImage($_FILES['inputImage']);
-    // echo "<pre>";
-    // print_r($_FILES['inputImage']);
-    // echo "</pre>";
-    // $img_name = $_FILES['inputImage']['name'];
-    // $img_size = $_FILES['inputImage']['size'];
-    // $tmp_name = $_FILES['inputImage']['tmp_name'];
-    // $error = $_FILES['inputImage']['error'];
-    // echo "<p>";
-
-    // print_r($img_size);
-    // echo "</p>";
 
 ?>
     <script>

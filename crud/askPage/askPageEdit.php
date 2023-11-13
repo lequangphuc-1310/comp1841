@@ -4,37 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="/comp1841/crud/askPage/askPage.css?v=<?php echo time(); ?>" />
     <title>Edit your Post</title>
 </head>
 
 <body>
     <style type="text/css">
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    .btn-blue:hover {
-        opacity: 0.8;
-    }
+        .btn-blue:hover {
+            opacity: 0.8;
+        }
 
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -59,8 +58,7 @@
                     <h4>What are the details of your problem</h4>
                     <label for="details">Introduce the problem and expand on what you put in the title. Minimum 20
                         characters.</label>
-                    <textarea name='details' id='details' rows="10" cols="50"
-                        style="resize: none;"><?php echo $getDetails; ?></textarea>
+                    <textarea name='details' id='details' rows="10" cols="50" style="resize: none;"><?php echo $getDetails; ?></textarea>
                 </div>
 
                 <div class='form-group col-8 content'>
@@ -128,9 +126,6 @@
                         $sql = "update `post` set title='$title', details='$details', imagePost='$new_img_name' where id=$postId ";
                         $result = $conn->query($sql);
                         echo "<script>window.location.href='/comp1841/crud/home/home.php?postId=$postId';</script>";
-                        //     }
-
-                        echo $title, $details, $postId;
                     } catch (PDOException $e) {
                         die("Error: " . $e->getMessage());
                     }

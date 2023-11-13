@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage User Request</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/comp1841/admin/contactUser.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
@@ -16,6 +15,11 @@
         .title {
             text-align: center;
             margin-top: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
         }
     </style>
     <?php

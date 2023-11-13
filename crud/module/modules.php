@@ -16,26 +16,33 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
 
 <body id='module'>
     <style>
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    .btn-blue:hover {
-        opacity: 0.8;
-    }
+        .btn-blue:hover {
+            opacity: 0.8;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
-
+    include "/xampp/htdocs/comp1841/toast/toast.php";
+    if (array_key_exists('success', $_GET)) {
+        $addModuleSuccess = 'Successfully added new module!';
+    ?>
+        <script>
+            showSuccess('<?php echo $addModuleSuccess; ?>')
+        </script>
+    <?php }
     ?>
     <div class="container">
 

@@ -43,12 +43,12 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
 
         <h1 class='title'>Display Users</h1>
         <div>
-            <button class='btn btn-blue my-5'>
-                <a class='text-light text-decoration-none' href="/comp1841/admin/addUser.php">
+            <a class='text-light text-decoration-none' href="/comp1841/admin/addUser.php">
+                <button class='btn btn-blue my-5'>
                     Add
                     User
-                </a>
-            </button>
+                </button>
+            </a>
         </div>
 
 

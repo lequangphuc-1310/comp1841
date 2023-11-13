@@ -46,19 +46,18 @@ $thisUserId = $_SESSION['user_id'];
                         </a>
 
                         <?php
-                        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
                         if ($_SESSION['user_id'] != $_SESSION['admin_id']) { ?>
-                        <a href='/comp1841/crud/user/contactAdmin.php'>
-                            <div class='category-item category-item-3'>
-                                Contact Administrator
-                            </div>
-                        </a>
+                            <a href='/comp1841/crud/user/contactAdmin.php'>
+                                <div class='category-item category-item-3'>
+                                    Contact Administrator
+                                </div>
+                            </a>
                         <?php } else { ?>
-                        <a href='/comp1841/admin/contactUser.php'>
-                            <div class='category-item category-item-3'>
-                                Manage Users' Request
-                            </div>
-                        </a>
+                            <a href='/comp1841/admin/contactUser.php'>
+                                <div class='category-item category-item-3'>
+                                    Manage Users' Request
+                                </div>
+                            </a>
                         <?php }
                         ?>
                     </div>
@@ -76,13 +75,13 @@ $thisUserId = $_SESSION['user_id'];
 
                 <?php
                 if ($_SESSION['user_id'] == $_SESSION['admin_id']) { ?>
-                <div class="nav-child-container">
-                    <a class='text-decoration-none' href='/comp1841/admin/displayUser.php'>
-                        <div class='nav-child'>View List
-                            Users
-                        </div>
-                    </a>
-                </div>
+                    <div class="nav-child-container">
+                        <a class='text-decoration-none' href='/comp1841/admin/displayUser.php'>
+                            <div class='nav-child'>View List
+                                Users
+                            </div>
+                        </a>
+                    </div>
                 <?php    }
                 ?>
 
@@ -108,8 +107,7 @@ $thisUserId = $_SESSION['user_id'];
                     </button>
                 </div>
                 <div class="nav-child-search">
-                    <a href='/comp1841/crud/search/search.php'><button class="btnSearch-nav"><i
-                                class="fas fa-search"></i>
+                    <a href='/comp1841/crud/search/search.php'><button class="btnSearch-nav"><i class="fas fa-search"></i>
                         </button>
                     </a>
                 </div>
@@ -117,11 +115,11 @@ $thisUserId = $_SESSION['user_id'];
             </div>
             <div class="nav-child-right">
                 <?php if ($_SESSION['user_id'] != $_SESSION['admin_id']) { ?>
-                <div class="admin-notification" onclick="seenNotification()">
-                    <a href='/comp1841/crud/user/adminReply.php' style='color: #fff'>
-                        Notifications
-                    </a>
-                </div>
+                    <div class="admin-notification" onclick="seenNotification()">
+                        <a href='/comp1841/crud/user/adminReply.php' style='color: #fff'>
+                            Notifications
+                        </a>
+                    </div>
                 <?php
                 }
                 ?>
@@ -134,13 +132,11 @@ $thisUserId = $_SESSION['user_id'];
                         $d = $result->fetch();
                         $img = $d['image'];
                         if ($img) { ?>
-                        <div class="nav-user-avt-img"
-                            style="background: transparent url(/comp1841/crud/user/uploads/<?php echo $_SESSION['user_image']; ?>) center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
-                        </div>
+                            <div class="nav-user-avt-img" style="background: transparent url(/comp1841/crud/user/uploads/<?php echo $_SESSION['user_image']; ?>) center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
+                            </div>
                         <?php } else { ?>
-                        <div class="nav-user-avt-img"
-                            style="background: transparent url(/comp1841/crud/user/uploads/IMG-653751dd87d0c4.57015077.png) center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
-                        </div>
+                            <div class="nav-user-avt-img" style="background: transparent url(/comp1841/crud/user/uploads/IMG-653751dd87d0c4.57015077.png) center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
+                            </div>
                         <?php }
                         ?>
                     </a>
@@ -164,19 +160,19 @@ $thisUserId = $_SESSION['user_id'];
     </div>
     <script src='/comp1841/crud/nav/nav.js?v=<?php echo time(); ?>'></script>
     <script>
-    function openChat() {
-        let areaText = document.getElementById('chatArea');
-        let btnChat = document.getElementsByClassName('btnChat');
-        if (areaText.style.display === "none") {
-            areaText.style.display = "block";
+        function openChat() {
+            let areaText = document.getElementById('chatArea');
+            let btnChat = document.getElementsByClassName('btnChat');
+            if (areaText.style.display === "none") {
+                areaText.style.display = "block";
+            }
         }
-    }
 
-    function seenNotification() {
-        let notificationBtn = document.querySelector('.admin-notification');
-        let dotNotification = document.querySelector('.dot-notification');
-        <?php $unread_admin = 'read'; ?>
-    }
+        function seenNotification() {
+            let notificationBtn = document.querySelector('.admin-notification');
+            let dotNotification = document.querySelector('.dot-notification');
+            <?php $unread_admin = 'read'; ?>
+        }
     </script>
 </body>
 

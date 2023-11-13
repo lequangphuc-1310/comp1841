@@ -22,24 +22,6 @@ function check_login($conn)
 	}
 }
 
-function random_num($length)
-{
-
-	$text = "";
-	if ($length < 5) {
-		$length = 5;
-	}
-
-	$len = rand(4, $length);
-
-	for ($i = 0; $i < $len; $i++) {
-		$text .= rand(0, 9);
-	}
-
-	return $text;
-}
-
-
 function mysql_escape_mimic($inp)
 {
 
@@ -60,15 +42,10 @@ function importImage($fileName)
 	include("/xampp/htdocs/comp1841/toast/toast.php");
 	if (isset($fileName)) {
 
-		// echo "<pre>";
-		// print_r($fileName);
-		// echo "</pre>";
-
 		$img_name = $fileName['name'];
 		$img_size = $fileName['size'];
 		$tmp_name = $fileName['tmp_name'];
 		$error = $fileName['error'];
-		// print_r($img_size);
 
 
 		if ($error === 0) {
@@ -131,7 +108,6 @@ function importImage($fileName)
 
 
 // setting up the time Zone
-// It Depends on your location or your P.c settings
 define('TIMEZONE', 'Asia/Ho_Chi_Minh');
 date_default_timezone_set(TIMEZONE);
 

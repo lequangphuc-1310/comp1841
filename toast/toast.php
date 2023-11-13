@@ -11,11 +11,6 @@
 </head>
 
 <body>
-    <!-- <div class="btnOptions">
-        <div onclick="showSuccess()" class="btn btn--success">Show success</div>
-        <div onclick='showError()' class="btn btn--error">Show error</div>
-        <div onclick='showInfo()' class="btn btn--info">Show info</div>
-    </div> -->
     <div id="toast_container">
     </div>
 

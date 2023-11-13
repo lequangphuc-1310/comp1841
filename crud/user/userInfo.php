@@ -36,9 +36,16 @@
                     $sql = "select `image` from `user` where id = $userInfoId;";
                     $result = $conn->query($sql);
                     $d = $result->fetch();
+                    if (!$d) {
+                    ?>
+                    <script>
+                    alert('Unable to find user. Please try again.')
+                    window.location.href = '/comp1841/crud/search/search.php'
+                    </script>
+                    <?php
+                    }
                     $img = $d['image'];
                     ?>
-                    <!-- <img src="/uploads/<?php echo $img; ?>" alt=""> -->
                     <div class="your-avt">
                         <?php
                         if (!$img) {
@@ -78,7 +85,6 @@
                     $d = $result->fetch();
                     $userName = $d['name'];
                     $userEmail = $d['email'];
-                    // echo $userName;
                     ?>
                 </div>
                 <div class="user-intro-detail-extra"><?php echo $userEmail ?></div>
