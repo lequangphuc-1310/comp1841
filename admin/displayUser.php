@@ -18,22 +18,22 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
 
 <body>
     <style>
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
 
-        .btn-blue {
-            background-color: #381DDB !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            cursor: pointer;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
 
-        .btn-blue:hover {
-            opacity: 0.8;
-        }
+    .btn-blue:hover {
+        opacity: 0.8;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -55,7 +55,7 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
         <table class="w3-table-all">
             <thead>
                 <tr class="w3-light-grey w3-hover-red">
-                    <th>No.</th>
+                    <th>User ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Password</th>

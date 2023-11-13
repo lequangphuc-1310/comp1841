@@ -17,18 +17,18 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
 
 <body>
     <style>
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-    .btn.btn-primary.my-3 a {
-        color: #fff;
-    }
+        .btn.btn-primary.my-3 a {
+            color: #fff;
+        }
 
-    .btn.btn-primary.my-3 a:hover {
-        opacity: 0.8;
-    }
+        .btn.btn-primary.my-3 a:hover {
+            opacity: 0.8;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -46,7 +46,6 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
         <table class="w3-table-all">
             <thead>
                 <tr class="w3-light-grey w3-hover-red">
-                    <th>No.</th>
                     <th>Author</th>
                     <th>Email</th>
                     <th>Post</th>
@@ -70,7 +69,6 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
                     echo
                     "
                     <tr class='w3-hover-green'>
-                        <td>$id</td>
                         <td>$name</td>
                         <td>$email</td>
                         <td>$title</td>

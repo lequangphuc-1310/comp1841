@@ -14,17 +14,18 @@ a {
 
 
 .container {
-    position        : relative;
-    top             : 76px px;
-    display         : flex;
-    /* border       : 1px solid red; */
-    flex-direction  : column;
-    margin          : 0 50px 0 50px;
-    background-color: #fff;
-    color           : #000;
-    z-index         : 1;
+    position              : relative;
+    top                   : 76px px;
+    display               : flex;
+    /* border             : 1px solid red; */
+    flex-direction        : column;
+    margin                : 0 50px 0 50px;
+    padding               : 0 0 0 2em;
+    /* background-color   : #fff; */
+    /* background         : linear-gradient(45deg, #4158d0, #c850c0); */
+    color                 : #000;
+    z-index               : 1;
 }
-
 
 .body {
     display       : flex;
@@ -103,10 +104,6 @@ a {
 
 .asked {
     margin: 0 10px;
-}
-
-.module {
-    /* margin: 10px; */
 }
 
 .viewed {
