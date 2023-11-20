@@ -19,9 +19,10 @@ a {
     display               : flex;
     /* border             : 1px solid red; */
     flex-direction        : column;
-    margin                : 0 50px 0 50px;
+    margin                : 0 auto;
+    max-width             : 800px;
     padding               : 0 0 0 2em;
-    /* background-color   : #fff; */
+    background-color      : #fff;
     /* background         : linear-gradient(45deg, #4158d0, #c850c0); */
     color                 : #000;
     z-index               : 1;
@@ -30,7 +31,7 @@ a {
 .body {
     display       : flex;
     flex-direction: column;
-    margin        : 0 8em;
+    margin        : 0 3em;
 }
 
 

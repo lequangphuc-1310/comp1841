@@ -111,13 +111,13 @@ input#searchText {
     /* padding    : 15px 0; */
 }
 
-.content {
+.down .content {
     width        : 90%;
     height       : 100%;
     margin-bottom: 1em;
     overflow-y   : auto;
     overflow-x   : hidden;
-    background   : #eaf5f9;
+    background   : #eaf5f9 !important;
 }
 
 .content ul {

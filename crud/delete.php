@@ -18,7 +18,7 @@ if (isset($_GET['deleteModuleId'])) {
     if ($result) {
         header('location: /comp1841/crud/module/modules.php');
     } else {
-        die("Error when deleting user");
+        die("Error when deleting module");
     }
 }
 
@@ -28,6 +28,14 @@ if (isset($_GET['postId'])) {
     $result = $conn->query("delete from `post` where id=$postId ");
     $result2 = $conn->query("delete from `answer` where post_id=$postId");
     header('location: /comp1841/crud/home/home.php');
+}
+
+if (isset($_GET['postIdAdmin'])) {
+    include '/xampp/htdocs/comp1841/auth/connection.php';
+    $postId = $_GET['postIdAdmin'];
+    $result = $conn->query("delete from `post` where id=$postId ");
+    $result2 = $conn->query("delete from `answer` where post_id=$postId");
+    header('location: /comp1841/crud/user/viewPosts.php');
 }
 
 if (isset($_GET['answerId'])) {

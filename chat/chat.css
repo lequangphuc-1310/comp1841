@@ -14,6 +14,8 @@ small {
     display      : flex;
     border-bottom: 1px solid #ccc;
     width        : 100%;
+    gap          : 1em;
+
 }
 
 .user-intro-details-img {}
@@ -24,11 +26,11 @@ small {
     align-items    : center;
     justify-content: center;
     display        : flex;
-    gap            : 0.3em;
 }
 
 .goBack span:hover {
-    opacity: 0.8;
+    color      : #381DDB;
+    text-shadow: 1px 1px #381DDB;
 }
 
 .goBack a {
@@ -180,6 +182,7 @@ small {
 
 .no-message-text {
     font-family: sans-serif;
+    text-align : center;
 }
 
 .chat-detail {
@@ -195,6 +198,7 @@ small {
     z-index       : 10;
     padding       : 0 1em;
     gap           : 15px;
+    background    : #fff;
     margin-top    : 0.5em;
     border        : 1px solid #ddd;
     border-radius : 0.5em;
