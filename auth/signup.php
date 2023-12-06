@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
             <script>
                 showError('<?php echo $NotMatchedConfirmPassword; ?>');
+                s
             </script>
             <?php
         } else {
@@ -33,12 +34,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </script>
         <?php
             } else {
+                if ($name == 'admin' && $email == 'admin@gmail.com') {
+                    $query = "insert into `user` (name,password,email, image, role)
+                 values ('$name','$password', '$email', 
+                'IMG-653751dd87d0c4.57015077.png', 'admin')";
 
-                $query = "insert into `user` (name,password,email, image) values ('$name','$password', '$email', 'IMG-653751dd87d0c4.57015077.png')";
+                    $result = $conn->query($query);
 
-                $result = $conn->query($query);
+                    header("Location: login.php?success");
+                } else {
+                    $query = "insert into `user` (name,password,email, image)
+                 values ('$name','$password', '$email', 
+                'IMG-653751dd87d0c4.57015077.png')";
 
-                header("Location: login.php?success");
+                    $result = $conn->query($query);
+
+                    header("Location: login.php?success");
+                }
             }
         }
     } else {

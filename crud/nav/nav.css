@@ -13,7 +13,6 @@
 }
 
 .outer-nav {
-    /* width: 100vw; */
 
     display         : flex;
     align-items     : center;
@@ -22,7 +21,6 @@
 }
 
 .nav {
-    /* max-width               : 1000px; */
     width          : 100%;
     margin         : 0 5em;
     display        : flex;
@@ -107,13 +105,6 @@ a {
 .category a {
     color: #fff;
 }
-
-/* 
-.category-item.active {
-    text-decoration: underline;
-    color          : red;
-} */
-
 
 .menu i {
     font-size: 20px;

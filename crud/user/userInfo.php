@@ -22,9 +22,9 @@
     if (array_key_exists('success', $_GET)) {
         $updateImageSuccess = 'Successfully updated your avatar';
     ?>
-    <script>
-    showSuccess('<?php echo $updateImageSuccess; ?>')
-    </script>
+        <script>
+            showSuccess('<?php echo $updateImageSuccess; ?>')
+        </script>
     <?php } ?>
 
     <div class="user-info-container">
@@ -38,10 +38,10 @@
                     $d = $result->fetch();
                     if (!$d) {
                     ?>
-                    <script>
-                    alert('Unable to find user. Please try again.')
-                    window.location.href = '/comp1841/crud/search/search.php'
-                    </script>
+                        <script>
+                            alert('Unable to find user. Please try again.')
+                            window.location.href = '/comp1841/crud/search/search.php'
+                        </script>
                     <?php
                     }
                     $img = $d['image'];
@@ -54,7 +54,8 @@
                         </div>';
                         } else {
                             echo '
-                            <div class="your-avt-img" style="background: transparent url(/comp1841/crud/user/uploads/' .  $img . ') center center no-repeat; height: 110px; width: 110px; padding: 1px;background-size: contain; border-radius: 8px">
+                            <div class="your-avt-img" style="background: transparent url(/comp1841/crud/user/uploads/' .  $img . ') 
+                            center center no-repeat; height: 110px; width: 110px; padding: 1px;background-size: contain; border-radius: 8px">
                                 </div>
                                 ';
                         }
@@ -90,15 +91,15 @@
                 <div class="user-intro-detail-extra"><?php echo $userEmail ?></div>
                 <div class="chatBtn">
                     <?php if ($_SESSION['user_id'] != $userInfoId) { ?>
-                    <a href='/comp1841/chat/chat.php?user=<?php echo $userInfoId; ?>'>
-                        <button class="btnChat">
-                            Chat with
-                            <?php echo $userName; ?>
-                        </button>
-                    </a>
+                        <a href='/comp1841/chat/chat.php?user=<?php echo $userInfoId; ?>'>
+                            <button class="btnChat">
+                                Chat with
+                                <?php echo $userName; ?>
+                            </button>
+                        </a>
                     <?php } else { ?>
-                    <button class="btnChat" onclick="openChat()">Chat
-                    </button>
+                        <button class="btnChat" onclick="openChat()">Chat
+                        </button>
                     <?php } ?>
                 </div>
 
@@ -124,7 +125,8 @@
                         <h3>Posts</h3>
                         <div class="user-details-existed-content">
                             <?php
-                            $sql = "select user.name,user.id,user.email,post.* from user, post where user.id=post.user_id and user.id=$userInfoId;";
+                            $sql = "select user.name,user.id,user.email,post.* from user, post
+                            where user.id=post.user_id and user.id=$userInfoId;";
                             $result = $conn->query($sql);
                             $d = $result->fetchAll();
 
@@ -135,7 +137,8 @@
                                     $post_id = $row['id'];
                                     echo
                                     "<div class='each-user-details-existed-content'>";
-                                    echo "<a href='/comp1841/crud/home?postId=$post_id'><span>$title</span> - <span class='published_at'>$published_at</span>
+                                    echo "<a href='/comp1841/crud/home?postId=$post_id'><span>$title</span> - <span 
+                                    class='published_at'>$published_at</span>
                         </a>
                         </div>";
                                 }
@@ -149,7 +152,8 @@
                         <h3>Answers</h3>
                         <div class="user-details-existed-content">
                             <?php
-                            $sql = "select user.name,user.id,user.email,answer.* from user, answer where user.id=answer.user_id and user.id=$userInfoId;";
+                            $sql = "select user.name,user.id,user.email,answer.* from user, answer 
+                            where user.id=answer.user_id and user.id=$userInfoId;";
                             $result = $conn->query($sql);
                             $d = $result->fetchAll();
 
@@ -160,7 +164,8 @@
                                     $post_id = $row['post_id'];
                                     echo
                                     "
-                        <div class='each-user-details-existed-content'><a href='/comp1841/crud/home?postId=$post_id'><span>$answer</span> - <span class='published_at'>$published_at</span></a></div>
+                        <div class='each-user-details-existed-content'><a href='/comp1841/crud/home?postId=$post_id'>
+                        <span>$answer</span> - <span class='published_at'>$published_at</span></a></div>
                                 ";
                                 }
                             } else {
@@ -180,13 +185,13 @@
             <?php include '/xampp/htdocs/comp1841/chat/homeChat.php'; ?>
         </div>
         <script>
-        function openChat() {
-            let areaText = document.getElementById('chatArea');
-            let btnChat = document.getElementsByClassName('btnChat');
-            if (areaText.style.display === "none") {
-                areaText.style.display = "block";
+            function openChat() {
+                let areaText = document.getElementById('chatArea');
+                let btnChat = document.getElementsByClassName('btnChat');
+                if (areaText.style.display === "none") {
+                    areaText.style.display = "block";
+                }
             }
-        }
         </script>
 
 </body>

@@ -102,12 +102,12 @@ function showError(data) {
     )
 }
 
-function showInfo() {
+function showInfo(data) {
     toast({
         title: 'Info',
-        message: 'Initialization process Information',
+        message: data,
         type: 'info',
-        duration: 3000
+        duration: 8000
     }
     )
 }

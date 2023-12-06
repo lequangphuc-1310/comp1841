@@ -73,7 +73,11 @@ if (isset($_GET['updateUserId'])) {
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
     ?>
-    <h1 class='title'>CRUD EDIT USER</h1>
+    <h1 class='title'>EDIT <?php if (!array_key_exists('updateUserId', $_GET)) {
+                                echo 'MODULE';
+                            } else {
+                                echo 'USER';
+                            }; ?></h1>
 
     <div class="container ">
         <form method='POST'>

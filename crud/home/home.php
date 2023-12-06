@@ -27,7 +27,9 @@
     if (array_key_exists('postId', $_GET)) {
         $postId = $_GET['postId'];
         $_SESSION['post_id'] = $postId;
-        $sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module, post.imagePost from `user`, `post` where post.user_id=user.id and post.id=$postId;";
+        $sql = "select user.image, user.name, user.email, post.title,post.details,
+        post.id,post.published_at,post.module, post.imagePost from `user`, `post` 
+        where post.user_id=user.id and post.id=$postId;";
         $result = $conn->query($sql);
         $d = $result->fetch();
         if (!$d) {
@@ -40,7 +42,8 @@
         }
         $title = $d['title'];
         $askerImage = $d['image'];
-        $resultGetAskerUserId = $conn->query("SELECT u.id from `user` as u inner join  `post` as p on p.user_id = u.id where p.user_id=u.id and p.id=$postId limit 1;");
+        $resultGetAskerUserId = $conn->query("SELECT u.id from `user`
+         as u inner join  `post` as p on p.user_id = u.id where p.user_id=u.id and p.id=$postId limit 1;");
         $dataResultGetAskterUserId = $resultGetAskerUserId->fetch();
         $askerUserId = $dataResultGetAskterUserId['id'];
         $name = $d['name'];
@@ -59,14 +62,23 @@
             $askerImage = 'IMG-653751dd87d0c4.57015077.png';
         }
     } else {
-        $sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module, post.imagePost from `user`,`post`
-where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
+        $sql = "select user.image, user.name, user.email,
+         post.title,post.details,post.id,post.published_at,post.module, post.imagePost from `user`,`post`
+        where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
         $result = $conn->query($sql);
         $d = $result->fetch();
+        if (!$d) {
+        ?>
+    <script>
+    window.location.href = '/comp1841/crud/user/viewPosts.php?noPost'
+    </script>
+    <?php
+        }
         $postId = $d['id'];
         $title = $d['title'];
         $askerImage = $d['image'];
-        $resultGetAskerUserId = $conn->query("SELECT u.id from `user` as u inner join  `post` as p on p.user_id = u.id where p.user_id=u.id and p.id=$postId limit 1;");
+        $resultGetAskerUserId = $conn->query("SELECT u.id from `user` as u inner join  `post`
+         as p on p.user_id = u.id where p.user_id=u.id and p.id=$postId limit 1;");
         $dataResultGetAskterUserId = $resultGetAskerUserId->fetch();
         $askerUserId = $dataResultGetAskterUserId['id'];
         $name = $d['name'];
@@ -93,8 +105,8 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                 <div class="question">
                     <div class="question-title">
                         <div class='question-title-content'>
-                            <div class="akser-avt"><a
-                                    href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
+                            <div class="akser-avt">
+                                <a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
                                     <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/<?php echo $askerImage; ?>)
                     center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
                                     </div>
@@ -106,11 +118,13 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                     echo $title
                                     ?>
                                 </div>
-                                <div class='question-title-content-down-name'><a
-                                        href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
+                                <div class='question-title-content-down-name'>
+                                    <a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
                                         <?php
                                         echo $name;
-                                        ?></a><span> - </span>
+                                        ?>
+                                    </a>
+                                    <span> - </span>
                                     <?php
                                     echo $email
                                     ?>
@@ -133,12 +147,15 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                             if ($_SESSION['user_id'] == $askerUserId) { ?>
 
                             <div class="question-title-extra-child edit-delete">
-                                <a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>"><button
-                                        class='edit-post'><i class="far fa-edit"></i></button></a>
+                                <a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>">
+                                    <button class='edit-post'><i class="far fa-edit"></i></button>
+                                </a>
                             </div>
                             <div class="question-title-extra-child edit-delete">
-                                <a href="/comp1841/crud/delete.php?postId=<?php echo $postId; ?>"><button
-                                        class='delete-post'><i class="fas fa-trash"></i></button></a>
+                                <a href="/comp1841/crud/delete.php?postId=<?php echo $postId; ?>">
+                                    <button class='delete-post'><i class="fas fa-trash"></i>
+                                    </button>
+                                </a>
                             </div>
                             <?php } ?>
                         </div>
@@ -153,15 +170,16 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                         <?php if ($imagePost) { ?>
                         <hr>
                         <div class="question-content-img">
-                            <div class='question-content-img-content'
-                                style="background: url(/comp1841/crud/askPage/uploads/<?php echo $imagePost; ?>) center center no-repeat; background-size: contain">
+                            <div class='question-content-img-content' style="background: url(/comp1841/crud/askPage/uploads/<?php echo $imagePost; ?>)
+                                  center center no-repeat; background-size: contain">
                             </div>
                         </div>
                         <?php } ?>
                     </div>
                     <div class="existed-answer">
                         <?php
-                        $sqlExistedAnswer = "select user.image, user.name, user.email,answer.* from `user`, `answer` where answer.user_id=user.id and post_id=$postId order by count_ans desc;";
+                        $sqlExistedAnswer = "select user.image, user.name, user.email,answer.* from `user`, `answer` 
+                        where answer.user_id=user.id and post_id=$postId;";
                         $resultExistedAnswer = $conn->query($sqlExistedAnswer);
                         $datasqlExistedAnswer = $resultExistedAnswer->fetchAll();
                         foreach ($datasqlExistedAnswer as $row) {
@@ -171,7 +189,8 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                             $answerAuthorEmail = $row['email'];
                             $existedAnswer = $row['answer'];
                             $answerAuthorPublished = $row['published_at'];
-                            $resultGetAnswererId = $conn->query("SELECT u.id from `user` as u inner join  `answer` as a on a.user_id = u.id where a.user_id=u.id and a.id=$answerAuthorId limit 1;");
+                            $resultGetAnswererId = $conn->query("SELECT u.id from `user` as u inner join  `answer`
+                             as a on a.user_id = u.id where a.user_id=u.id and a.id=$answerAuthorId limit 1;");
                             $dataResultGetAnswererId = $resultGetAnswererId->fetch();
                             $answererId = $dataResultGetAnswererId['id'];
                             if (!$answerAuthorImage) {
@@ -182,20 +201,31 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                         <div class="each-existed-answer">
                             <div class="answer-avt">
                                 <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $answererId; ?>">
-                                    <div class="nav-user-avt-img"
-                                        style="background: url(/comp1841/crud/user/uploads/<?php echo $answerAuthorImage; ?>)
-                                            center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
+                                    <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/<?php echo $answerAuthorImage; ?>)
+                                            center center no-repeat; height: 30px; width: 30px; 
+                                            padding: 3px;background-size: contain">
                                     </div>
                                 </a>
                             </div>
-                            <div class="answer-text"><span class="answerAuthorName"><a
-                                        href="/comp1841/crud/user/userInfo.php?userId=<?php echo $answererId; ?>">
-                                        <?php echo $answerAuthorName; ?></a></span> &nbsp;-&nbsp;
-                                <span class="existedAnswer"><?php echo $existedAnswer; ?></span>&nbsp;-&nbsp;<span
-                                    class="answerAuthorEmail"><?php echo $answerAuthorEmail; ?></span>&nbsp;-&nbsp;
-                                <span class="answerAuthorPublished"><?php echo $answerAuthorPublished; ?></span>
+                            <div class="answer-text"><span class="answerAuthorName">
+                                    <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $answererId; ?>">
+                                        <?php echo $answerAuthorName; ?>
+                                    </a>
+                                </span> &nbsp;-&nbsp;
+                                <span class="existedAnswer">
+                                    <?php echo $existedAnswer; ?>
+                                </span>&nbsp;-&nbsp;
+                                <span class="answerAuthorEmail">
+                                    <?php echo $answerAuthorEmail; ?>
+                                </span>&nbsp;-&nbsp;
+                                <span class="answerAuthorPublished">
+                                    <?php echo $answerAuthorPublished; ?>
+                                </span>
                                 <?php
-                                    if ($_SESSION['user_id'] == $answererId) { ?>
+                                    if (
+                                        $_SESSION['user_id'] == $answererId ||
+                                        $_SESSION['admin_id'] == $_SESSION['user_id']
+                                    ) { ?>
                                 <span class="answerAuthorEditDelete">
                                     <a
                                         href="/comp1841/crud/home/answerEdit.php?answerId=<?php echo $answerAuthorId; ?>">
@@ -210,9 +240,7 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                 </span>
                                 <?php } ?>
                             </div>
-                            <div class="answer-like" onclick='incrementCountAns()'>
-                                <i class="fas fa-thumbs-up like-icon"></i>
-                            </div>
+
                         </div>
                         <?php
                         }
@@ -229,20 +257,28 @@ where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
                                 $user_id = $_SESSION['user_id'];
 
                                 try {
-                                    $check_duplicated = "select * from `answer` where user_id=$user_id and answer='$answer'";
-                                    $answerDisplay = $conn->query($check_duplicated);
+                                    $answerDisplay = $conn->query("select * from `answer`
+                                    where user_id=$user_id and answer='$answer'");
                                     $countRow = $answerDisplay->fetchColumn();
-
-                                    if ($countRow == 0) {
-                                        $sql = "INSERT INTO `answer` (`user_id`, `post_id`, `answer`, `module`)
+                                    if ($answer == '') {
+                            ?>
+                            <script>
+                            showInfo('Please enter something!')
+                            </script>
+                            <?php
+                                    } else {                                    if ($countRow == 0) {
+                                        $sql = "INSERT INTO `answer` (`user_id`,
+                                        `post_id`, `answer`, `module`)
                                             values ($user_id, $postId, '$answer', $moduleId)";
                                         $result = $conn->query($sql);
                                         if ($result) {
-                            ?>
+                                        ?>
                             <script>
-                            window.location.href = '/comp1841/crud/home/home.php?postId=<?php echo $postId; ?>'
+                            window.location.href =
+                                '/comp1841/crud/home/home.php?postId=<?php echo $postId; ?>'
                             </script>
                             <?php
+                                        }
                                         }
                                     }
                                 } catch (PDOException $e) {

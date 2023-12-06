@@ -1,5 +1,14 @@
 <?php
 include '/xampp/htdocs/comp1841/auth/connection.php';
+include("/xampp/htdocs/comp1841/toast/toast.php");
+
+if (array_key_exists('deletedModule', $_GET)) {
+?>
+<script>
+showInfo('Since you deleted the module, all of posts that relating to this module will be deleted');
+</script>
+<?php
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +18,6 @@ include '/xampp/htdocs/comp1841/auth/connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <title>Display Modules</title>
 
 </head>

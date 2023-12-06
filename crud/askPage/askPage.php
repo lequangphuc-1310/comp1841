@@ -37,6 +37,8 @@
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+    include "/xampp/htdocs/comp1841/toast/toast.php";
+
 
     ?>
     <div class="ask-page-container ">
@@ -97,43 +99,52 @@
                     $userId = $_SESSION['user_id'];
                     $user_id = $_SESSION['user_id'];
                     $img_name = '';
-                    if (isset($_FILES['inputImage'])) {
-                        $img_name = $_FILES['inputImage']['name'];
-                        $img_size = $_FILES['inputImage']['size'];
-                        $tmp_name = $_FILES['inputImage']['tmp_name'];
-                        $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-                        $img_ex_lc = strtolower($img_ex);
+                    if ($inputTitle == '' || $inputDetails = '') {
+                ?>
+                        <script>
+                            showError('Please enter all fields!')
+                        </script>
+                <?php
+                    } else {
+                        if (isset($_FILES['inputImage'])) {
+                            $img_name = $_FILES['inputImage']['name'];
+                            $img_size = $_FILES['inputImage']['size'];
+                            $tmp_name = $_FILES['inputImage']['tmp_name'];
+                            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+                            $img_ex_lc = strtolower($img_ex);
 
-                        $allowed_exs = array("jpg", "jpeg", "png");
+                            $allowed_exs = array("jpg", "jpeg", "png");
 
-                        if (in_array($img_ex_lc, $allowed_exs)) {
-                            $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
-                            $img_upload_path = 'uploads/' . $new_img_name;
-                            move_uploaded_file($tmp_name, $img_upload_path);
-                            $id = $_SESSION['user_id'];
-                            if (move_uploaded_file($tmp_name, $img_upload_path)) {
-                                echo "<script>alert('moved')</script>";
+                            if (in_array($img_ex_lc, $allowed_exs)) {
+                                $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
+                                $img_upload_path = 'uploads/' . $new_img_name;
+                                move_uploaded_file($tmp_name, $img_upload_path);
+                                $id = $_SESSION['user_id'];
+                                if (move_uploaded_file($tmp_name, $img_upload_path)) {
+                                    echo "<script>alert('moved')</script>";
+                                }
                             }
                         }
-                    }
 
-                    try {
+                        try {
 
-                        $sql = "INSERT INTO `post` (`title`, `details`, `user_id`, `module`, `imagePost`)
+                            $sql = "INSERT INTO `post` (`title`, `details`, `user_id`, `module`, `imagePost`)
                         values ('$title', '$details', '$user_id', '$module_id', '$new_img_name')";
-                        $result = $conn->exec($sql);
+                            $result = $conn->exec($sql);
 
-                        $sql2 = "SELECT p.id, p.user_id from `post` as p inner join  `user` as u on p.user_id = u.id where p.user_id=u.id and u.id=$userId order by p.id desc limit 1 ;";
-                        $result2 = $conn->query($sql2);
-                        $d = $result2->fetch();
-                        $latestPostId = $d['id'];
-                        if ($result) {
-                            if ($result2) {
-                                echo "<script>window.location.href='/comp1841/crud/home/home.php?postId=$latestPostId';</script>";
+                            $sql2 = "SELECT p.id, p.user_id from `post` as p inner join  `user` as u
+                         on p.user_id = u.id where p.user_id=u.id and u.id=$userId order by p.id desc limit 1 ;";
+                            $result2 = $conn->query($sql2);
+                            $d = $result2->fetch();
+                            $latestPostId = $d['id'];
+                            if ($result) {
+                                if ($result2) {
+                                    echo "<script>window.location.href='/comp1841/crud/home/home.php?postId=$latestPostId';</script>";
+                                }
                             }
+                        } catch (PDOException $e) {
+                            die("Error: " . $e->getMessage());
                         }
-                    } catch (PDOException $e) {
-                        die("Error: " . $e->getMessage());
                     }
                 }
                 ?>

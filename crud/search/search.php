@@ -26,7 +26,8 @@
             <div class="search-container-homeSearch">
                 <div class="up-container">
                     <div class="inputSearchUser">
-                        <input type="text" placeholder="Search..." name='user-input' id="searchTextInput" value='<?php echo $user_input; ?>' class="form-control">
+                        <input type="text" placeholder="Search..." name='user-input' id="searchTextInput"
+                            value='<?php echo $user_input; ?>' class="form-control">
                     </div>
                 </div>
                 <div class="down-container">
@@ -50,7 +51,8 @@
             <div class="result-search">
                 <?php
                 if (isset($_POST['user'])) {
-                    $resultUser = $conn->query("select `id`, `name`, `email`, `image` from `user` where name like '%$user_input%' or email like '%$user_input%@gmail.com' ;");
+                    $resultUser = $conn->query("select `id`, `name`, `email`, `image` 
+                    from `user` where name like '%$user_input%' or email like '%$user_input%@gmail.com' ;");
                     $dUser = $resultUser->fetchAll();
                     if ($dUser) {
                         foreach ($dUser as $row) {
@@ -59,21 +61,24 @@
                             $email = $row['email'];
                             $image = $row['image'];
                 ?>
-                            <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $id; ?>">
-                                <div class="each-user-found">
-                                    <div class="user-avt">
-                                        <div style='border: 1px solid green; width: 40px; height: 40px; background: url(/comp1841/crud/user/uploads/<?php echo $image; ?>) center center no-repeat; background-size: contain; border-radius: 50%;'>
-                                        </div>
-                                    </div>
-                                    <div class="user-name"><?php echo $name; ?></div>
-                                    <div class="user-email"><?php echo $email; ?></div>
-                                </div>
-                            </a>
-                        <?php
+                <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $id; ?>">
+                    <div class="each-user-found">
+                        <div class="user-avt">
+                            <div style='border: 1px solid green; width: 40px; 
+                                        height: 40px; background: url(/comp1841/crud/user/uploads/<?php echo $image; ?>) 
+                                        center center no-repeat; background-size: contain; border-radius: 50%;'>
+                            </div>
+                        </div>
+                        <div class="user-name"><?php echo $name; ?></div>
+                        <div class="user-email"><?php echo $email; ?></div>
+                    </div>
+                </a>
+                <?php
                         }
                     }
                 } elseif (isset($_POST['post'])) {
-                    $resultPost = $conn->query("select id, title, details, module from `post` where `title` like '%$user_input%' or `details` like '%$user_input%';");
+                    $resultPost = $conn->query("select id, title, details, module from `post` where `title` 
+                    like '%$user_input%' or `details` like '%$user_input%';");
                     $dPost = $resultPost->fetchAll();
                     if ($dPost) {
                         foreach ($dPost as $row) {
@@ -86,30 +91,31 @@
                             $module_name = $dataResultGetModule['module_name'];
                             $module_id = $dataResultGetModule['module_id'];
                         ?>
-                            <a href="/comp1841/crud/home/home.php?postId=<?php echo $id; ?>">
-                                <div class="each-post-found">
-                                    <div class="post-title">
-                                        <?php echo $title; ?>
-                                    </div>
-                                    <div class="post-details"><?php echo $details; ?></div>
-                                    <div class="post-module-id"><?php echo $module_id; ?></div>
-                                </div>
-                            </a>
-                        <?php
+                <a href="/comp1841/crud/home/home.php?postId=<?php echo $id; ?>">
+                    <div class="each-post-found">
+                        <div class="post-title">
+                            <?php echo $title; ?>
+                        </div>
+                        <div class="post-details"><?php echo $details; ?></div>
+                        <div class="post-module-id"><?php echo $module_id; ?></div>
+                    </div>
+                </a>
+                <?php
                         }
                     }
                 } elseif (isset($_POST['module'])) {
-                    $resultModule = $conn->query("SELECT * FROM `module` WHERE `module_name` like '%$user_input' or `module_id` like '%$user_input%';");
+                    $resultModule = $conn->query("SELECT * FROM `module` WHERE `module_name` 
+                    like '%$user_input' or `module_id` like '%$user_input%';");
                     $dModule = $resultModule->fetchAll();
                     if ($dModule) {
                         foreach ($dModule as $row) {
                             $module_name = $row['module_name'];
                             $module_id = $row['module_id'];
                         ?>
-                            <div class="each-module-found">
-                                <div class="module_name"><?php echo $module_name; ?></div>
-                                <div class="module_id"><?php echo $module_id; ?></div>
-                            </div>
+                <div class="each-module-found">
+                    <div class="module_name"><?php echo $module_name; ?></div>
+                    <div class="module_id"><?php echo $module_id; ?></div>
+                </div>
                 <?php
                         }
                     }
