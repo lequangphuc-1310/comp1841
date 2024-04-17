@@ -10,30 +10,30 @@
 
 <body>
     <style type="text/css">
-        .btn-blue {
-            background-color: #381DDB !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            cursor: pointer;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
 
-        .btn-blue:hover {
-            opacity: 0.8;
-        }
+    .btn-blue:hover {
+        opacity: 0.8;
+    }
 
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -81,7 +81,7 @@
                 </div>
                 <div class='content'>
                     <h4>Image (Optional)</h4>
-                    <input type="file" name="inputImage">
+                    <input type="file" name="inputImage" accept="image/*">
                 </div>
 
                 <div class='form-group col-12 label'>
@@ -101,9 +101,9 @@
                     $img_name = '';
                     if ($inputTitle == '' || $inputDetails = '') {
                 ?>
-                        <script>
-                            showError('Please enter all fields!')
-                        </script>
+                <script>
+                showError('Please enter all fields!')
+                </script>
                 <?php
                     } else {
                         if (isset($_FILES['inputImage'])) {

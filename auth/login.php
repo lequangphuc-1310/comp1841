@@ -3,39 +3,48 @@ session_start();
 include("/xampp/htdocs/comp1841/auth/connection.php");
 include("/xampp/htdocs/comp1841/auth/functions.php");
 include("/xampp/htdocs/comp1841/toast/toast.php");
+
 if (array_key_exists('success', $_GET)) { ?>
 <script>
 showSuccessSignUp()
 </script>
 <?php }
+
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $password = $_POST['password'];
+
     if (!empty($name) && !empty($password)) {
-        $query = "select * from user where name = '$name'";
+        $query = "SELECT * FROM user WHERE name = '$name'";
         $result = $conn->query($query);
+
         if ($result) {
             $checkRow = $conn->prepare("SELECT COUNT(`name`) FROM `user` WHERE `name` = ?");
             $checkRow->execute(array($name));
             $countRow = $checkRow->fetchColumn();
-            $resultAdmin = $conn->query("select * from user where role = 'admin'");
+            
+            $resultAdmin = $conn->query("SELECT * FROM user WHERE role = 'admin'");
             $admin_data = $resultAdmin->fetch();
             $_SESSION['admin_id'] = $admin_data['id'];
+
             if ($result && $countRow > 0) {
                 $user_data = $result->fetch();
+                $hashed_password = $user_data['password'];
 
-                if ($user_data['password'] === $password) {
+                // Verify password
+                if (password_verify($password, $hashed_password)) {
                     $_SESSION['user_id'] = $user_data['id'];
                     $_SESSION['user_image'] = $user_data['image'];
                     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/comp1841/crud/home/home.php?success');
-    ?>
+                    ?>
 <script>
 showSuccess();
 </script>
 <?php
+                    exit(); // Stop further execution after redirection
                 } else {
                     $wrongPassword = "Incorrect password!";
-                ?>
+                    ?>
 <script>
 showError('<?php echo $wrongPassword; ?>');
 </script>
@@ -67,6 +76,7 @@ showError('<?php echo $missingParam; ?>');
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

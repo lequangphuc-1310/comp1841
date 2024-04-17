@@ -5,7 +5,6 @@ include("/xampp/htdocs/comp1841/auth/connection.php");
 include("/xampp/htdocs/comp1841/auth/functions.php");
 include("/xampp/htdocs/comp1841/toast/toast.php");
 
-
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $name = $_POST['name'];
@@ -14,38 +13,39 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $confirm_password = $_POST['confirm_password'];
 
     if (!empty($name) && !empty($password) && !empty($email) && !empty($confirm_password)) {
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
         //save to database
-        $checkExistedAccount = $conn->query("select * from `user` where `name` = '$name' or `email` = '$email'");
+        $checkExistedAccount = $conn->query("SELECT * FROM `user` WHERE `name` = '$name' OR `email` = '$email'");
         $dExistedAccount = $checkExistedAccount->fetch();
+
         if ($password != $confirm_password) {
             $NotMatchedConfirmPassword = 'Passwords do not match';
 ?>
-            <script>
-                showError('<?php echo $NotMatchedConfirmPassword; ?>');
-                s
-            </script>
-            <?php
+<script>
+showError('<?php echo $NotMatchedConfirmPassword; ?>');
+</script>
+<?php
         } else {
             if ($dExistedAccount) {
-                $ExistedNameOrEmail = 'This username/email has already taken by another user!'
-            ?>
-                <script>
-                    showError('<?php echo $ExistedNameOrEmail; ?>');
-                </script>
-        <?php
+                $ExistedNameOrEmail = 'This username/email has already been taken by another user!';
+?>
+<script>
+showError('<?php echo $ExistedNameOrEmail; ?>');
+</script>
+<?php
             } else {
                 if ($name == 'admin' && $email == 'admin@gmail.com') {
-                    $query = "insert into `user` (name,password,email, image, role)
-                 values ('$name','$password', '$email', 
-                'IMG-653751dd87d0c4.57015077.png', 'admin')";
+                    $query = "INSERT INTO `user` (name, password, email, image, role)
+                 VALUES ('$name', '$hashed_password', '$email', 'IMG-653751dd87d0c4.57015077.png', 'admin')";
 
                     $result = $conn->query($query);
 
                     header("Location: login.php?success");
                 } else {
-                    $query = "insert into `user` (name,password,email, image)
-                 values ('$name','$password', '$email', 
-                'IMG-653751dd87d0c4.57015077.png')";
+                    $query = "INSERT INTO `user` (name, password, email, image)
+                 VALUES ('$name', '$hashed_password', '$email', 'IMG-653751dd87d0c4.57015077.png')";
 
                     $result = $conn->query($query);
 
@@ -54,15 +54,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }
     } else {
-        $notFillAll = 'Please fill all input to Signup!'
-        ?>
-        <script>
-            showError('<?php echo $notFillAll; ?>');
-        </script>
+        $notFillAll = 'Please fill all input to Signup!';
+?>
+<script>
+showError('<?php echo $notFillAll; ?>');
+</script>
 <?php
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -106,11 +107,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             </div>
                             <div class="form-login-content">
                                 <label for="name" class='login-label-signUp'>PASSWORD</label>
-                                <input class="login-input" type="text" id='password' name='password' placeholder="Password" />
+                                <input class="login-input" type="text" id='password' name='password'
+                                    placeholder="Password" />
                             </div>
                             <div class="form-login-content">
                                 <label for="confirm_password" class='login-label-signUp'>CONFIRM YOUR PASSWORD</label>
-                                <input class="login-input" type="text" id='confirm_password' name='confirm_password' placeholder="Confirm Your Password" />
+                                <input class="login-input" type="text" id='confirm_password' name='confirm_password'
+                                    placeholder="Confirm Your Password" />
                             </div>
                         </div>
                         <div class="btn-login-signUp"><input type='submit' class='login-submit-btn' value='Sign Up' />

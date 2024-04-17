@@ -5,35 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/comp1841/crud/askPage/askPage.css?v=<?php echo time(); ?>" />
-    <title>Edit your Post</title>
+    <title>Edit your Answer</title>
 </head>
 
 <body>
     <style type="text/css">
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    .btn-blue:hover {
-        opacity: 0.8;
-    }
+        .btn-blue:hover {
+            opacity: 0.8;
+        }
 
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -50,8 +50,7 @@
             <div class='row'>
                 <div class='content'>
                     <h4>Edit your answer</h4>
-                    <textarea name='answer' rows="10" cols="50"
-                        style="resize: none;"><?php echo $getAnswer; ?></textarea>
+                    <textarea name='answer' rows="10" cols="50" style="resize: none;"><?php echo $getAnswer; ?></textarea>
                 </div>
 
 

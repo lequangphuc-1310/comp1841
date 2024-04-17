@@ -22,47 +22,48 @@
     if (array_key_exists('success', $_GET)) {
         $updateImageSuccess = 'Successfully updated your avatar';
     ?>
-        <script>
-            showSuccess('<?php echo $updateImageSuccess; ?>')
-        </script>
+    <script>
+    showSuccess('<?php echo $updateImageSuccess; ?>')
+    </script>
     <?php } ?>
+    <div class="background">
+        <div class="user-info-container">
+            <div class="user-intro">
 
-    <div class="user-info-container">
-        <div class="user-intro">
+                <div class="user-intro-img-section">
 
-            <div class="user-intro-img-section">
-                <div class="user-intro-img">
-                    <?php
+                    <div class="user-intro-img">
+                        <?php
                     $sql = "select `image` from `user` where id = $userInfoId;";
                     $result = $conn->query($sql);
                     $d = $result->fetch();
                     if (!$d) {
                     ?>
                         <script>
-                            alert('Unable to find user. Please try again.')
-                            window.location.href = '/comp1841/crud/search/search.php'
+                        alert('Unable to find user. Please try again.')
+                        window.location.href = '/comp1841/crud/search/search.php'
                         </script>
-                    <?php
+                        <?php
                     }
                     $img = $d['image'];
                     ?>
-                    <div class="your-avt">
-                        <?php
+                        <div class="your-avt">
+                            <?php
                         if (!$img) {
                             echo '<div class="your-avt-img" style="background: url(/comp1841/crud/user/uploads/IMG-653751dd87d0c4.57015077.png)
                             center center no-repeat; height: 110px; width: 110px; padding: 1px;background-size: contain; border-radius: 8px">
                         </div>';
-                        } else {
+                    } else {
                             echo '
                             <div class="your-avt-img" style="background: transparent url(/comp1841/crud/user/uploads/' .  $img . ') 
                             center center no-repeat; height: 110px; width: 110px; padding: 1px;background-size: contain; border-radius: 8px">
-                                </div>
-                                ';
+                            </div>
+                            ';
                         }
                         ?>
+                        </div>
                     </div>
-                </div>
-                <?php
+                    <?php
                 $userInfoId = $_GET['userId'];
                 if ($userInfoId == $_SESSION['user_id']) {
                     echo '
@@ -78,53 +79,53 @@
                 }
                 ?>
 
-            </div>
-            <div class="user-intro-detail">
-                <div class="user-intro-detail-name">
-                    <?php
+                </div>
+                <div class="user-intro-detail">
+                    <div class="user-intro-detail-name">
+                        <?php
                     $result = $conn->query("SELECT * FROM `user` where id=$userInfoId");
                     $d = $result->fetch();
                     $userName = $d['name'];
                     $userEmail = $d['email'];
                     ?>
-                </div>
-                <div class="user-intro-detail-extra"><?php echo $userEmail ?></div>
-                <div class="chatBtn">
-                    <?php if ($_SESSION['user_id'] != $userInfoId) { ?>
+                    </div>
+                    <div class="user-intro-detail-extra"><?php echo $userEmail ?></div>
+                    <div class="chatBtn">
+                        <?php if ($_SESSION['user_id'] != $userInfoId) { ?>
                         <a href='/comp1841/chat/chat.php?user=<?php echo $userInfoId; ?>'>
                             <button class="btnChat">
                                 Chat with
                                 <?php echo $userName; ?>
                             </button>
                         </a>
-                    <?php } else { ?>
+                        <?php } else { ?>
                         <button class="btnChat" onclick="openChat()">Chat
                         </button>
-                    <?php } ?>
-                </div>
+                        <?php } ?>
+                    </div>
 
+                </div>
             </div>
-        </div>
-        <div class="user-details">
-            <div class="user-details-left">
-                <?php
+            <div class="user-details">
+                <div class="user-details-left">
+                    <?php
                 $userInfoId = $_GET['userId'];
                 if ($userInfoId == $_SESSION['user_id']) {
                     echo '
                         <div class="userSecure">
                             <i class="fas fa-shield-alt"></i>
                             <a href="/comp1841/crud/user/userSecure.php">Secure your
-                                account</a>
+                            account</a>
                         </div>';
-                }
+                    }
                 ?>
-            </div>
-            <div class="user-details-right">
-                <div class="user-details-right-body">
-                    <div class="user-details-right-child user-details-posts">
-                        <h3>Posts</h3>
-                        <div class="user-details-existed-content">
-                            <?php
+                </div>
+                <div class="user-details-right">
+                    <div class="user-details-right-body">
+                        <div class="user-details-right-child user-details-posts">
+                            <h3>Posts</h3>
+                            <div class="user-details-existed-content">
+                                <?php
                             $sql = "select user.name,user.id,user.email,post.* from user, post
                             where user.id=post.user_id and user.id=$userInfoId;";
                             $result = $conn->query($sql);
@@ -146,12 +147,12 @@
                                 echo '<div class="each-user-details-existed-content">No post available.</div>';
                             }
                             ?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="user-details-right-child user-details-answers">
-                        <h3>Answers</h3>
-                        <div class="user-details-existed-content">
-                            <?php
+                        <div class="user-details-right-child user-details-answers">
+                            <h3>Answers</h3>
+                            <div class="user-details-existed-content">
+                                <?php
                             $sql = "select user.name,user.id,user.email,answer.* from user, answer 
                             where user.id=answer.user_id and user.id=$userInfoId;";
                             $result = $conn->query($sql);
@@ -172,19 +173,19 @@
                                 echo '<div class="each-user-details-existed-content">No answer available.</div>';
                             }
                             ?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="user-details-right-child user-details-modules">
-                        <h3>Modules</h3>
-                        <div class="each-user-details-existed-content disabled"><small>Developing...</small></div>
+                        <div class="user-details-right-child user-details-modules">
+                            <h3>Modules</h3>
+                            <div class="each-user-details-existed-content disabled"><small>Developing...</small></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="chatArea" style='display:none'>
-            <?php include '/xampp/htdocs/comp1841/chat/homeChat.php'; ?>
-        </div>
-        <script>
+            <div id="chatArea" style='display:none'>
+                <?php include '/xampp/htdocs/comp1841/chat/homeChat.php'; ?>
+            </div>
+            <script>
             function openChat() {
                 let areaText = document.getElementById('chatArea');
                 let btnChat = document.getElementsByClassName('btnChat');
@@ -192,8 +193,9 @@
                     areaText.style.display = "block";
                 }
             }
-        </script>
+            </script>
 
+        </div>
 </body>
 
 </html>

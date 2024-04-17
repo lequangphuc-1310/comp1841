@@ -1,336 +1,118 @@
-* {
-    margin : 0;
-    padding: 0;
-}
+.background {
+    background: linear-gradient(-45deg, rgb(152 169 178),
+            rgb(101 150 202), rgb(142 138 232), transparent);
 
-body {
-    background-color: #fff;
 }
-
-a {
-    text-decoration: none;
-    color          : #000;
-}
-
 
 .container {
-    position        : relative;
-    top             : 76px px;
-    display         : flex;
-    flex-direction  : column;
-    margin          : 0 auto;
-    max-width       : 800px;
-    padding         : 0 0 0 2em;
-    background-color: #fff;
-    color           : #000;
-    z-index         : 1;
+    width    : 100%;
+    max-width: 800px;
+    margin   : 0 auto;
+
+    padding: 20px;
 }
 
 .body {
-    display       : flex;
-    flex-direction: column;
-    margin        : 0 3em;
+    background-color: #f2f2f2;
+    padding         : 20px;
+    border-radius   : 10px;
 }
-
 
 .content {
-    display       : flex;
-    flex-direction: column;
-    ;
-    height: 100%;
-    width : 100%;
+    margin-top: 20px;
 }
 
-.question {
-    display       : flex;
-    flex-direction: column;
-    width         : 100%;
-}
-
-.question-title {
-    display       : flex;
-    margin        : 0 10px;
-    flex-direction: column;
-    font-family   : Arial, Helvetica, sans-serif;
-}
-
-.question-title-content-up {
-    font-size  : 20px;
-    font-weight: 600;
-    font-family: system-ui;
-    color      : #381DDB;
-}
-
-.question-title-content-down {
-    font-size  : 15px;
-    font-weight: 500;
-}
-
-.question-title-content-down-name {
-    font-weight: 400;
-    font-size  : 14px;
-    opacity    : 0.7;
-
-}
-
-.question-title-content {
-    margin     : 10px;
-    display    : flex;
-    gap        : 0.5em;
-    align-items: center;
-}
-
-.question-title-extra {
-    display        : flex;
-    justify-content: start;
-    width          : 80%;
-    font-size      : 12px !important;
-    font-weight    : 500;
-}
-
-
-.question-title-extra-child {
-    display    : flex;
-    align-items: center;
-    color      : #84bfc3;
-}
-
-.asked {
-    margin: 0 10px;
-}
-
-.viewed {
-    margin: 10px;
-}
-
-.question-content {
-    display       : flex;
-    flex-direction: column;
-    margin        : 10px 10px;
-    font-size     : 18px;
-    opacity       : 0.9;
-    padding       : 15px;
-    border-radius : 5px;
-    box-shadow    : 0px 1px 1px 0px rgba(0, 0, 0, 0.15),
-        0px 2px 2px 0px rgba(0, 0, 0, 0.15),
-        0px 4px 4px 0px rgba(0, 0, 0, 0.15),
-        0px 8px 8px 0px rgba(0, 0, 0, 0.15);
-}
-
-.question-content-text {
-    padding-bottom: 1em;
-}
-
-
-.question-content-img {
-    margin : 2em auto;
-    border : 1px solid #ccc;
-    padding: 0.5em;
-    cursor : pointer;
-}
-
-
-.question-content-img-content {
-    height    : 6em;
-    width     : 6em;
-    cursor    : pointer;
-    padding   : 2em;
-    transition: width 1s, height 1s;
-}
-
-
-.question-content-img-content.large {
-    width : 300px;
-    height: 300px;
-}
-
-
-.existed-answer {
-    display          : flex;
-    /* border        : 1px solid red; */
-    margin           : 10px 40px;
-    font-size        : 16px;
-    gap              : 12px;
-    flex-direction   : column;
-}
-
-.each-existed-answer {
-    min-height      : 20px;
+.each-post {
+    background-color: #fff;
+    padding         : 15px;
     border-radius   : 8px;
+    margin-bottom   : 5rem;
     display         : flex;
-    flex-wrap       : wrap;
-    flex-direction  : row;
-    background-color: #EFECFC;
-    align-items     : start;
-    flex-wrap       : wrap;
-    border-bottom   : 1px solid #ccc;
-    border-top      : 1px solid #ccc;
-    padding         : 10px 14px;
-    font-family     : Arial, Helvetica, sans-serif;
-    box-shadow      : 0px 1px 1px 0px rgba(0, 0, 0, 0.15),
-        0px 2px 2px 0px rgba(0, 0, 0, 0.15),
-        0px 4px 4px 0px rgba(0, 0, 0, 0.15),
-        0px 8px 8px 0px rgba(0, 0, 0, 0.15);
+    flex-direction  : column;
+    box-shadow      : 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition      : box-shadow 0.3s ease-in-out;
+    padding-bottom  : 3rem;
 }
 
-.answer-avt {
-    width: 10%;
+.question:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.answer-text {
-    width: 80%;
+.question h3 {
+    font-size    : 24px;
+    margin-bottom: 10px;
 }
 
-.answer-like {
-    width          : 10%;
+.question p {
+    margin-bottom: 10px;
+}
+
+.post-content {
     display        : flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items    : center;
 }
 
-.answer-like i {
-    font-size: 1.6em;
-    cursor   : pointer;
-}
-
-.answer-like i:hover {
-    color: #381DDB;
-}
-
-.like-i.active {
-    color: #381DDB !important;
-}
-
-.answer-avt-img {
-    background-size: contain;
-    border-radius  : 50%;
-    border         : 1px solid green;
-}
-
-.answerAuthorName {
-    font-size  : 15px;
-    font-weight: 600;
-    cursor     : pointer;
-}
-
-.existedAnswer {
-    font-size: 15px;
-    color    : #222;
-}
-
-.answerAuthorEmail {
-    font-size: 13px;
-    color    : #b34545;
-}
-
-.answerAuthorPublished {
-    font-size: 13px;
-    color    : #a79999;
-}
-
-
-.your-answer {
-    display       : flex;
-    flex-direction: column;
-    margin        : 10px 20px;
-    font-size     : 16px;
-    padding       : 20px;
-}
-
-.your-answer h4 {
-    margin     : 15px 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.textArea {
-    background-color: transparent;
-    color           : #000;
-    border          : 1px solid #111;
-    border-radius   : 8px;
-    padding         : 10px 12px;
-    outline         : none;
-}
-
-.submit-answer {
+.post-content-trivia {
     display        : flex;
-    margin         : 15px 0;
+    gap            : 10px;
+    margin-right   : 2rem;
+    flex           : 1;
     justify-content: end;
+    align-items    : center;
 }
 
-input.btn-submit {
-    border-radius   : 8px;
-    padding         : 10px 14px;
+.post-content .info {
+    margin-right: 20px;
+}
+
+.image-author-post {
+    width        : 50px;
+    height       : 50px;
+    border-radius: 50%;
+    object-fit   : cover;
+}
+
+.image-post {
+    width        : 100%;
+    height       : 300px;
+    /* You can adjust the height as needed */
+    object-fit   : contain;
+    border-radius: 8px;
+    margin-top   : 10px;
+}
+
+.answer {
+    margin-top: 20px;
+
+}
+
+.answer textarea {
+    width        : calc(100% - 20px);
+    /* Adjust width as needed */
+    padding      : 10px;
+    border       : 1px solid #ccc;
+    border-radius: 5px;
+    resize       : vertical;
+    /* Allow resizing only in the vertical direction */
+    min-height   : 100px;
+    /* Set minimum height */
+    max-height   : 200px;
+    /* Set maximum height */
+}
+
+.answer button {
+    padding         : 10px 20px;
     background-color: #381DDB;
     color           : #fff;
+    border          : none;
+    border-radius   : 5px;
     cursor          : pointer;
+    margin-top      : 10px;
 }
 
-input.btn-submit:hover {
-    opacity: 0.8;
+.answer button:hover {
+    background-color: #4c2eeb;
 }
 
-
-input.btn.btn-blue {
-    color: #fff;
-}
-
-
-html,
-body {
-    height  : 100% !important;
-    overflow: auto;
-
-}
-
-.test-area {
-    width : 400px;
-    height: 400px;
-    margin: 10px auto;
-    border: 1px solid red;
-}
-
-button.edit-post {
-    border-radius: 5px;
-    padding      : 0.2em 0.5em;
-    margin       : 0 0.5em;
-    border       : 1px solid #222;
-}
-
-button.delete-post {
-    border-radius: 5px;
-    padding      : 0.2em 0.5em;
-    margin       : 0 0.5em;
-    border       : 1px solid #222;
-}
-
-button.edit-post:hover,
-button.delete-post:hover {
-    cursor          : pointer;
-    background-color: #000;
-}
-
-.edit-delete a:hover i {
-    color: #fff;
-}
-
-span.answerAuthorEditDelete {
-    margin-left: 0.2em;
-}
-
-span.answerAuthorEditDelete button {
-    padding      : 0.2em 0.4em;
-    border       : 1px solid #333;
-    outline      : none;
-    border-radius: 0.3em;
-    margin-right : 0.5em;
-}
-
-span.answerAuthorEditDelete button:hover {
-    background-color: #000;
-    color           : #fff;
-}
-
-
-span.answerAuthorEditDelete button:hover a {
-    color: #fff;
-}
+/* Optional: Adjust the input and button styles as needed */

@@ -1,6 +1,13 @@
+.background {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+}
+
 body {
-    height    : 100vh;
-    background: linear-gradient(rgb(183 183 183), rgb(168 191 207), rgb(189 183 244), rgb(206 184 240));
+    background: linear-gradient(-45deg, rgb(152 169 178),
+            rgb(101 150 202), rgb(142 138 232), transparent);
+    height: 100vh
 }
 
 .user-info-container {
@@ -141,12 +148,6 @@ body {
     border-bottom: 2px solid #FC5252;
 
 }
-
-.user-details-posts {}
-
-.user-details-answers {}
-
-.user-details-modules {}
 
 .user-details-existed-content {
     max-width     : 250px;

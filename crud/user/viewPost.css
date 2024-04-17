@@ -1,0 +1,112 @@
+.title {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container {
+    background-color: transparent;
+    padding         : 20px;
+}
+
+.filter-container {
+    display        : flex;
+    justify-content: flex-end;
+    margin-bottom  : 1em;
+}
+
+.filterBtn {
+    padding      : 0.5em 1em;
+    border       : none;
+    border-radius: 0.3em;
+    cursor       : pointer;
+}
+
+.filterBtn:hover {
+    background-color: #000;
+    color           : #fff;
+}
+
+table {
+    width          : 100%;
+    border-collapse: collapse;
+    border-spacing : 0;
+    border-radius  : 0.5em;
+}
+
+thead {
+    background-color: #000;
+    color           : #fff;
+}
+
+thead th {
+    padding: 1em 2em;
+}
+
+tbody {
+    background-color: #fff;
+    color           : #555;
+}
+
+tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+tbody tr td {
+    padding   : 0.5em 1em;
+    text-align: center;
+}
+
+.btn {
+    padding      : 0.5em 1em;
+    border       : none;
+    border-radius: 0.3em;
+    cursor       : pointer;
+}
+
+.btn-primary {
+    background: #3151e8;
+    color     : #fff;
+}
+
+.btn-primary:hover {
+    background-color: #4c2eeb;
+}
+
+.btn-goToPost,
+.btn-edit,
+.btn-delete {
+    margin-left: 1em;
+}
+
+.btn-goToPost:hover,
+.btn-edit:hover,
+.btn-delete:hover {
+    background-color: red;
+    color           : #fff;
+}
+
+/* Adjust button sizes if needed */
+.btn.btn-goToPost {
+    padding: 0.5em 1em;
+}
+
+.btn.btn-edit,
+.btn.btn-delete {
+    padding: 0.5em 1em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .filter-container {
+        justify-content: center;
+        margin-bottom  : 10px;
+    }
+
+    .filterBtn {
+        padding: 0.4em 0.8em;
+    }
+}

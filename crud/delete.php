@@ -38,7 +38,7 @@ if (isset($_GET['postId'])) {
     $postId = $_GET['postId'];
     $result = $conn->query("delete from `post` where id=$postId ");
     $result2 = $conn->query("delete from `answer` where post_id=$postId");
-    header('location: /comp1841/crud/user/viewPosts.php');
+    header('location: /comp1841/crud/user/home.php');
 }
 
 if (isset($_GET['postIdAdmin'])) {

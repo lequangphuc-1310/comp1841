@@ -17,13 +17,24 @@ showInfo('Since you deleted the module, all of posts that relating to this modul
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Display Modules</title>
 
 </head>
 
 <body id='module'>
     <style>
+    .background {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    body {
+        background: linear-gradient(-45deg, rgb(152 169 178),
+                rgb(101 150 202), rgb(142 138 232), transparent);
+        height: 100%
+    }
+
     .title {
         text-align: center;
         margin-top: 20px;
@@ -150,43 +161,45 @@ showInfo('Since you deleted the module, all of posts that relating to this modul
     </script>
     <?php }
     ?>
-    <div class="container">
-        <div class="container-2">
-            <h1 class='title'>Display Modules</h1>
+    <div class="background">
 
-            <?php
+        <div class="container">
+            <div class="container-2">
+                <h1 class='title'>Display Modules</h1>
+
+                <?php
             if ($_SESSION['user_id'] == $_SESSION['admin_id']) {
             ?>
 
-            <div class="col-12">
-                <a href='/comp1841/admin/addModule.php'>
-                    <div class="btn btn-primary my-3">Create
-                        new
-                        module</div>
-                </a>
-            </div>
-            <?php
+                <div class="col-12">
+                    <a href='/comp1841/admin/addModule.php'>
+                        <div class="btn btn-primary my-3">Create
+                            new
+                            module</div>
+                    </a>
+                </div>
+                <?php
             }
             ?>
 
 
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Module ID</th>
-                        <th>Module Name</th>
-                        <?php
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Module ID</th>
+                            <th>Module Name</th>
+                            <?php
                         if ($_SESSION['user_id'] == $_SESSION['admin_id']) {
                             echo '
             <th>Operations</th>                        
                 ';
                         }
                         ?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                     $data = $conn->query("select id, module_name, module_id from `module`");
                     $d = $data->fetchAll();
 
@@ -196,38 +209,39 @@ showInfo('Since you deleted the module, all of posts that relating to this modul
                             $module_name = $row['module_name'];
                             $module_id = $row['module_id'];
                             if ($_SESSION['user_id'] == $_SESSION['admin_id']) { ?>
-                    <tr class='w3-hover-green'>
-                        <td><?php echo $module_name; ?></td>
-                        <td><?php echo $module_id; ?></td>
-                        <td>
-                            <button class='btn btn-edit'><a class='text-light text-decoration-none'
-                                    href='/comp1841/crud/edit.php?updateModuleId=<?php echo $id; ?>'><i
-                                        class="far fa-edit"></i></a></button>
-                            <button class='btn btn-delete'><a class='text-light text-decoration-none'
-                                    href='/comp1841/crud/delete.php?deleteModuleId=<?php echo $id; ?>'><i
-                                        class="fas fa-trash"></i></a></button>
-                        </td>
-                    </tr>
-                    <?php
+                        <tr class='w3-hover-green'>
+                            <td><?php echo $module_name; ?></td>
+                            <td><?php echo $module_id; ?></td>
+                            <td>
+                                <button class='btn btn-edit'><a class='text-light text-decoration-none'
+                                        href='/comp1841/crud/edit.php?updateModuleId=<?php echo $id; ?>'><i
+                                            class="far fa-edit"></i></a></button>
+                                <button class='btn btn-delete'><a class='text-light text-decoration-none'
+                                        href='/comp1841/crud/delete.php?deleteModuleId=<?php echo $id; ?>'><i
+                                            class="fas fa-trash"></i></a></button>
+                            </td>
+                        </tr>
+                        <?php
 
                             } else {  ?>
-                    <tr class='w3-hover-green'>
-                        <td><?php echo $module_name; ?></td>
-                        <td><?php echo $module_id; ?></td>
-                    </tr>
-                    <?php }
+                        <tr class='w3-hover-green'>
+                            <td><?php echo $module_name; ?></td>
+                            <td><?php echo $module_id; ?></td>
+                        </tr>
+                        <?php }
                         }
                     } else {
                         ?>
-                    <tr>
-                        No Module available. Please try again or create new module.
-                    </tr>
-                    <?php
+                        <tr>
+                            No Module available. Please try again or create new module.
+                        </tr>
+                        <?php
                     }
                     ?>
-            </table>
-        </div>
+                </table>
+            </div>
 
+        </div>
     </div>
 </body>
 

@@ -17,8 +17,7 @@ showInfo('Since you deleted the user, all of posts that relating to this user wi
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" type="text/css" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>" />
+    <!-- <link rel="stylesheet" type="text/css" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>" /> -->
 
     <title>Display Users</title>
 
@@ -30,6 +29,19 @@ showInfo('Since you deleted the user, all of posts that relating to this user wi
         text-align: center;
         margin-top: 20px;
     }
+
+    .background {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    body {
+        background: linear-gradient(-45deg, rgb(152 169 178),
+                rgb(101 150 202), rgb(142 138 232), transparent);
+        height: 100%
+    }
+
 
     .container {
         background-color: transparent;
@@ -124,68 +136,69 @@ showInfo('Since you deleted the user, all of posts that relating to this user wi
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
 
     ?>
-    <div class="container">
-
-        <h1 class='title'>Display Users</h1>
-
-        <div class="col-12">
-            <a href='/comp1841/admin/addUser.php'>
-                <div class="btn btn-primary my-3">Add
-                    User</div>
-            </a>
-        </div>
+    <div class="background">
 
 
+        <div class="container">
 
-        <table>
-            <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Operations</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $data = $conn->query("select id, name, password, email from `user` order by id desc");
-                $d = $data->fetchAll();
+            <h1 class='title'>Display Users</h1>
 
-                if ($d) {
-                    foreach ($d as $row) {
-                        $id = $row['id'];
-                        $name = $row['name'];
-                        $password = $row['password'];
-                        $email = $row['email'];
-                ?>
-                <tr class='w3-hover-green'>
-                    <td><?php echo $id; ?></td>
-                    <td><?php echo $name; ?></td>
-                    <td><?php echo $email; ?></td>
-                    <td><?php echo $password; ?></td>
-                    <td>
-                        <a class='text-light text-decoration-none'
-                            href='/comp1841/crud/edit.php?updateUserId=<?php echo  $id; ?>'>
-                            <button class='btn btn-edit'>Edit</button></a>
-                        <?php if (!($name == 'admin' || $email == 'admin@gmail.com')) {?>
-                        <a class='text-light text-decoration-none'
-                            href='/comp1841/crud/delete.php?deleteUserId=<?php echo $id; ?>'><button
-                                class='btn btn-delete'>Delete</button></a>
-                        <?php } ?>
-                    </td>
-                </tr>
-                <?php
-                    }
-                } else {
+            <div class="col-12">
+                <a href='/comp1841/admin/addUser.php'>
+                    <div class="btn btn-primary my-3">Add
+                        User</div>
+                </a>
+            </div>
+
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $data = $conn->query("select id, name, password, email from `user` order by id desc");
+                    $d = $data->fetchAll();
+
+                    if ($d) {
+                        foreach ($d as $row) {
+                            $id = $row['id'];
+                            $name = $row['name'];
+                            $email = $row['email'];
                     ?>
-                <tr>
-                    No user available. Please try again or create new user.
-                </tr>
-                <?php
-                }
-                ?>
-        </table>
+                    <tr class='w3-hover-green'>
+                        <td><?php echo $id; ?></td>
+                        <td><?php echo $name; ?></td>
+                        <td><?php echo $email; ?></td>
+                        <td>
+                            <a class='text-light text-decoration-none'
+                                href='/comp1841/crud/edit.php?updateUserId=<?php echo  $id; ?>'>
+                                <button class='btn btn-edit'>Edit</button></a>
+                            <?php if (!($name == 'admin' || $email == 'admin@gmail.com')) { ?>
+                            <a class='text-light text-decoration-none'
+                                href='/comp1841/crud/delete.php?deleteUserId=<?php echo $id; ?>'><button
+                                    class='btn btn-delete'>Delete</button></a>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <?php
+                        }
+                    } else {
+                        ?>
+                    <tr>
+                        No user available. Please try again or create new user.
+                    </tr>
+                    <?php
+                    }
+                    ?>
+            </table>
+        </div>
     </div>
 </body>
 

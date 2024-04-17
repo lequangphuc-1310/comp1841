@@ -1,7 +1,7 @@
 <?php
 include '/xampp/htdocs/comp1841/auth/connection.php';
 include '/xampp/htdocs/comp1841/toast/toast.php';
-$sql = "select user.image, user.name, user.email, post.title,post.details,post.id,post.published_at,post.module, post.imagePost from `user`,`post`
+$sql = "select user.image, user.name, user.email, post.imagePost , post.title,post.details,post.id,post.published_at,post.module, post.imagePost from `user`,`post`
 where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
 $result = $conn->query($sql);
 $d = $result->fetch();
@@ -10,7 +10,7 @@ if ($d) {
 }
 
 if (array_key_exists('noPost', $_GET)) {
-    ?>
+?>
 <script>
 showInfo('No post available! Please add new post')
 </script>
@@ -24,14 +24,25 @@ showInfo('No post available! Please add new post')
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Display Posts</title>
-    <link rel="stylesheet" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>">
+    <!-- <link rel="stylesheet" href="/comp1841/crud/home/home.css?v=<?php echo time(); ?>"> -->
 
 </head>
 
 <body>
     <style>
+    .background {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    body {
+        background: linear-gradient(-45deg, rgb(152 169 178),
+                rgb(101 150 202), rgb(142 138 232), transparent);
+        height: 100%
+    }
+
     .title {
         text-align: center;
         margin-top: 20px;
@@ -164,18 +175,21 @@ showInfo('No post available! Please add new post')
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
 
     ?>
-    <div class="container">
-        <h1 class='title'>Display Posts</h1>
-        <div class="col-12">
-            <a href='/comp1841/crud/askPage/askPage.php'>
-                <div class="btn btn-primary my-3">Create
-                    new
-                    post</div>
-            </a>
-        </div>
-        <div class="filter-container">
-            <form action="" method="POST">
-                <?php
+    <div class='background'>
+
+
+        <div class="container">
+            <h1 class='title'>Display Posts</h1>
+            <div class="col-12">
+                <a href='/comp1841/crud/askPage/askPage.php'>
+                    <div class="btn btn-primary my-3">Create
+                        new
+                        post</div>
+                </a>
+            </div>
+            <div class="filter-container">
+                <form action="" method="POST">
+                    <?php
                 $result = $conn->query("select id, module_id, module_name from `module`");
                 $d = $result->fetchAll();
 
@@ -194,26 +208,27 @@ showInfo('No post available! Please add new post')
 
                 echo "</select>";
                 ?>
-                <input class="filterBtn" type='submit' value='Filter' name='submitFilter' />
-            </form>
-        </div>
+                    <input class="filterBtn" type='submit' value='Filter' name='submitFilter' />
+                </form>
+            </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Author</th>
-                    <th>Email</th>
-                    <th>Post</th>
-                    <th>Operations</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+            <table>
+                <thead>
+                    <tr>
+                        <th>Author</th>
+                        <th>Email</th>
+                        <th>Post</th>
+                        <th>Image</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                 if (array_key_exists('moduleId', $_GET)) {
                     $moduleId = $_GET['moduleId'];
 
                     if ($moduleId == 'All') {
-                        $data = $conn->query("select user.*,post.title,post.details,post.id from `user`, `post` where user.id=post.user_id;");
+                        $data = $conn->query("select user.*,post.title,post.details,post.id, post.imagePost from `user`, `post` where user.id=post.user_id;");
                         $d = $data->fetchAll();
                         if ($d) {
                             foreach ($d as $row) {
@@ -222,37 +237,47 @@ showInfo('No post available! Please add new post')
                                 $details = $row['details'];
                                 $name = $row['name'];
                                 $email = $row['email'];
+                                $image = $row['imagePost'];
                 ?>
-                <tr class='w3-hover-green'>
-                    <td><?php echo $name; ?></td>
-                    <td><?php echo $email; ?></td>
-                    <td><?php echo $title; ?></td>
-                    <td class='admin-operation'>
-                        <a class='text-light text-decoration-none'
-                            href='/comp1841/crud/home/home.php?postId=<?php echo $id; ?>'>
-                            <button class='btn btn-goToPost'>Go to this post</button></a>
-                        <?php
+                    <tr class='w3-hover-green'>
+                        <td><?php echo $name; ?></td>
+                        <td><?php echo $email; ?></td>
+                        <td><?php echo $title; ?></td>
+                        <td>
+                            <?php if (!empty($image)) { ?>
+                            <img class='image-post' style='width: 40px; height: 40px'
+                                src="/comp1841/crud/askPage/uploads/<?php echo $image; ?>" />
+                            <?php } else { ?>
+                            <!-- Replace with blank space -->
+                            &nbsp;
+                            <?php } ?>
+                        </td>
+                        <td class='admin-operation'>
+                            <a class='text-light text-decoration-none'
+                                href='/comp1841/crud/home/home.php?postId=<?php echo $id; ?>'>
+                                <button class='btn btn-goToPost'>Go to this post</button></a>
+                            <?php
                                         if ($_SESSION['user_id'] == $_SESSION['admin_id']) {
                                         ?>
-                        <a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>">
-                            <button class='btn btn-edit'><i class="far fa-edit"></i></button></a>
-                        <a href="/comp1841/crud/delete.php?postIdAdmin=<?php echo $postId; ?>">
-                            <button class='btn btn-delete'><i class="fas fa-trash"></i></button></a>
-                        <?php
+                            <a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>">
+                                <button class='btn btn-edit'><i class="far fa-edit"></i></button></a>
+                            <a href="/comp1841/crud/delete.php?postIdAdmin=<?php echo $postId; ?>">
+                                <button class='btn btn-delete'><i class="fas fa-trash"></i></button></a>
+                            <?php
                                         }
                                         ?>
-                    </td>
-                </tr>
-                <?php  }
+                        </td>
+                    </tr>
+                    <?php  }
                         } else {
                             ?>
-                <tr>
-                    No Post available. Please try again or create new post.
-                </tr>
-                <?php
+                    <tr>
+                        No Post available. Please try again or create new post.
+                    </tr>
+                    <?php
                         }
                     } else {
-                        $data = $conn->query("select user.*,post.title,post.details,post.id from `user`, `post` where user.id=post.user_id and module=$moduleId");
+                        $data = $conn->query("select user.*,post.title,post.details,post.id As post.postID, post.imagePost from `user`, `post` where user.id=post.user_id and module=$moduleId");
 
                         $d = $data->fetchAll();
 
@@ -263,38 +288,48 @@ showInfo('No post available! Please add new post')
                                 $details = $row['details'];
                                 $name = $row['name'];
                                 $email = $row['email'];
+                                $image = $row['imagePost'];
                             ?>
-                <tr class='w3-hover-green'>
-                    <td><?php echo $name; ?></td>
-                    <td><?php echo $email; ?></td>
-                    <td><?php echo $title; ?></td>
-                    <td class='admin-operation'>
-                        <a class='text-light text-decoration-none'
-                            href='/comp1841/crud/home/home.php?postId=<?php echo $id; ?>'>
-                            <button class='btn btn-goToPost'>Go to this post</button></a>
-                        <?php
+                    <tr class='w3-hover-green'>
+                        <td><?php echo $name; ?></td>
+                        <td><?php echo $email; ?></td>
+                        <td><?php echo $title; ?></td>
+                        <td>
+                            <?php if (!empty($image)) { ?>
+                            <img class='image-post' style='width: 40px; height: 40px'
+                                src="/comp1841/crud/askPage/uploads/<?php echo $image; ?>" />
+                            <?php } else { ?>
+                            <!-- Replace with blank space -->
+                            &nbsp;
+                            <?php } ?>
+                        </td>
+                        <td class='admin-operation'>
+                            <a class='text-light text-decoration-none'
+                                href='/comp1841/crud/home/home.php?postId=<?php echo $row['postID']; ?>'>
+                                <button class='btn btn-goToPost'>Go to this post</button></a>
+                            <?php
                                         if ($_SESSION['user_id'] == $_SESSION['admin_id']) {
                                         ?>
-                        <a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>">
-                            <button class='btn btn-edit'><i class="far fa-edit"></i></button></a>
-                        <a href="/comp1841/crud/delete.php?postIdAdmin=<?php echo $postId; ?>">
-                            <button class='btn btn-delete'><i class="fas fa-trash"></i></button></a>
-                        <?php
+                            <a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>">
+                                <button class='btn btn-edit'><i class="far fa-edit"></i></button></a>
+                            <a href="/comp1841/crud/delete.php?postIdAdmin=<?php echo $row['postID']; ?>">
+                                <button class='btn btn-delete'><i class="fas fa-trash"></i></button></a>
+                            <?php
                                         }
                                         ?>
-                    </td>
-                </tr>
-                <?php  }
+                        </td>
+                    </tr>
+                    <?php  }
                         } else {
                             ?>
-                <tr>
-                    <td colspan='4'>No Post available. Please try again or create new post.</td>
-                </tr>
-                <?php
+                    <tr>
+                        <td colspan='4'>No Post available. Please try again or create new post.</td>
+                    </tr>
+                    <?php
                         }
                     }
                 } else {
-                    $data = $conn->query("select user.*,post.title,post.details,post.id from `user`, `post` where user.id=post.user_id;");
+                    $data = $conn->query("select user.*,post.title,post.details,post.id As postID, post.imagePost from `user`, `post` where user.id=post.user_id;");
 
                     $d = $data->fetchAll();
 
@@ -305,42 +340,54 @@ showInfo('No post available! Please add new post')
                             $details = $row['details'];
                             $name = $row['name'];
                             $email = $row['email'];
+                            $image = $row['imagePost'];
                         ?>
-                <tr class='w3-hover-green'>
-                    <td><?php echo $name; ?></td>
-                    <td><?php echo $email; ?></td>
-                    <td><?php echo $title; ?></td>
-                    <td class='admin-operation'>
-                        <a class='text-light text-decoration-none'
-                            href='/comp1841/crud/home/home.php?postId=<?php echo $id; ?>'>
-                            <button class='btn btn-goToPost'>Go to this post</button></a>
-                        <?php
+                    <tr class='w3-hover-green'>
+                        <td><?php echo $name; ?></td>
+                        <td><?php echo $email; ?></td>
+                        <td><?php echo $title; ?></td>
+                        <td>
+                            <?php if (!empty($image)) { ?>
+                            <img class='image-post' style='width: 40px; height: 40px'
+                                src="/comp1841/crud/askPage/uploads/<?php echo $image; ?>" />
+                            <?php } else { ?>
+                            <!-- Replace with blank space -->
+                            &nbsp;
+                            <?php } ?>
+                        </td>
+
+                        <td class='admin-operation'>
+                            <a class='text-light text-decoration-none'
+                                href='/comp1841/crud/home/home.php?postId=<?php echo $id; ?>'>
+                                <button class='btn btn-goToPost'>Go to this post</button></a>
+                            <?php
                                     if ($_SESSION['user_id'] == $_SESSION['admin_id']) {
                                     ?>
-                        <a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>">
-                            <button class='btn btn-edit'><i class="far fa-edit"></i></button></a>
-                        <a href="/comp1841/crud/delete.php?postIdAdmin=<?php echo $postId; ?>">
-                            <button class='btn btn-delete'><i class="fas fa-trash"></i></button></a>
-                        <?php
+                            <a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $row['postID']; ?>">
+                                <button class='btn btn-edit'><i class="far fa-edit"></i></button></a>
+                            <a href="/comp1841/crud/delete.php?postIdAdmin=<?php echo $row['postID']; ?>">
+                                <button class='btn btn-delete'><i class="fas fa-trash"></i></button></a>
+                            <?php
                                     }
                                     ?>
-                    </td>
-                </tr>
-                <?php  }
+                        </td>
+                    </tr>
+                    <?php  }
                     } else {
                         ?>
-                <tr>
-                    No Post available. Please try again or create new post.
-                </tr>
-                <?php
+                    <tr>
+                        No Post available. Please try again or create new post.
+                    </tr>
+                    <?php
                     }
                 }
                 ?>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
 
 
+        </div>
     </div>
 </body>
 

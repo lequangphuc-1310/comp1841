@@ -1,311 +1,207 @@
+<?php
+// Start output buffering
+ob_start();
+include "/xampp/htdocs/comp1841/crud/nav/nav.php";
+include("/xampp/htdocs/comp1841/auth/connection.php");
+include("/xampp/htdocs/comp1841/toast/toast.php");
+
+// Pagination settings
+$records_per_page = 5;
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+
+// Calculate the limit clause for SQL
+$limit = ($page - 1) * $records_per_page;
+
+// Query to fetch posts for the current page
+$sql = "SELECT user.image, user.name, user.email, post.title, post.details, post.id, post.published_at, post.module, post.imagePost, module.module_name
+        FROM `user`, `post`
+        LEFT JOIN `module` ON post.module = module.id
+        WHERE post.user_id=user.id
+        ORDER BY post.id DESC
+        LIMIT :limit, :per_page";
+
+// Prepare and execute the query
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+$stmt->bindParam(':per_page', $records_per_page, PDO::PARAM_INT);
+$stmt->execute();
+$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Count total number of records
+$total_records = $conn->query("SELECT COUNT(*) FROM post")->fetchColumn();
+
+// Calculate total pages
+$total_pages = ceil($total_records / $records_per_page);
+
+// Output buffering end
+ob_end_flush();
+
+// Function to insert answer into the database
+function insertAnswer($conn, $user_id, $post_id, $answer, $module)
+{
+    $sql = "INSERT INTO answer (user_id, post_id, answer, module) VALUES (:user_id, :post_id, :answer, :module)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+    $stmt->bindParam(':answer', $answer, PDO::PARAM_STR);
+    $stmt->bindParam(':module', $module, PDO::PARAM_STR);
+    return $stmt->execute();
+}
+
+
+// Check if the form is submitted
+if (isset($_POST['submit_answer'])) {
+    $user_id = $_SESSION['user_id'];
+    $answer = $_POST['answer'];
+    // Pass PHP variables to JavaScript
+    $post_id = $_POST['post_id'];
+    $module = isset($_POST['moduleID']);
+    if (!empty($posts) && isset($posts[0]['id']) && isset($module)) {
+        if (insertAnswer($conn, $user_id, $post_id, $answer, $module)) {
+            // Redirect to the same page to refresh the content
+            echo "<script>window.location.href='/comp1841/crud/home/home.php';</script>";
+            exit();
+        } else {
+            echo "Failed to submit answer.";
+        }
+    } else {
+        echo "No post found.";
+    }
+}
+?>
+
 <html lang="en">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home</title>
-<link rel="stylesheet" type="text/css" href="./home.css?v=<?php echo time(); ?>" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="./home.css?v=<?php echo time(); ?>" />
 </head>
 
 <body>
     <style>
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            /* Adjust as needed */
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .pagination a.active {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+        .pagination a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .each-answer-container {
+            padding: 10px;
+            border: 1px solid lightgreen;
+            box-shadow: 0 0 5px #007bff;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
     </style>
-    <?php
-    include "/xampp/htdocs/comp1841/crud/nav/nav.php";
-    include("/xampp/htdocs/comp1841/toast/toast.php");
-    if (array_key_exists('success', $_GET)) {
-    ?>
-    <script>
-    showSuccessLogin()
-    </script>
-    <?php }
-    if (array_key_exists('postId', $_GET)) {
-        $postId = $_GET['postId'];
-        $_SESSION['post_id'] = $postId;
-        $sql = "select user.image, user.name, user.email, post.title,post.details,
-        post.id,post.published_at,post.module, post.imagePost from `user`, `post` 
-        where post.user_id=user.id and post.id=$postId;";
-        $result = $conn->query($sql);
-        $d = $result->fetch();
-        if (!$d) {
-        ?>
-    <script>
-    alert('Unable to find post. Please try another post')
-    window.location.href = '/comp1841/crud/user/viewPosts.php'
-    </script>
-    <?php
-        }
-        $title = $d['title'];
-        $askerImage = $d['image'];
-        $resultGetAskerUserId = $conn->query("SELECT u.id from `user`
-         as u inner join  `post` as p on p.user_id = u.id where p.user_id=u.id and p.id=$postId limit 1;");
-        $dataResultGetAskterUserId = $resultGetAskerUserId->fetch();
-        $askerUserId = $dataResultGetAskterUserId['id'];
-        $name = $d['name'];
-        $email = $d['email'];
-        $details = $d['details'];
-        $published = $d['published_at'];
-        $imagePost = $d['imagePost'];
-        $moduleId = $d['module'];
-        $sqlGetModule = ("select * from `module` where id=$moduleId");
-        $resultGetModule = $conn->query($sqlGetModule);
-        $dataResultGetModule = $resultGetModule->fetch();
-        $module_name = $dataResultGetModule['module_name'];
-        $module_id = $dataResultGetModule['module_id'];
-        $userId = $_SESSION['user_id'];
-        if (!$askerImage) {
-            $askerImage = 'IMG-653751dd87d0c4.57015077.png';
-        }
-    } else {
-        $sql = "select user.image, user.name, user.email,
-         post.title,post.details,post.id,post.published_at,post.module, post.imagePost from `user`,`post`
-        where post.user_id=user.id ORDER BY id DESC LIMIT 1;";
-        $result = $conn->query($sql);
-        $d = $result->fetch();
-        if (!$d) {
-        ?>
-    <script>
-    window.location.href = '/comp1841/crud/user/viewPosts.php?noPost'
-    </script>
-    <?php
-        }
-        $postId = $d['id'];
-        $title = $d['title'];
-        $askerImage = $d['image'];
-        $resultGetAskerUserId = $conn->query("SELECT u.id from `user` as u inner join  `post`
-         as p on p.user_id = u.id where p.user_id=u.id and p.id=$postId limit 1;");
-        $dataResultGetAskterUserId = $resultGetAskerUserId->fetch();
-        $askerUserId = $dataResultGetAskterUserId['id'];
-        $name = $d['name'];
-        $email = $d['email'];
-        $details = $d['details'];
-        $published = $d['published_at'];
-        $imagePost = $d['imagePost'];
-        $moduleId = $d['module'];
-        $sqlGetModule = ("select * from `module` where id=$moduleId");
-        $resultGetModule = $conn->query($sqlGetModule);
-        $dataResultGetModule = $resultGetModule->fetch();
-        $module_name = $dataResultGetModule['module_name'];
-        $module_id = $dataResultGetModule['module_id'];
-        $userId = $_SESSION['user_id'];
-
-        if (!$askerImage) {
-            $askerImage = 'IMG-653751dd87d0c4.57015077.png';
-        }
-    }
-    ?>
-    <div class="container">
-        <div class="body">
-            <div class="content">
-                <div class="question">
-                    <div class="question-title">
-                        <div class='question-title-content'>
-                            <div class="akser-avt">
-                                <a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
-                                    <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/<?php echo $askerImage; ?>)
-                    center center no-repeat; height: 30px; width: 30px; padding: 3px;background-size: contain">
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <div class='question-title-content-up'>
-                                    <?php
-                                    echo $title
-                                    ?>
-                                </div>
-                                <div class='question-title-content-down-name'>
-                                    <a href='/comp1841/crud/user/userInfo.php?userId=<?php echo $askerUserId; ?>'>
-                                        <?php
-                                        echo $name;
-                                        ?>
-                                    </a>
-                                    <span> - </span>
-                                    <?php
-                                    echo $email
-                                    ?>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="question-title-extra">
-                            <div class="question-title-extra-child asked">
-                                <?php
-                                echo $published
-                                ?>
-                            </div>
-                            <div class="question-title-extra-child module">
-                                <?php
-                                echo $module_id . ' - ' .  $module_name;
-                                ?>
-                            </div>
-                            <?php
-                            if ($_SESSION['user_id'] == $askerUserId) { ?>
-
-                            <div class="question-title-extra-child edit-delete">
-                                <a href="/comp1841/crud/askPage/askPageEdit.php?postId=<?php echo $postId; ?>">
-                                    <button class='edit-post'><i class="far fa-edit"></i></button>
-                                </a>
-                            </div>
-                            <div class="question-title-extra-child edit-delete">
-                                <a href="/comp1841/crud/delete.php?postId=<?php echo $postId; ?>">
-                                    <button class='delete-post'><i class="fas fa-trash"></i>
-                                    </button>
-                                </a>
-                            </div>
+    <div class="background">
+        <div class="container">
+            <div class="body">
+                <div class="content">
+                    <?php foreach ($posts as $post) { ?>
+                        <div class="each-post">
+                            <h3 style='font-size: 32px'><?php echo $post['title']; ?></h3>
+                            <p style='font-size: 24px'><?php echo $post['details']; ?></p>
+                            <?php if ($post['imagePost']) { ?>
+                                <img class='image-post' src="/comp1841/crud/askPage/uploads/<?php echo $post['imagePost']; ?>" alt="Post Image">
                             <?php } ?>
-                        </div>
-                    </div>
-                    <div class="question-content">
-                        <div class='question-content-text'>
-                            <?php
-                            echo $details
-                            ?>
-                        </div>
-
-                        <?php if ($imagePost) { ?>
-                        <hr>
-                        <div class="question-content-img">
-                            <div class='question-content-img-content' style="background: url(/comp1841/crud/askPage/uploads/<?php echo $imagePost; ?>)
-                                  center center no-repeat; background-size: contain">
+                            <div class="post-content">
+                                <p style='color:gray'><?php echo $post['published_at']; ?></p>
+                                <div class="post-content-trivia">
+                                    <p><?php echo $post['module_name']; ?></p>
+                                    <p style='font-weight: 600'><?php echo $post['name']; ?></p>
+                                </div>
+                                <img class='image-author-post' src="/comp1841/crud/user/uploads/<?php echo $post['image']; ?>" alt="Author Image">
                             </div>
-                        </div>
-                        <?php } ?>
-                    </div>
-                    <div class="existed-answer">
-                        <?php
-                        $sqlExistedAnswer = "select user.image, user.name, user.email,answer.* from `user`, `answer` 
-                        where answer.user_id=user.id and post_id=$postId;";
-                        $resultExistedAnswer = $conn->query($sqlExistedAnswer);
-                        $datasqlExistedAnswer = $resultExistedAnswer->fetchAll();
-                        foreach ($datasqlExistedAnswer as $row) {
-                            $answerAuthorImage = $row['image'];
-                            $answerAuthorName = $row['name'];
-                            $answerAuthorId = $row['id'];
-                            $answerAuthorEmail = $row['email'];
-                            $existedAnswer = $row['answer'];
-                            $answerAuthorPublished = $row['published_at'];
-                            $resultGetAnswererId = $conn->query("SELECT u.id from `user` as u inner join  `answer`
-                             as a on a.user_id = u.id where a.user_id=u.id and a.id=$answerAuthorId limit 1;");
-                            $dataResultGetAnswererId = $resultGetAnswererId->fetch();
-                            $answererId = $dataResultGetAnswererId['id'];
-                            if (!$answerAuthorImage) {
-                                $answerAuthorImage = 'IMG-653751dd87d0c4.57015077.png';
-                            }
-
-                        ?>
-                        <div class="each-existed-answer">
-                            <div class="answer-avt">
-                                <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $answererId; ?>">
-                                    <div class="nav-user-avt-img" style="background: url(/comp1841/crud/user/uploads/<?php echo $answerAuthorImage; ?>)
-                                            center center no-repeat; height: 30px; width: 30px; 
-                                            padding: 3px;background-size: contain">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="answer-text"><span class="answerAuthorName">
-                                    <a href="/comp1841/crud/user/userInfo.php?userId=<?php echo $answererId; ?>">
-                                        <?php echo $answerAuthorName; ?>
-                                    </a>
-                                </span> &nbsp;-&nbsp;
-                                <span class="existedAnswer">
-                                    <?php echo $existedAnswer; ?>
-                                </span>&nbsp;-&nbsp;
-                                <span class="answerAuthorEmail">
-                                    <?php echo $answerAuthorEmail; ?>
-                                </span>&nbsp;-&nbsp;
-                                <span class="answerAuthorPublished">
-                                    <?php echo $answerAuthorPublished; ?>
-                                </span>
+                            <div class="answer">
                                 <?php
-                                    if (
-                                        $_SESSION['user_id'] == $answererId ||
-                                        $_SESSION['admin_id'] == $_SESSION['user_id']
-                                    ) { ?>
-                                <span class="answerAuthorEditDelete">
-                                    <a
-                                        href="/comp1841/crud/home/answerEdit.php?answerId=<?php echo $answerAuthorId; ?>">
-                                        <button style='cursor:pointer'>
-                                            <i class="far fa-edit"></i>
-                                        </button>
-                                    </a>
-                                    <a style='cursor:pointer'
-                                        href="/comp1841/crud/delete.php?answerId=<?php echo $answerAuthorId; ?>">
-                                        <button style='cursor:pointer'><i class="fas fa-trash"></i></button>
-                                    </a>
-                                </span>
-                                <?php } ?>
-                            </div>
+                                // Query to fetch answers for the current post
+                                $sql2 = "SELECT 
+            answer.answer, answer.id As answerID,
+            user.name AS user_name, 
+            user.email AS user_email, 
+            user.image AS user_image,
+            user.id AS author_id
+         FROM 
+            answer 
+         LEFT JOIN 
+            user ON answer.user_id = user.id 
+         WHERE 
+            answer.post_id = :postId";
 
-                        </div>
-                        <?php
-                        }
-                        ?>
+                                // Prepare and execute the query
+                                $stmt = $conn->prepare($sql2);
+                                $stmt->bindParam(':postId', $post['id']);
+                                $stmt->execute();
+                                $answerPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                    </div>
-                    <form method="POST">
-                        <div class="your-answer">
-                            <h4>Your answer</h4>
-                            <?php
-                            if (isset($_POST['submitAnswer'])) {
-                                $inputAnswer =  $_POST["answer"];
-                                $answer = mysql_escape_mimic($inputAnswer);
-                                $user_id = $_SESSION['user_id'];
-
-                                try {
-                                    $answerDisplay = $conn->query("select * from `answer`
-                                    where user_id=$user_id and answer='$answer'");
-                                    $countRow = $answerDisplay->fetchColumn();
-                                    if ($answer == '') {
-                            ?>
-                            <script>
-                            showInfo('Please enter something!')
-                            </script>
-                            <?php
-                                    } else {                                    if ($countRow == 0) {
-                                        $sql = "INSERT INTO `answer` (`user_id`,
-                                        `post_id`, `answer`, `module`)
-                                            values ($user_id, $postId, '$answer', $moduleId)";
-                                        $result = $conn->query($sql);
-                                        if ($result) {
-                                        ?>
-                            <script>
-                            window.location.href =
-                                '/comp1841/crud/home/home.php?postId=<?php echo $postId; ?>'
-                            </script>
-                            <?php
-                                        }
-                                        }
-                                    }
-                                } catch (PDOException $e) {
-                                    die("Error: " . $e->getMessage());
+                                // Output answers
+                                foreach ($answerPosts as $answer) {
+                                ?>
+                                    <div class='each-answer-container'>
+                                        <img class='image-author-post' src="/comp1841/crud/user/uploads/<?php echo $answer['user_image']; ?>" alt="User Image">
+                                        <p><?php echo $answer['answer']; ?></p>
+                                        <p>User Name: <?php echo $answer['user_name']; ?></p>
+                                        <p>User Email: <?php echo $answer['user_email']; ?></p>
+                                        <p>answer id: <?php echo $answer['author_id']; ?></p>
+                                        <p>curr user id: <?php echo $_SESSION['user_id']; ?></p>
+                                        <?php if ($_SESSION['user_id'] === $answer['author_id']) { ?>
+                                            <a href="/comp1841/crud/home/answerEdit.php?answerId=<?php echo  $answer['answerID']; ?>"><button>Edit</button></a>
+                                            <a href="/comp1841/crud/delete.php?postId=<?php echo  $post['id']; ?>"><button>Delete</button></a>
+                                        <?php } ?>
+                                    </div>
+                                <?php
                                 }
-                            }
-                            ?>
-                            <textarea placeholder='Type something...' class='textArea' name='answer' rows="10"
-                                cols="100" style="resize: none;"></textarea>
-                            <div class="submit-answer">
-                                <input class="btn-submit" value='Submit Answer' type='submit' name='submitAnswer' />
+                                ?>
+                                <form method="post">
+                                    <textarea name="answer" placeholder="Answer this..."></textarea>
+                                    <input type='hidden' name="post_id" value="<?php echo $post['id']; ?>">
+                                    <input type='hidden' name="moduleID" value="<?php echo $post['module']; ?>">
+                                    <div style='display: flex; justify-content: end'>
+                                        <button type="submit" name="submit_answer">Submit</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </form>
+                    <?php } ?>
                 </div>
-
+                <!-- Pagination links -->
+                <div class="pagination">
+                    <?php if ($page > 1) { ?>
+                        <a href="?page=<?php echo ($page - 1); ?>" class="btn-blue">&laquo; Prev</a>
+                    <?php } ?>
+                    <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+                        <a href="?page=<?php echo $i; ?>" class="<?php if ($page == $i) echo 'active'; ?>"><?php echo $i; ?></a>
+                    <?php } ?>
+                    <?php if ($page < $total_pages) { ?>
+                        <a href="?page=<?php echo ($page + 1); ?>" class="btn-blue">Next &raquo;</a>
+                    <?php } ?>
+                </div>
             </div>
-
         </div>
     </div>
-    <?php if ($imagePost) { ?>
-    <script type='text/javascript'>
-    document.querySelector('.question-content-img').addEventListener('click', function() {
-        document.querySelector('.question-content-img-content').classList.toggle('large')
-    })
-    </script>
-    <?php } ?>
 </body>
 
 </html>
