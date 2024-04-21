@@ -10,30 +10,30 @@
 
 <body>
     <style type="text/css">
-    .btn-blue {
-        background-color: #381DDB !important;
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #fff;
-        cursor: pointer;
-    }
+        .btn-blue {
+            background-color: #381DDB !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    .btn-blue:hover {
-        opacity: 0.8;
-    }
+        .btn-blue:hover {
+            opacity: 0.8;
+        }
 
-    input {
-        border: 1px solid black !important;
-    }
+        input {
+            border: 1px solid black !important;
+        }
 
-    .label {
-        margin: 10px 0 10px 0;
-    }
+        .label {
+            margin: 10px 0 10px 0;
+        }
 
-    .title {
-        text-align: center;
-        margin-top: 20px;
-    }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -99,12 +99,16 @@
                     $userId = $_SESSION['user_id'];
                     $user_id = $_SESSION['user_id'];
                     $img_name = '';
-                    if ($inputTitle == '' || $inputDetails = '') {
+                    if ($inputTitle == '' || $inputDetails == '') {
                 ?>
-                <script>
-                showError('Please enter all fields!')
-                </script>
+                        <script>
+                            showError('Please enter all fields!')
+                        </script>
                 <?php
+                    } elseif (strlen($inputTitle) < 5) {
+                        echo "<script>showError('Title should be at least 5 characters long!');</script>";
+                    } elseif (strlen($inputDetails) < 20) {
+                        echo "<script>showError('Details should be at least 20 characters long!');</script>";
                     } else {
                         if (isset($_FILES['inputImage'])) {
                             $img_name = $_FILES['inputImage']['name'];

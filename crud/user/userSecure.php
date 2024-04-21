@@ -11,26 +11,26 @@
 
 <body>
     <style type="text/css">
-        .btn-blue {
-            background-color: #381DDB !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            cursor: pointer;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
 
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -51,11 +51,12 @@
         $name = $_POST['name'];
         $password = $_POST['password'];
         $email = $_POST['email'];
-        $mobile = $_POST['mobile'];
         $sql = "update `user` set id=$user_id, name='$name', password='$password', email='$email' where id=$user_id ";
         $result = $conn->query($sql);
         if ($result) {
-            header('location: /comp1841/crud/user/userInfo.php?userId= ' . $user_id . '');
+        // in the previous error, it shows that header already sent, so I used the below line to fix that, instead of 
+        // using (header)..
+            echo "<script>window.location.href='/comp1841/crud/user/userInfo.php?userId=" . $user_id . "';</script>";
         }
     }
 

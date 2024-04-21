@@ -5,10 +5,12 @@ if (isset($_GET['deleteUserId'])) {
     $sql = "delete from `user` where id = $inputId";
     $sql2 = "delete from `post` where user_id = $inputId";
     $sql3 = "delete from `answer` where user_id = $inputId";
+    $sql4 = "delete from `conversations` where user_1 = $inputId or user_2 = $inputId";
 
     $result = $conn->query($sql);
     $result2 = $conn->query($sql2);
     $result3 = $conn->query($sql3);
+    $result4 = $conn->query($sql4);
 
 
     if ($result) {
@@ -38,7 +40,7 @@ if (isset($_GET['postId'])) {
     $postId = $_GET['postId'];
     $result = $conn->query("delete from `post` where id=$postId ");
     $result2 = $conn->query("delete from `answer` where post_id=$postId");
-    header('location: /comp1841/crud/user/home.php');
+    header('location: /comp1841/crud/home/home.php');
 }
 
 if (isset($_GET['postIdAdmin'])) {

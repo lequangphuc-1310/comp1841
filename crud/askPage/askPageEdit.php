@@ -10,30 +10,30 @@
 
 <body>
     <style type="text/css">
-        .btn-blue {
-            background-color: #381DDB !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            cursor: pointer;
-        }
+    .btn-blue {
+        background-color: #381DDB !important;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        cursor: pointer;
+    }
 
-        .btn-blue:hover {
-            opacity: 0.8;
-        }
+    .btn-blue:hover {
+        opacity: 0.8;
+    }
 
-        input {
-            border: 1px solid black !important;
-        }
+    input {
+        border: 1px solid black !important;
+    }
 
-        .label {
-            margin: 10px 0 10px 0;
-        }
+    .label {
+        margin: 10px 0 10px 0;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
     </style>
     <?php
     include "/xampp/htdocs/comp1841/crud/nav/nav.php";
@@ -44,7 +44,7 @@
         $getTitle = $data['title'];
         $getDetails = $data['details'];
         $image = $data['imagePost'];
-        echo $image;
+        // echo $image;
     }
     ?>
     <div class="ask-page-container ">
@@ -60,7 +60,8 @@
                     <h4>What are the details of your problem</h4>
                     <label for="details">Introduce the problem and expand on what you put in the title. Minimum 20
                         characters.</label>
-                    <textarea name='details' id='details' rows="10" cols="50" style="resize: none;"><?php echo $getDetails; ?></textarea>
+                    <textarea name='details' id='details' rows="10" cols="50"
+                        style="resize: none;"><?php echo $getDetails; ?></textarea>
                 </div>
 
                 <div class='form-group col-8 content'>

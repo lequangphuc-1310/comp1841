@@ -39,7 +39,6 @@ if (isset($_SESSION['user_id'])) {
             $time = date("h:i:s a");
 
             if ($data2->rowCount() == 0) {
-                echo '<script>console.log("dell co")</script>';
                 # insert them into conversations table 
                 $sql3 = "INSERT INTO 
 			         `conversations`(user_2, user_1)

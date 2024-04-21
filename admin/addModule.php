@@ -1,17 +1,26 @@
 <?php
+include("/xampp/htdocs/comp1841/toast/toast.php");
 include '/xampp/htdocs/comp1841/auth/connection.php';
 
 if (isset($_POST["submit"])) {
     $module_name = $_POST["module_name"];
     $module_id = $_POST["module_id"];
-    try {
-        $sql = "INSERT INTO `module` (`module_name`, `module_id`) values ('$module_name', '$module_id')";
-        $result = $conn->exec($sql);
-        if ($result) {
-            header('location: /comp1841/crud/module/modules.php?success');
+    if (strlen($module_name) < 5 || strlen($module_id) < 5) {
+?>
+        <script>
+            showError('Each inputs must be at least 5 characters!')
+        </script>
+<?php
+    } else {
+        try {
+            $sql = "INSERT INTO `module` (`module_name`, `module_id`) values ('$module_name', '$module_id')";
+            $result = $conn->exec($sql);
+            if ($result) {
+                header('location: /comp1841/crud/module/modules.php?success');
+            }
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
         }
-    } catch (PDOException $e) {
-        die("Error: " . $e->getMessage());
     }
 }
 ?>
